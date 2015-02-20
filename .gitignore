@@ -11,10 +11,6 @@ tmp/
 *.bak
 *.swp
 *~.nib
-<<<<<<< HEAD
-*.pyc
-=======
->>>>>>> dev-dana
 local.properties
 .classpath
 .settings/
@@ -218,8 +214,5 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
-<<<<<<< HEAD
-=======
+*.pyc
 
-.pyc
->>>>>>> dev-dana
