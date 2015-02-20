@@ -1,0 +1,71 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+
+<h2>{{project.name}}</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Nodes</h3>
+        <hr />
+        <a href="#" class="btn btn-primary">Attach New</a> <input type="submit" value="Detach Selected" class="btn btn-default" />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                    
+                    </th>
+                    <th>
+                        Node name
+                    </th>
+                    <th>
+                        More info
+                    </th>
+                </tr>
+            </thead>
+            {% for node in project.nodes %}
+            <tr>
+                <td>
+                    <input type="checkbox" />
+                </td>
+                <td>{{node.name}}</td>
+                <td><a href="/nodes/{{ node.name }}" class="btn btn-success">Details</a></td>
+            </tr>
+            {% endfor%}
+            
+        </table>
+        
+    </div>
+
+    <div class="col-md-12">
+        <h3>Networks</h3>
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Network name
+                    </th>
+                    <th>
+                        More info
+                    </th>
+                </tr>
+            </thead>
+            {% for network in project.networks %}
+            <tr>
+                <td>{{network.name}}</td>
+                <td>{{network.accesslevel}}</td>
+            </tr>
+            {% endfor%}
+            
+        </table>
+    </div>
+</div>
+<hr />
+<p>
+    <a href="/projects" class="btn btn-primary">Back to list</a>
+    <a href="/project/delete/{{project.name}}" class="btn btn-danger">Delete</a>
+</p>
+    
+
+{% endblock %}
