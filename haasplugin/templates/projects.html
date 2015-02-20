@@ -1,0 +1,27 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<a href="../projects/create" class="btn btn-primary">Create New</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Project Name
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                More info
+            </th>
+        </tr>
+    </thead>
+    {% for project in projects %}
+    <tr>
+        <td>{{project.name}}</td>
+        <td>{{project.status}}</td>
+        <td><a href="/projects/details/{{ project.name }}" class="btn btn-success">Details</a></td>
+    </tr>
+    {% endfor%}
+</table>
+{% endblock %}
