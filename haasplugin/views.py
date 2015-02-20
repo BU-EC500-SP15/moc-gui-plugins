@@ -28,4 +28,16 @@ def createProject(request):
 	"""
 	images = [{'name':'Ubuntu'}, {'name':'Centos'}, {'name':'Windows'}]
 
-	return render(request, 'createProject.html', {'baseimages', images})
+	return render(request, 'createProject.html', {'baseimages': images})
+
+
+def allocNodes(request, name):
+	"""
+	List keystone projects available to the user; 
+	attempt to login with credentials
+
+	"""
+	project = {'name':name}
+	nodes = [{'name':'Node1'}, {'name':'Node2'}, {'name':'Node4'}, {'name':'Node6'}, {'name':'Node15'}, {'name':'Node17'}]
+	context = {'project' : project, 'nodes':nodes}
+	return render(request, 'allocateNode.html', {'context': context})

@@ -7,13 +7,12 @@
 <div class="row">
     <div class="col-md-12">
         <h3>Nodes</h3>
-        <hr />
-        <a href="#" class="btn btn-primary">Attach New</a> <input type="submit" value="Detach Selected" class="btn btn-default" />
+        <hr />       
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>
-                    
+                    	<input type="checkbox" onClick="toggle(this)" />
                     </th>
                     <th>
                         Node name
@@ -26,7 +25,7 @@
             {% for node in project.nodes %}
             <tr>
                 <td>
-                    <input type="checkbox" />
+                    <input type="checkbox" name="nodeCheck" />
                 </td>
                 <td>{{node.name}}</td>
                 <td><a href="/nodes/{{ node.name }}" class="btn btn-success">Details</a></td>
@@ -34,8 +33,10 @@
             {% endfor%}
             
         </table>
-        
-    </div>
+	<div>
+           <a href="../details/freenodes/{{project.name}}" class="btn btn-primary">Attach New</a> <input type="submit" value="Detach Selected" class="btn btn-default" />
+	</div>    
+</div>
 
     <div class="col-md-12">
         <h3>Networks</h3>
@@ -63,9 +64,20 @@
 </div>
 <hr />
 <p>
-    <a href="/projects" class="btn btn-primary">Back to list</a>
-    <a href="/project/delete/{{project.name}}" class="btn btn-danger">Delete</a>
+   <div>
+ 	<a href="/projects" class="btn btn-primary">Back to list</a>
+    	<a href="/project/delete/{{project.name}}" class="btn btn-danger">Delete</a>
+   </div>   
 </p>
-    
 
+
+<script language="JavaScript">
+function toggle(source) {
+  checkboxes = document.getElementsByName('nodeCheck');
+  for(var i=0, n=checkboxes.length;i<n;i++) {
+    checkboxes[i].checked = source.checked;
+  }
+}
+</script>
+    
 {% endblock %}
