@@ -1,14 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+from haasplugin.forms import *
+
+
 
 def projects(request):
 	"""
 	List keystone projects available to the user; 
 	attempt to login with credentials
 	"""
-
-	projects = [{'name':'Project 1', 'status':'ON'}, {'name':'Project 2', 'status':'OFF'}, {'name':'Project 3', 'status':'ON'}, {'name':'Project 4', 'status':'OFF'}]       
-
+	projects = [{'name':'Project 1', 'status':'ON'}, {'name':'Project 2', 'status':'OFF'}, {'name':'Project 3', 'status':'ON'}, {'name':'Project 4', 'status':'OFF'}]
+	
 	return render(request, 'projects.html', {'projects': projects})
 
 
@@ -26,9 +28,16 @@ def createProject(request):
 	List keystone projects available to the user; 
 	attempt to login with credentials
 	"""
-	images = [{'name':'Ubuntu'}, {'name':'Centos'}, {'name':'Windows'}]
-
-	return render(request, 'createProject.html', {'baseimages': images})
+	if request.method == "POST":
+                form = ProjectForm(request.POST)
+                if form.is_valid():
+                        projectname = form.cleaned_data["projectname"]
+                        project = {'name':projectname, 'status':'OFF'}
+                        projects = [{'name':'Project 1', 'status':'ON'}, {'name':'Project 2', 'status':'OFF'}, {'name':'Project 3', 'status':'ON'}, {'name':'Project 4', 'status':'OFF'}]       
+                        projects.append(project)
+                        return render(request, 'projects.html', {'projects': projects})
+    
+	return render(request, "createProject.html")
 
 
 def allocNodes(request, name):
