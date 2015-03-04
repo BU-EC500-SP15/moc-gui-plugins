@@ -1,7 +1,6 @@
 ﻿{% extends "base.html" %}
 
 {% block content %}
-<a href="../projects/create" class="btn btn-primary">Create New</a>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -20,8 +19,9 @@
     <tr>
         <td>{{project.name}}</td>
         <td>{{project.status}}</td>
-        <td><a href="/projects/details/{{ project.name }}" class="btn btn-success">Details</a></td>
+        <td><a href="/projects/details/{{ project.name }}" class="btn btn-success">Manage</a></td>
     </tr>
     {% endfor%}
 </table>
+<a href="../projects/create" class="btn btn-primary">Create New</a>
 {% endblock %}
