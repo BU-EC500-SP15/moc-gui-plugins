@@ -1,0 +1,14 @@
+﻿<form method="post" action="{# form.action #}">
+    {% csrf_token %}
+
+    {# TODO: for field in form #}
+
+        <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+
+    {# TODO: endfor  #}
+
+    <button type="submit">{# form.submit #}</button>
+  </div>
+</form>
