@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from haasplugin.forms import *
-
+from django.conf import settings
+import requests
 
 def projects(request):
     """
@@ -31,10 +32,15 @@ def createProject(request):
         form = ProjectForm(request.POST)
         if form.is_valid():
                 name = form.cleaned_data["name"]
-                project = {'name':name, 'status':'OFF'}
-                projects = [{'name':'Project 1', 'status':'ON'}, {'name':'Project 2', 'status':'OFF'}, {'name':'Project 3', 'status':'ON'}, {'name':'Project 4', 'status':'OFF'}]
-                projects.append(project)
-                return render(request, 'projects.html', {'projects': projects})
+                r = requests.put(settings.HAAS_URL + '/project/' + name)
+                return render(request, 'error.html', {'status': r})
+                if(r.status_code == 200):
+                    project = {'name':name, 'status':'OFF'}
+                    projects = [{'name':'Project 1', 'status':'ON'}, {'name':'Project 2', 'status':'OFF'}, {'name':'Project 3', 'status':'ON'}, {'name':'Project 4', 'status':'OFF'}]
+                    projects.append(project)
+                    return render(request, 'projects.html', {'projects': projects})
+                else:
+                    return render(request, 'error.html', {'status': r})
     project = ProjectForm()
     
     return render(request, 'createProject.html', {'project': project})
@@ -50,19 +56,3 @@ def allocNodes(request, name):
     nodes = [{'name':'Node1'}, {'name':'Node2'}, {'name':'Node4'}, {'name':'Node6'}, {'name':'Node15'}, {'name':'Node17'}]
     context = {'project' : project, 'nodes':nodes}
     return render(request, 'allocateNode.html', {'context': context})
-
-
-def allNodes(request):
-    """
-
-    List keystone projects available to the user;
-
-    attempt to login with credentials
-
-
-
-    """
-    nodes = [{'name':'Node1'}, {'name':'Node2'}, {'name':'Node4'}, {'name':'Node6'}, {'name':'Node15'}, {'name':'Node17'}]
-    context = {'nodes':nodes}
-    return render(request, 'viewAllNodes.html', {'context': context})
-
