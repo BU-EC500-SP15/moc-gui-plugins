@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from haasplugin.forms import *
 from django.conf import settings
@@ -52,6 +53,7 @@ def deleteProject(request):
         form = DeleteProjectForm(request.POST)
         if form.is_valid():
                 name = form.cleaned_data["name"]
+                
                 r = requests.delete(settings.HAAS_URL + '/project/' + name)
                 if(r.status_code == 200):
                     return redirect('haasplugin.views.projects')
