@@ -1,0 +1,32 @@
+<!--<a href="#" class="btn btn-success"
+   data-toggle="modal"
+   data-target="#basicModal">Delete</a>-->
+
+<a href="/project/delete/{{project.name}}" data-toggle="modal"
+   data-target="#deleteModal" class="btn btn-danger">Delete</a>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title" id="myModalLabel">Delete Project</h4>
+            </div>
+            <div class="modal-body">
+              
+		{% block content %}
+
+    			{% include "form.html" with form=deleteForm %}
+
+		{% endblock %}
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                
+        </div>
+    </div>
+  </div>
+</div>
+
+	<script src="src/jquery-bootstrap-modal-steps.js"></script>
+

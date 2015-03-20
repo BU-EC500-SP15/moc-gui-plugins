@@ -95,7 +95,11 @@
    <div class="col-md-12">
 <hr />
  	<a href="/projects" class="btn btn-primary">Back to list</a>
-    	<a href="/project/delete/{{project.name}}" class="btn btn-danger">Delete</a>
+    	<!--<a href="/project/delete/{{project.name}}" class="btn btn-danger">Delete</a>-->
+	{% block delete%}
+        	{% include "deleteProject.html" %}
+    	{% endblock %}
+
    </div>   
 </p>
 
