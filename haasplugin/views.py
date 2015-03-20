@@ -36,10 +36,7 @@ def createProject(request):
                 r = requests.put(settings.HAAS_URL + '/project/' + name)
                 #return render(request, 'error.html', {'status': r})
                 if(r.status_code == 200):
-                    project = {'name':name, 'status':'OFF'}
-                    projects = [{'name':'Project 1', 'status':'ON'}, {'name':'Project 2', 'status':'OFF'}, {'name':'Project 3', 'status':'ON'}, {'name':'Project 4', 'status':'OFF'}]
-                    projects.append(project)
-                    return render(request, 'projects.html', {'projects': projects})
+                    return redirect('haasplugin.views.projects')
                 else:
                     return render(request, 'error.html', {'status': r})
     project = ProjectForm()
@@ -56,11 +53,13 @@ def deleteProject(request):
         if form.is_valid():
                 name = form.cleaned_data["name"]
                 r = requests.delete(settings.HAAS_URL + '/project/' + name)
-                return render(request, 'error.html', {'status': r.status_code})
-                if(status_code == 200):
-                    return render(request, 'projects.html')
+                if(r.status_code == 200):
+                    return redirect('haasplugin.views.projects')
+                else:
+                    return render(request, 'error.html', {'status': r.status_code })
+
    
-    return render(request, 'error.html', {'status': r.status_code})
+    return render(request, 'error.html', {'status': ''})
 
 
 
