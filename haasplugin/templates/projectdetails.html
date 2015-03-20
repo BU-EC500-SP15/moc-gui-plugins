@@ -28,7 +28,11 @@
                     <input type="checkbox" name="nodeCheck" />
                 </td>
                 <td>{{node.name}}</td>
-                <td><a href="/node/{{ node.name }}" class="btn btn-success">Details</a></td>
+                <td><!--<a href="/node/{{ node.name }}" class="btn btn-success" >Details</a>-->
+ 			{% block node%}
+        		   {% include "node.html" %}
+    			{% endblock %}
+		</td>
             </tr>
             {% endfor%}
             
@@ -54,7 +58,7 @@
             </thead>
             {% for network in project.networks %}
             <tr>
-                <td>{{network.name}}</td>
+                <td>Headnode name 1</td>
                 <td><a href="" class="btn btn-success">Assign</a></td>
             </tr>
             {% endfor%}
@@ -103,6 +107,7 @@ function toggle(source) {
     checkboxes[i].checked = source.checked;
   }
 }
+
 </script>
     
 {% endblock %}

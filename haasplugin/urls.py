@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^projects/details/(?P<name>.+)', projectDetails),
     url(r'^projects/create', createProject),
     url(r'^projects/', projects),
+    url(r'^nodes/', allNodes),
     url(r'^$', projects),
   
 )

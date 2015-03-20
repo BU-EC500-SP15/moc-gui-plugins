@@ -4,7 +4,10 @@ Django settings for haasplugin project.
 import os
 
 DEBUG = True
+
 TEMPLATE_DEBUG = DEBUG
+
+HAAS_URL = 'http://127.0.0.1:5000'
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),

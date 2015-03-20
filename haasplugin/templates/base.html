@@ -3,31 +3,41 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>
+        {% block title%}
+        {% endblock %}
+    </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+    <style>
+        {% block css%}
+            {% include "style.css" %}
+        {% endblock %}
+    </style>
+
+    <script>
+        {% block js %}
+        {% endblock %}
+    </script>
+
 </head>
 
 <body class="container">
+
+    {% block header%}
+        {% include "header.html" %}
+    {% endblock %}
 
     <br />
     {% block content %}
 
     {% endblock %}
 <div id="footer">
-<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-  <div class="container">
-
-    <ul class="nav navbar-nav">
-    	<li><img height="50px" width="50px" src="http://www.bu.edu/hic/files/2014/05/1.jpg" alt="MOC" class="img-responsive"></li>
-      <li><a href="http://www.bu.edu/hic/research/massachusetts-open-cloud/">About</a></li>
-      <li><a href="http://www.bu.edu/hic/research/massachusetts-open-cloud/news/">Press</a></li>
-      <li><a href="http://www.bu.edu/hic/research/massachusetts-open-cloud/job-opportunities/">Contact</a></li>
-      <li><a href="http://www.bu.edu/hic/research/massachusetts-open-cloud/faq/">FAQ</a></li>
-    </ul>
-  
-  </div>
-</nav>
+    {% block footer %}
+        {% include "footer.html" %}
+    {% endblock %}
 <div>
 </body>
 

@@ -1,0 +1,22 @@
+﻿<table class="table table-striped">
+    <thead>
+        <tr>
+            {# for header in table #}
+                <td>
+                    {# header.name #}
+                </td>
+            {# endfor #}
+        </tr>
+    </thead>
+    <tbody>
+        {# for row in table #}
+            <tr>
+                {# for column in row #}
+                <td>
+                    {# column.name #}
+                </td>
+                {# endname #}
+            </tr>
+        {# endfor #}
+    </tbody>
+</table>

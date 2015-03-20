@@ -1,15 +1,7 @@
 ﻿{% extends "base.html" %}
 
 {% block content %}
-<form action="/projects/create" method="post">
-    {% csrf_token %}
-    <div class="form-group">
-        <label>Project name</label>
-        <input type="text" class="form-control" id="projectname" name="projectname" placeholder="Project name">
-    </div>
 
-    
-    <button type="submit" class="btn btn-primary">Create</button>
-    <a href="/projects" class="btn btn-default">Cancel</a>
-</form>
+    {% include "form.html" with form=project %}
+
 {% endblock %}

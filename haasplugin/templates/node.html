@@ -1,24 +1,42 @@
-﻿{% extends "base.html" %}
 
-{% block content %}
-<table class="table table-striped">
-    <thead>
-        <tr>	     
-            <th>
-                Node Name
-            </th>   
-	    <th>
-		Status
-	    </th>                 
-        </tr>
-    </thead>
+<a href="#" class="btn btn-success"
+   data-toggle="modal"
+   data-target="#basicModal">Details</a>
+
+
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+    		   <thead>
+        		<tr>	     
+            		  <th>
+                		Node Name
+            		  </th>   
+	    		  <th>
+				Status
+	    		  </th>                 
+        		</tr>
+    		   </thead>
    
-    <tr>     
-	<td>{{nodes.name}}</td>
-	<td><input id="switch-state" type="checkbox" >{{nodes.status}}</td>
-    </tr>
-</table>
-<a href="../project/detail/Project1" class="btn btn-default">Back</a>
-  <script src="dist/js/bootstrap-switch.js"></script>
+    		   <tr>     
+			<td>{{nodes.name}}</td>
+			<td><input id="switch-state" type="checkbox" >{{nodes.status}}</td>
+    		   </tr>
+		</table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                
+        </div>
+    </div>
+  </div>
+</div>
 
-{% endblock %}
+	<script src="src/jquery-bootstrap-modal-steps.js"></script>
+
+

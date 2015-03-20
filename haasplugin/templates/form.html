@@ -1,0 +1,15 @@
+﻿<form method="post" action="{{ form.action }}">
+    {% csrf_token %}
+
+    {% for field in form %}
+
+        <div class="form-group">
+            {{ field.errors }}
+            {{ field.label_tag }}
+            <input type="text" name="{{field.name}}" id="{{field.name}}"  class="form-control"/>
+        </div>
+    {% endfor  %}
+
+    <button type="submit" class="btn btn-primary">{{ form.submit }}</button>
+    <a href="{{form.back_link}}" class="btn btn-default">{{form.back_text}}</a>
+</form>
