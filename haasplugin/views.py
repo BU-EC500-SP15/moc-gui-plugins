@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from haasplugin.forms import *
-
+import requests
 
 def projects(request):
     """
@@ -30,11 +30,16 @@ def createProject(request):
     if request.method == "POST":
         form = ProjectForm(request.POST)
         if form.is_valid():
+                url = 'http://127.0.0.1:5000'
                 name = form.cleaned_data["name"]
-                project = {'name':name, 'status':'OFF'}
-                projects = [{'name':'Project 1', 'status':'ON'}, {'name':'Project 2', 'status':'OFF'}, {'name':'Project 3', 'status':'ON'}, {'name':'Project 4', 'status':'OFF'}]
-                projects.append(project)
-                return render(request, 'projects.html', {'projects': projects})
+                r = requests.put(url + '/project', data = name)
+                if(r.status == '200'):
+                #project = {'name':name, 'status':'OFF'}
+                    projects = [{'name':'Project 1', 'status':'ON'}, {'name':'Project 2', 'status':'OFF'}, {'name':'Project 3', 'status':'ON'}, {'name':'Project 4', 'status':'OFF'}]
+                    projects.append(project)
+                    return render(request, 'projects.html', {'projects': projects})
+                else:
+                    return render(request, 'error.html')
     project = ProjectForm()
     
     return render(request, 'createProject.html', {'project': project})
