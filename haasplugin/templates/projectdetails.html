@@ -28,7 +28,11 @@
                     <input type="checkbox" name="nodeCheck" />
                 </td>
                 <td>{{node.name}}</td>
-                <td><a href="/node/{{ node.name }}" class="btn btn-success">Details</a></td>
+                <td><!--<a href="/node/{{ node.name }}" class="btn btn-success" >Details</a>-->
+ 			{% block node%}
+        		   {% include "node.html" %}
+    			{% endblock %}
+		</td>
             </tr>
             {% endfor%}
             
@@ -103,6 +107,7 @@ function toggle(source) {
     checkboxes[i].checked = source.checked;
   }
 }
+
 </script>
     
 {% endblock %}
