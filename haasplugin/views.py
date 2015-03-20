@@ -56,15 +56,3 @@ def allocNodes(request, name):
     nodes = [{'name':'Node1'}, {'name':'Node2'}, {'name':'Node4'}, {'name':'Node6'}, {'name':'Node15'}, {'name':'Node17'}]
     context = {'project' : project, 'nodes':nodes}
     return render(request, 'allocateNode.html', {'context': context})
-
-	
-	
-def allNodes(request):
-    """
-    List keystone projects available to the user;
-    attempt to login with credentials
-	
-    """
-    nodes = [{'name':'Node1'}, {'name':'Node2'}, {'name':'Node4'}, {'name':'Node6'}, {'name':'Node15'}, {'name':'Node17'}]
-    context = {'nodes':nodes}
-    return render(request, 'viewAllNodes.html', {'context': context})
