@@ -32,7 +32,8 @@ def createProject(request):
         if form.is_valid():
                 url = 'http://127.0.0.1:5000'
                 name = form.cleaned_data["name"]
-                r = requests.put(url + '/project', data = name)
+                r = requests.put(url + '/project/' + name)
+                return render(request, 'error.html', {'status': r})
                 if(r.status == '200'):
                 #project = {'name':name, 'status':'OFF'}
                     projects = [{'name':'Project 1', 'status':'ON'}, {'name':'Project 2', 'status':'OFF'}, {'name':'Project 3', 'status':'ON'}, {'name':'Project 4', 'status':'OFF'}]
