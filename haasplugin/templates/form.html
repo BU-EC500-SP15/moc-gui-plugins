@@ -1,4 +1,4 @@
-﻿<form method="post" action="{{ form.action }}">
+﻿<form method="post" action="{{ form.action }}" onsubmit="return checkProj()">
     {% csrf_token %}
 
     {% for field in form %}
@@ -10,6 +10,23 @@
         </div>
     {% endfor  %}
 
-    <button type="submit" class="btn btn-primary">{{ form.submit }}</button>
+    <button type="submit" class="btn btn-primary" >{{ form.submit }}</button>
     <a href="{{form.back_link}}" class="btn btn-default">{{form.back_text}}</a>
 </form>
+
+<script language="JavaScript">
+function checkProj() {
+	var delProj = document.getElementById('deleteModal');
+	if (delProj != null) 
+	{	  
+	  var projName = document.getElementById('name').value;
+	 
+	  if(projName!= "{{project.name}}")
+	  {
+		 alert("Error, the project name is incorrect");
+	  	 return false;
+	  }
+	 
+	}
+   }	
+</script>
