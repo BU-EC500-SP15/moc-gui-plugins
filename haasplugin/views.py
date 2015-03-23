@@ -76,3 +76,12 @@ def allocNodes(request, name):
     nodes = [{'name':'Node1'}, {'name':'Node2'}, {'name':'Node4'}, {'name':'Node6'}, {'name':'Node15'}, {'name':'Node17'}]
     context = {'project' : project, 'nodes':nodes}
     return render(request, 'allocateNode.html', {'context': context})
+
+
+def allNodes(request):
+    """
+    List all nodes available to the user;
+    """
+    nodes = [{'name':'Node1'}, {'name':'Node2'}, {'name':'Node4'}, {'name':'Node6'}, {'name':'Node15'}, {'name':'Node17'}]
+    return render(request, 'viewAllNodes.html', {'nodes': nodes})
+

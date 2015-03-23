@@ -1,18 +1,14 @@
 <div class="col-md-5">
 <table class="table table-striped">
     <thead>
-        <tr>
-	    <th>
-		<input type="checkbox" onClick="toggle(this)" id="masterCheck" />
-	    </th>	     
+        <tr>	       
             <th>
                 Node Name
             </th>                    
         </tr>
     </thead>
-    {% for node in context.nodes %}
-    <tr>
-	<td><input type="checkbox" name="nodeCheck" /></td>      
+    {% for node in nodes %}
+    <tr>      
 	<td>{{node.name}}</td>
     </tr>
     {% endfor%}
