@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     url(r'^projects/delete', deleteProject),
     url(r'^projects/', projects),
     url(r'^nodes/', allNodes),
+    url(r'^networks/', allNetworks),
     url(r'^$', projects),
   
 )

@@ -86,3 +86,11 @@ def allNodes(request):
     context = {'nodes':nodes}
     return render(request, 'viewAllNodes.html', {'context': context})
 
+def allNetworks(request):
+    """
+    List all networks;
+    """
+    networks = [{'name':'Network1','accesslevel':'Shared'},{'name':'Network2','accesslevel':'Private'}, {'name':'Network5','accesslevel':'Shared'}, {'name':'Network12','accesslevel':'Public'}]
+    project = {'networks':networks}
+    return render(request, 'viewAllNetworks.html', {'project': project})
+
