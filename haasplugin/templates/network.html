@@ -1,0 +1,15 @@
+<table class="table table-striped">
+   <thead>
+     <tr>
+       <th>Network name</th>
+       <th>More info</th>
+     </tr>
+   </thead>
+   {% for network in project.networks %}
+   <tr>
+      <td>{{network.name}}</td>
+      <td>{{network.accesslevel}}</td>
+   </tr>
+  {% endfor%}          
+</table>
+

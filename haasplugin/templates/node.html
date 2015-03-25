@@ -9,7 +9,7 @@
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            <h4 class="modal-title" id="myModalLabel">Node Details</h4>
             </div>
             <div class="modal-body">
                 <table class="table table-striped">
@@ -25,8 +25,12 @@
     		   </thead>
    
     		   <tr>     
-			<td>{{nodes.name}}</td>
-			<td><input id="switch-state" type="checkbox" >{{nodes.status}}</td>
+			<td>{{node.name}}</td>
+			<td><div class="btn-group btn-toggle"> 
+				<button class="btn btn-default">ON</button>
+                                <button class="btn btn-primary active">OFF</button>
+  			   </div>
+			<!--<input id="switch-state" type="checkbox" >{{node.status}}</td>-->
     		   </tr>
 		</table>
             </div>
