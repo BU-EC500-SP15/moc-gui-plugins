@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^projects/details/freenodes/(?P<name>.+)', allocNodes),
+    url(r'(?:.*?/)?(?P<path>(images)/.+)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT }),
     url(r'^projects/details/(?P<name>.+)', projectDetails),
     url(r'^projects/create', createProject),
     url(r'^projects/delete', deleteProject),
