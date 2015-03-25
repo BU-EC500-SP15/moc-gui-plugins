@@ -13,6 +13,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+HAAS_URL = 'http://127.0.0.1:8000'
+
 DATABASES = {
     'default': {
         # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
