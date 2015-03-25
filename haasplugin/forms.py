@@ -9,3 +9,11 @@ class ProjectForm(forms.Form):
     submit = 'Create'
 
 
+class DeleteProjectForm(forms.Form):
+    """description of class"""
+    name = forms.CharField(label='Delete Project')
+    action = '/projects/delete'
+    back_text = 'Cancel'
+    submit = 'Delete'
+
+
