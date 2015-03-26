@@ -14,7 +14,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-HAAS_URL = 'http://127.0.0.1:8000'
+HAAS_URL = 'http://127.0.0.1:5000'
 
 DATABASES = {
     'default': {
