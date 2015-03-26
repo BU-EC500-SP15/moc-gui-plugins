@@ -1,6 +1,7 @@
 ﻿{% extends "base.html" %}
 
 {% block content %}
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -8,25 +9,25 @@
                 Project Name
             </th>
             <th>
-                Status
-            </th>
-            <th>
                 More info
             </th>
         </tr>
     </thead>
+<tbody>
     {% for project in projects %}
     <tr>
-        <td>{{project.name}}</td>
-        <td>{{project.status}}</td>
-        <td><a href="/projects/details/{{ project.name }}" class="btn btn-success">Manage</a></td>
+        <td>{{project}}</td>
+        <td><a href="/projects/details/{{project}}" class="btn btn-success">Manage</a></td>
     </tr>
     {% endfor%}
+</tbody>
 </table>
 <a href="../projects/create" class="btn btn-primary">Create New</a>
+
 <script type="text/javascript">
 window.onload=function () {
     $('#project').addClass('active');
 };
 </script>
+
 {% endblock %}

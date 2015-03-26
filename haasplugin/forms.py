@@ -16,4 +16,8 @@ class DeleteProjectForm(forms.Form):
     back_text = 'Cancel'
     submit = 'Delete'
 
+class AllocateNodeForm(forms.Form):
+    node_name = forms.CharField(widget=forms.HiddenInput())
+    action = "/projects/details/connect_node"
+
 

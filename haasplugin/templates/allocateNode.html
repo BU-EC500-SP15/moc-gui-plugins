@@ -1,6 +1,7 @@
 ﻿{% extends "base.html" %}
 
 {% block content %}
+<h1>{{nname}}</h1>
 <table class="table table-striped">
     <thead>
         <tr>	    	     
@@ -13,8 +14,15 @@
     </thead>
     {% for node in context.nodes %}
     <tr>  
-	<td>{{node.name}}</td>
-	<td><a href="../{{context.project.name}}" class="btn btn-primary">Allocate</a></td>
+	<td>{{node}}</td>
+	<td>
+		<form action="/projects/details/freenodes/{{context.project.name}}" method="POST">
+			{% csrf_token %}
+			 <input type="hidden" name="node_name" id="node_name" value="{{node}}"/>
+			<input type="submit" value="Allocate" class="btn btn-primary"/>
+		</form>
+		<!--a href="../{{context.project.name}}" class="btn btn-primary">Allocate</a-->
+	</td>
     </tr>
     {% endfor%}
 </table> 

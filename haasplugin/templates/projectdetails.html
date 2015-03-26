@@ -27,7 +27,7 @@
                 <td>
                     <input type="checkbox" name="nodeCheck" />
                 </td>
-                <td>{{node.name}}</td>
+                <td>{{node}}</td>
                 <td><!--<a href="/node/{{ node.name }}" class="btn btn-success" >Details</a>-->
  			{% block node%}
         		   {% include "node.html" %}
@@ -56,13 +56,10 @@
                     </th>
                 </tr>
             </thead>
-            {% for network in project.networks %}
             <tr>
                 <td>Headnode name 1</td>
                 <td><a href="" class="btn btn-success">Assign</a></td>
             </tr>
-            {% endfor%}
-            
         </table>
     </div>
 </div>
@@ -75,15 +72,11 @@
                     <th>
                         Network name
                     </th>
-                    <th>
-                        More info
-                    </th>
                 </tr>
             </thead>
             {% for network in project.networks %}
             <tr>
-                <td>{{network.name}}</td>
-                <td>{{network.accesslevel}}</td>
+                <td>{{network}}</td>
             </tr>
             {% endfor%}
             

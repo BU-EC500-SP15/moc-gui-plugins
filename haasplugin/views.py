@@ -11,7 +11,8 @@ def projects(request):
     attempt to login with credentials
     """
     projects = [{'name':'Project 1', 'status':'ON'}, {'name':'Project 2', 'status':'OFF'}, {'name':'Project 3', 'status':'ON'}, {'name':'Project 4', 'status':'OFF'}]
-
+    r = requests.get(settings.HAAS_URL + '/projects')
+    projects = r.json()
     return render(request, 'projects.html', {'projects': projects})
 
 
@@ -20,9 +21,14 @@ def projectDetails(request, name):
     List keystone projects available to the user;
     attempt to login with credentials
     """
-    project = {'name':name, 'nodes':[{'name':'Node 1'}, {'name':'Node 2'},{'name':'Node 3'}], 'networks':[{'name':'Network 1', 'accesslevel':'Shared'}]}
+    nodes = requests.get(settings.HAAS_URL + '/project/' + name + '/nodes')
+    nodes = nodes.json()
+    networks = requests.get(settings.HAAS_URL + '/project/' + name + '/networks')
+    networks = networks.json()
+    project = {'name':name, 'nodes':nodes, 'networks':networks}
+    
     deleteForm = DeleteProjectForm()
-    return render(request, 'projectdetails.html', {'project': project, 'deleteForm': deleteForm})
+    return render(request, 'projectDetails.html', {'project': project, 'deleteForm': deleteForm})
 
 
 def createProject(request):
@@ -72,10 +78,19 @@ def allocNodes(request, name):
     attempt to login with credentials
 
     """
+    node_name = ""
+    if request.method == 'POST':
+        form = AllocateNodeForm(request.POST)
+        node_name = form["node_name"]
+        #r = requests.post(settings.HAAS_URL + '/project/' + name + '/connect_node', node = node_name)
+        #if r.status_code == 200:
+            #return redirect('haasplugin.views.projectDetails', name)
+
     project = {'name':name}
-    nodes = [{'name':'Node1'}, {'name':'Node2'}, {'name':'Node4'}, {'name':'Node6'}, {'name':'Node15'}, {'name':'Node17'}]
+    nodes = requests.get(settings.HAAS_URL + '/free_nodes')
+    nodes = nodes.json()
     context = {'project' : project, 'nodes':nodes}
-    return render(request, 'allocateNode.html', {'context': context})
+    return render(request, 'allocateNode.html', {'context': context, 'nnode': node_name})
 
 
 def allNodes(request):
