@@ -95,6 +95,26 @@ def allocate_node(request, name):
     context = {'project' : project, 'nodes':nodes}
     return render(request, 'allocateNode.html', {'context': context, 'nnode': node_name})
 
+def detach_node(request, name):
+    """
+    Detaches the node from the specified project
+
+    """
+    if request.method == 'POST':
+        form = DetachNodeForm(request.POST)
+        if form.is_valid():
+            node_name = form.cleaned_data['node_name']
+            #return render(request, 'error.html', {'status': node_name })
+            payload = {'node':node_name}
+            r = requests.post(settings.HAAS_URL + '/project/' + name + '/detach_node', data = json.dumps(payload))
+            if r.status_code == 200:
+                return redirect('haasplugin.views.project_details', name)
+            else:
+                return render(request, 'error.html', {'status': r.status_code})
+        else:
+            return render(request, 'error.html', {'status': 'form is not valid' })
+
+    return redirect('haasplugin.views.project_details', name)
 
 def nodes(request):
     """

@@ -18,7 +18,7 @@
                         Node name
                     </th>
                     <th>
-                        More info
+                        Actions
                     </th>
                 </tr>
             </thead>
@@ -28,17 +28,22 @@
                     <input type="checkbox" name="nodeCheck" />
                 </td>
                 <td>{{node}}</td>
-                <td><!--<a href="/node/{{ node.name }}" class="btn btn-success" >Details</a>-->
- 			{% block node%}
-        		   {% include "node.html" %}
-    			{% endblock %}
+                <td>
+			<form action="/projects/{{project.name}}/detach_node" method="POST">
+				{%csrf_token%}
+				<input type="hidden" name="node_name" value="{{node}}"/>
+			        <input type="submit" value="Detach" class="btn btn-danger btn-sm"/>
+			</form>
+			{% block node%}
+			   {% include "node.html" %}
+			{% endblock %}
 		</td>
             </tr>
             {% endfor%}
             
         </table>
 	<div>
-           <a href="../details/freenodes/{{project.name}}" class="btn btn-primary">Attach New</a> <input type="submit" value="Detach Selected" class="btn btn-default" />
+           <a href="../details/freenodes/{{project.name}}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Attach New</a>
 	</div>    
 </div>
 
@@ -58,7 +63,7 @@
             </thead>
             <tr>
                 <td>Headnode name 1</td>
-                <td><a href="" class="btn btn-success">Assign</a></td>
+                <td><a href="" class="btn btn-success btn-sm">Assign</a></td>
             </tr>
         </table>
     </div>
@@ -87,7 +92,7 @@
 <p>
    <div class="col-md-12">
 <hr />
- 	<a href="/projects" class="btn btn-primary">Back to list</a>
+ 	<a href="/projects" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-arrow-left"></i> Back</a>
     	<!--<a href="/project/delete/{{project.name}}" class="btn btn-danger">Delete</a>-->
 	{% block delete%}
         	{% include "deleteProject.html" %}
