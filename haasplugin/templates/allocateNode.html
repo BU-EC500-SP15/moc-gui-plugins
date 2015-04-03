@@ -18,7 +18,7 @@
 	<td>
 		<form action="/projects/details/freenodes/{{context.project.name}}" method="POST">
 			{% csrf_token %}
-			 <input type="hidden" name="node_name" id="node_name" value="{{node}}"/>
+			 <input type="hidden" name="node_name" id="" value="{{node}}"/>
 			<input type="submit" value="Allocate" class="btn btn-primary"/>
 		</form>
 		<!--a href="../{{context.project.name}}" class="btn btn-primary">Allocate</a-->
