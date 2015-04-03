@@ -4,19 +4,19 @@ from django.http import HttpResponse, HttpResponseRedirect
 from haasplugin.forms import *
 from django.conf import settings
 import requests
+import json
 
 def projects(request):
     """
     List keystone projects available to the user;
     attempt to login with credentials
     """
-    projects = [{'name':'Project 1', 'status':'ON'}, {'name':'Project 2', 'status':'OFF'}, {'name':'Project 3', 'status':'ON'}, {'name':'Project 4', 'status':'OFF'}]
     r = requests.get(settings.HAAS_URL + '/projects')
     projects = r.json()
     return render(request, 'projects.html', {'projects': projects})
 
 
-def projectDetails(request, name):
+def project_details(request, name):
     """
     List keystone projects available to the user;
     attempt to login with credentials
@@ -31,7 +31,7 @@ def projectDetails(request, name):
     return render(request, 'projectDetails.html', {'project': project, 'deleteForm': deleteForm})
 
 
-def createProject(request):
+def project_create(request):
     """
     List keystone projects available to the user;
     attempt to login with credentials
@@ -41,7 +41,6 @@ def createProject(request):
         if form.is_valid():
                 name = form.cleaned_data["name"]
                 r = requests.put(settings.HAAS_URL + '/project/' + name)
-                #return render(request, 'error.html', {'status': r})
                 if(r.status_code == 200):
                     return redirect('haasplugin.views.projects')
                 else:
@@ -50,7 +49,7 @@ def createProject(request):
     
     return render(request, 'createProject.html', {'project': project})
 
-def deleteProject(request):
+def project_delete(request):
     """
     List keystone projects available to the user;
     attempt to login with credentials
@@ -72,7 +71,7 @@ def deleteProject(request):
 
 
 
-def allocNodes(request, name):
+def allocate_node(request, name):
     """
     List keystone projects available to the user;
     attempt to login with credentials
@@ -81,10 +80,14 @@ def allocNodes(request, name):
     node_name = ""
     if request.method == 'POST':
         form = AllocateNodeForm(request.POST)
-        node_name = form["node_name"]
-        #r = requests.post(settings.HAAS_URL + '/project/' + name + '/connect_node', node = node_name)
-        #if r.status_code == 200:
-            #return redirect('haasplugin.views.projectDetails', name)
+        if form.is_valid():
+            node_name = form.cleaned_data['node_name']
+            payload = {'node':node_name}
+            r = requests.post(settings.HAAS_URL + '/project/' + name + '/connect_node', data = json.dumps(payload))
+            if r.status_code == 200:
+                return redirect('haasplugin.views.project_details', name)
+        else:
+           return render(request, 'error.html', {'status': 'form is not valid' })
 
     project = {'name':name}
     nodes = requests.get(settings.HAAS_URL + '/free_nodes')
@@ -93,7 +96,7 @@ def allocNodes(request, name):
     return render(request, 'allocateNode.html', {'context': context, 'nnode': node_name})
 
 
-def allNodes(request):
+def nodes(request):
     """
     List all nodes available to the user;
     """
@@ -101,7 +104,7 @@ def allNodes(request):
     context = {'nodes':nodes}
     return render(request, 'viewAllNodes.html', {'context': context})
 
-def allNetworks(request):
+def networks(request):
     """
     List all networks;
     """
