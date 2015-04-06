@@ -715,30 +715,19 @@ def list_project_networks(project):
     networks = [n.label for n in networks]
     return json.dumps(networks)
 
-@rest_call('GET', '/project/<project>/headnode')
-def show_project_headnode(project):
+@rest_call('GET', '/project/<project>/headnodes')
+def show_project_headnodes(project):
     """Show the headnode belonging the given project.
 
     Returns a JSON representation of headnode.
 
-    Example:  '{"name": 'headnode1', 
-	            "vncport": 8000, 
-				"hnics": ["hnic1", "hnic2", "hnic3"], 
-				"dirty": false,
-				"base_img": 'base_img1'
-				}'
+    Example:  '["headnode1", "headnode2", "headnode3"]'
     """
     db = model.Session()
     project = _must_find(db, model.Project, project)
-    headnode = project.headnode
-    
-    return json.dumps({
-        'name': headnode.label,
-        'hnics': [n.label for n in headnode.hnics],
-        'vncport': headnode.get_vncport(),
-	'dirty': headnode.dirty,
-	'base_img': headnode.base_img,
-    })
+    headnodes = project.headnode
+    headnodes = [h.label for h in headnodes]
+    return json.dumps(headnodes)
 
 @rest_call('GET', '/node/<nodename>')
 def show_node(nodename):

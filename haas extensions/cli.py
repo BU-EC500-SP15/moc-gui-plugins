@@ -348,9 +348,9 @@ def show_headnode(headnode):
     do_get(url)
 
 @cmd
-def show_project_headnode(project):
+def show_project_headnodes(project):
     """Display information about a headnode of the <project>"""
-    url = object_url('project', project, 'headnode')
+    url = object_url('project', project, 'headnodes')
     do_get(url)
 	
 @cmd
