@@ -18,8 +18,7 @@ def projects(request):
 
 def project_details(request, name):
     """
-    List keystone projects available to the user;
-    attempt to login with credentials
+    Get Project details
     """
     nodes = requests.get(settings.HAAS_URL + '/project/' + name + '/nodes')
     nodes = nodes.json()
@@ -100,7 +99,9 @@ def nodes(request):
     """
     List all nodes available to the user;
     """
-    nodes = [{'name':'Node1'}, {'name':'Node2'}, {'name':'Node4'}, {'name':'Node6'}, {'name':'Node15'}, {'name':'Node17'}]
+
+    r = requests.get(settings.HAAS_URL + '/nodes')
+    nodes = r.json()
     context = {'nodes':nodes}
     return render(request, 'viewAllNodes.html', {'context': context})
 
