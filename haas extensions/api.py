@@ -228,6 +228,19 @@ def project_remove_user(project, user):
                             #############
 
 
+@rest_call('GET', '/nodes')
+def list_nodes():
+    """List all nodes.
+
+    Returns a JSON array of strings representing a list of projects.
+    Example:  '["node1", "node2", "node3"]'
+
+    """
+    db = model.Session()
+    nodes = db.query(model.Node).all()
+    nodes = [n.label for n in nodes]
+    return json.dumps(nodes)
+
 @rest_call('PUT', '/node/<node>')
 def node_register(node, ipmi_host, ipmi_user, ipmi_pass):
     """Create node.

@@ -202,6 +202,12 @@ def headnode_delete(headnode):
     do_delete(url)
 
 @cmd
+def list_nodes():
+    """List all nodes"""
+    url = object_url('nodes')
+    do_get(url)
+
+@cmd
 def project_connect_node(project, node):
     """Connect <node> to <project>"""
     url = object_url('project', project, 'connect_node')
