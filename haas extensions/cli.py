@@ -131,6 +131,12 @@ def user_create(username, password):
     do_put(url, data={'password': password})
 
 @cmd
+def list_networks():
+    """List all networks"""
+    url = object_url('networks')
+    do_get(url)
+
+@cmd
 def network_create(network, creator, access, net_id):
     """Create a link-layer <network>.  See docs/networks.md for details"""
     url = object_url('network', network)

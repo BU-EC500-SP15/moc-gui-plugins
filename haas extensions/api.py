@@ -527,6 +527,18 @@ def headnode_detach_network(headnode, hnic):
                             # Network Code #
                             ################
 
+@rest_call('GET', '/networks')
+def list_networks():
+    """List all networks.
+
+    Returns a JSON array of strings representing a list of projects.
+    Example:  '["network1", "network2", "network3"]'
+    """
+    db = model.Session()
+    networks = db.query(model.Network).all()
+    networks = [n.label for n in networks]
+    return json.dumps(networks)
+
 
 @rest_call('PUT', '/network/<network>')
 def network_create(network, creator, access, net_id):
