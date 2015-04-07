@@ -109,7 +109,9 @@ def networks(request):
     """
     List all networks;
     """
-    networks = [{'name':'Network1','accesslevel':'Shared'},{'name':'Network2','accesslevel':'Private'}, {'name':'Network5','accesslevel':'Shared'}, {'name':'Network12','accesslevel':'Public'}]
+    r = requests.get(settings.HAAS_URL + '/networks')
+    networks = r.json()
     project = {'networks':networks}
     return render(request, 'viewAllNetworks.html', {'project': project})
+
 
