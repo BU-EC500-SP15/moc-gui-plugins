@@ -18,8 +18,13 @@
 
    <tr>     
 	<td>{{node.name}}</td>
-	<td>{{node.free}}</td>	
-	<td>{{node.nics}}</td>
+	<td>{{node.free}}</td>
+
+	{% for nic in node.nics %}
+    		<td>{{nic.label}}</td>
+		<td>{{nic.macaddr}}</td>
+	{% endfor %}	
+	
 </tr>
 </table> 
 </div>
