@@ -16,18 +16,25 @@ def projects(request):
     return render(request, 'projects.html', {'projects': projects})
 
 
-def project_details(request, name):
-    """
-    Get Project details
-    """
-    nodes = requests.get(settings.HAAS_URL + '/project/' + name + '/nodes')
-    nodes = nodes.json()
-    networks = requests.get(settings.HAAS_URL + '/project/' + name + '/networks')
-    networks = networks.json()
-    project = {'name':name, 'nodes':nodes, 'networks':networks}
-    
-    deleteForm = DeleteProjectForm()
-    return render(request, 'projectDetails.html', {'project': project, 'deleteForm': deleteForm})
+def project_details(request, name):
+    """
+    Get Project details
+    """
+    nodes = requests.get(settings.HAAS_URL + '/project/' + name + '/nodes')
+    nodes = nodes.json()
+
+    project_nodes = []
+    for node in nodes:
+	project_node = requests.get(settings.HAAS_URL + '/node/' + node)
+    	project_node = json.dumps(project_node.json())
+	project_nodes.append(project_node)
+
+    networks = requests.get(settings.HAAS_URL + '/project/' + name + '/networks')
+    networks = networks.json()
+    project = {'name':name, 'nodes':nodes, 'networks':networks}
+    
+    deleteForm = DeleteProjectForm()
+    return render(request, 'projectDetails.html', {'project': project, 'nodes': project_nodes, 'deleteForm': deleteForm})
 
 
 def project_create(request):

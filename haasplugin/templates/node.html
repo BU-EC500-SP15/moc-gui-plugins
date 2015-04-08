@@ -1,4 +1,6 @@
-<a href="#" class="btn btn-success"
+{% block content %}
+
+<a href="" class="btn btn-success"
    data-toggle="modal"
    data-target="#basicModal">Details</a>
 
@@ -10,8 +12,27 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
             <h4 class="modal-title" id="myModalLabel">Node Details</h4>
             </div>
-            <div class="modal-body" align="middle">
-		<iframe src="/node/{{node}}" width="550px" frameBorder="0" scrolling="no"></iframe>
+            <div class="modal-body">
+                <table class="table table-striped">
+    		   <thead>
+        		<tr>	     
+            		  <th>
+                		Name
+            		  </th>   
+	    		  <th>
+				Status
+	    		  </th>  
+		          <th>
+            			NICs
+            		  </th>             
+        		</tr>
+    		   </thead>
+		   <tr>
+    			<td>{{node.name}}</td>     
+			<td>{{node.free}}</td>
+			<td>{{node.nics}}</td>
+    		   </tr>
+		</table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                
@@ -20,4 +41,5 @@
   </div>
 </div>
 
-
+    
+{% endblock %}
