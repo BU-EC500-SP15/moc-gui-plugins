@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     url(r'^projects/delete', project_delete),
     url(r'^projects/', projects),
     url(r'^nodes/', nodes),
+    url(r'^node/(?P<name>.+)', node_details),
     url(r'^networks/', networks),
     url(r'^$', projects),
   
