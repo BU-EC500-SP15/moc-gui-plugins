@@ -741,7 +741,7 @@ def list_project_networks(project):
     return json.dumps(networks)
 
 @rest_call('GET', '/project/<project>/headnodes')
-def show_project_headnodes(project):
+def list_project_headnodes(project):
     """Show the headnode belonging the given project.
 
     Returns a JSON representation of headnode.

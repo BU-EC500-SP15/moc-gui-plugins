@@ -43,7 +43,7 @@
 </div>
 
     <div class="col-md-5">
-        <h3>Headnode</h3>
+        <h3>Headnodes</h3>
         <hr />
         <table class="table table-striped">
             <thead>
@@ -57,9 +57,12 @@
                 </tr>
             </thead>
             <tr>
-                <td>Headnode name 1</td>
+            {% for headnode in project.headnodes%}
+            <tr>
+                <td>{{headnode}}</td>
                 <td><a href="" class="btn btn-success">Assign</a></td>
             </tr>
+            {%endfor%}
         </table>
     </div>
 </div>

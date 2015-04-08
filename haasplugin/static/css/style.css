@@ -1,0 +1,32 @@
+/* html div over-rides */
+body {
+/* background options */
+background-image: url("images/light_blue_clouds.jpg");
+background-width:100%;
+/*background-color: #99CCFF;*/
+background-size: 100% auto;
+/*background-size: contain contain;*/
+background-repeat: no-repeat;
+background-position: center center; /* optionally, center the image */
+background-attachment: fixed;
+/* text defaults */
+/* color: #428BCA; /* light blue */
+color: #444; /* gray */
+text-align: middle;
+vertical-align: center;
+/* margins for elements */
+margin: 10px;
+}
+
+table {
+border-collapse: collapse;
+}
+td {
+vertical-align: center;
+}
+th {
+font-size: large;
+font-weight: bold;
+text-align: left;
+}
+

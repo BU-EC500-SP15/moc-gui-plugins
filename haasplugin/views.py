@@ -24,7 +24,10 @@ def project_details(request, name):
     nodes = nodes.json()
     networks = requests.get(settings.HAAS_URL + '/project/' + name + '/networks')
     networks = networks.json()
-    project = {'name':name, 'nodes':nodes, 'networks':networks}
+    headnodes = requests.get(settings.HAAS_URL + '/project/' + name + '/headnodes')
+    headnodes = headnodes.json()
+
+    project = {'name':name, 'nodes':nodes, 'networks':networks, 'headnodes':headnodes}
     
     deleteForm = DeleteProjectForm()
     return render(request, 'projectDetails.html', {'project': project, 'deleteForm': deleteForm})
@@ -94,13 +97,20 @@ def allocate_node(request, name):
     context = {'project' : project, 'nodes':nodes}
     return render(request, 'allocateNode.html', {'context': context, 'nnode': node_name})
 
-def node_details(request, name):
-    """
-    Show node details: Name, Availabiltiy, Associated NICs
-    """
-    node = requests.get(settings.HAAS_URL + '/node/' + name)
-    node = node.json()
-    
+def node_details(request, name):
+
+    """
+
+    Show node details: Name, Availabiltiy, Associated NICs
+
+    """
+
+    node = requests.get(settings.HAAS_URL + '/node/' + name)
+
+    node = node.json()
+
+    
+
     return render(request, 'nodeDetails.html', {'node': node})
 
 def nodes(request):
