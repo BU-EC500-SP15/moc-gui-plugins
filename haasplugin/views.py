@@ -94,6 +94,14 @@ def allocate_node(request, name):
     context = {'project' : project, 'nodes':nodes}
     return render(request, 'allocateNode.html', {'context': context, 'nnode': node_name})
 
+def node_details(request, name):
+    """
+    Show node details: Name, Availabiltiy, Associated NICs
+    """
+    node = requests.get(settings.HAAS_URL + '/node/' + name)
+    node = node.json()
+    
+    return render(request, 'nodeDetails.html', {'node': node})
 
 def nodes(request):
     """
