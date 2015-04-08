@@ -20,4 +20,8 @@ class AllocateNodeForm(forms.Form):
     node_name = forms.CharField(widget=forms.HiddenInput())
     action = "/projects/details/connect_node"
 
+class DetachNodeForm(forms.Form):
+    node_name = forms.CharField(widget=forms.HiddenInput())
+    submit = "Detach"
+
 

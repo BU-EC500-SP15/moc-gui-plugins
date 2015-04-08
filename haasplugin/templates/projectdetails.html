@@ -12,27 +12,27 @@
             <thead>
                 <tr>
                     <th>
-                    	<input type="checkbox" onClick="toggle(this)" />
-                    </th>
-                    <th>
                         Node name
                     </th>
                     <th>
-                        More info
+                        Actions
                     </th>
                 </tr>
             </thead>
             {% for node in project.nodes %}
             <tr>
-                <td>
-                    <input type="checkbox" name="nodeCheck" />
-                </td>
                 <td>{{node}}</td>
-                <td><!--<a href="/node/{{ node.name }}" class="btn btn-success" >Details</a>-->
- 			{% block node%}
-        		   {% include "node.html" %}
-    			{% endblock %}
-		</td>
+                
+<td>
+			<form action="/projects/{{project.name}}/detach_node" method="POST">
+				{%csrf_token%}
+				<input type="hidden" name="node_name" value="{{node}}"/>
+			        <input type="submit" value="Detach" class="btn btn-danger btn-sm"/>
+			</form>
+			{% block node%}
+			   {% include "node.html" %}
+			{% endblock %}
+ 		</td>
             </tr>
             {% endfor%}
             
