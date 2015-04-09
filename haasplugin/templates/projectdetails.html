@@ -8,10 +8,10 @@
     <div class="col-md-5">
         <h3>Nodes</h3>
         <hr />       
-        <table class="table table-striped">
+        <table class="table table-bordered table-condensed table-hover">
             <thead>
-                <tr>
-                    <th>
+                <tr class ="info">
+                    <th class = "info">
                         Node name
                     </th>
                     <th>
@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             {% for node in project.nodes %}
-            <tr>
+            <tr class = "active">
                 <td>{{node}}</td>
                 
 <td>
@@ -45,10 +45,10 @@
     <div class="col-md-5">
         <h3>Headnodes</h3>
         <hr />
-        <table class="table table-striped">
+        <table class="table table-bordered table-condensed table-hover">
             <thead>
-                <tr>
-                    <th>
+                <tr class = "info">
+                    <th class = "info">
                         Headnode Name
                     </th>
                     {% if project.headnodes %}
@@ -64,9 +64,9 @@
                     </th>
                 </tr>
             </thead>
-            <tr>
+            <tr>  <!-- tag not closed! -->
             {% for headnode in project.headnodes%}
-            <tr>
+            <tr class = "active">
                 <td>{{headnode}}</td>
                 <td><a href="" class="btn btn-success">Assign</a></td>
             </tr>
@@ -77,16 +77,16 @@
     <div class="col-md-5">
         <h3>Networks</h3>
         <hr />
-        <table class="table table-striped">
+        <table class="table table-bordered table-condensed table-hover">
             <thead>
-                <tr>
-                    <th>
+                <tr class = "info">
+                    <th class = "info">
                         Network name
                     </th>
                 </tr>
             </thead>
             {% for network in project.networks %}
-            <tr>
+            <tr class = "active">
                 <td>{{network}}</td>
             </tr>
             {% endfor%}
@@ -98,7 +98,10 @@
 <p>
    <div class="col-md-12">
 <hr />
- 	<a href="/projects" class="btn btn-primary">Back to list</a>
+ 	<a href="/projects" class="btn btn-primary">
+        <span class = "glyphicon glyphicon-arrow-left" aria-hidden = "true"> </span>
+
+        Back to list</a>
     	<!--<a href="/project/delete/{{project.name}}" class="btn btn-danger">Delete</a>-->
 	{% block delete%}
         	{% include "deleteProject.html" %}

@@ -1,15 +1,17 @@
-<table class="table table-striped">
+<div class="col-md-5">
+<table class="table table-bordered table-condensed table-hover">
    <thead>
-     <tr>
+     <tr class = "info">
        <th>Network name</th>
        <th>More info</th>
      </tr>
    </thead>
    {% for network in project.networks %}
-   <tr>
+   <tr class = "active">
       <td>{{network}}</td>
+      <td> "null" </td>
       <!--<td>{{network.accesslevel}}</td> -->
    </tr>
   {% endfor%}          
 </table>
-
+</div>

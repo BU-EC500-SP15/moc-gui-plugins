@@ -2,9 +2,9 @@
 
 {% block content %}
 
-<table class="table table-striped">
+<table class="table table-bordered table-condensed table-hover">
     <thead>
-        <tr>
+        <tr class = "info">
             <th>
                 Project Name
             </th>
@@ -15,14 +15,20 @@
     </thead>
 <tbody>
     {% for project in projects %}
-    <tr>
+    <tr class = "active">
         <td>{{project}}</td>
-        <td><a href="/projects/details/{{project}}" class="btn btn-success">Manage</a></td>
+        <td><a href="/projects/details/{{project}}" class="btn btn-success">
+            <span class = "glyphicon glyphicon-cog" aria-hidden = "true"> </span>
+
+            Manage</a></td>
     </tr>
     {% endfor%}
 </tbody>
 </table>
-<a href="../projects/create" class="btn btn-primary">Create New</a>
+<a href="../projects/create" class="btn btn-primary">
+    <span class = "glyphicon glyphicon-cloud" aria-hidden = "true"> </span>
+
+    Create New</a>
 
 <script type="text/javascript">
 window.onload=function () {
