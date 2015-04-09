@@ -530,13 +530,40 @@ def headnode_detach_network(headnode, hnic):
 @rest_call('GET', '/networks')
 def list_networks():
     """List all networks.
-
-    Returns a JSON array of strings representing a list of projects.
-    Example:  '["network1", "network2", "network3"]'
+        Returns a JSON array of networks.
+        Each network is JSON object. 
+    The object will have at least the following fields:
+        * "label", the name/label of the network (string).
+        * "access", the name of the project associated with the network (string). 
+        * "creator", the name of the network creator (string).
+        * "nics", a list of nics, each represted by a JSON object having
+            at least the following fields:
+                - "label", the nic's label.
+                - "macaddr", the nic's mac address.
+        * "hnics", a list of headnode nics, each represted by a JSON object having
+            at least the following fields:
+                - "label", the nic's label.
+                - "macaddr", the nic's mac address.
+        * "allocated:, a boolean value representing whether the network is free or allocated (true for allocated)
+    Example:  '{"label": "network1",
+                "access": "proj1",
+                "creator": null, 
+                "nics": [{"label": "nic1", "macaddr": "01:23:45:67:89"},
+                         {"label": "nic2", "macaddr": "12:34:56:78:90"}],
+                "hnics": [{"label": "hnic1", "macaddr": "01:23:45:67:89"},
+                         {"label": "hnic2", "macaddr": "12:34:56:78:90"}],
+                "allocated": true,
+               }'
     """
     db = model.Session()
     networks = db.query(model.Network).all()
-    networks = [n.label for n in networks]
+    networks =  [{'label': n.label,
+                  'access': n.access.label,
+                  'creator': n.creator,
+                  'nics': n.nics,
+                  'hnics': n.hnics,
+                  'allocated': n.allocated,
+                 } for n in networks]
     return json.dumps(networks)
 
 
