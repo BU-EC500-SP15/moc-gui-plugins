@@ -3,45 +3,31 @@
 {% block content %}
 <h1>{{nname}}</h1>
 <table class="table table-bordered table-condensed table-hover">
-    <thead>
-        <tr class "info">            
-            <th class = "info">
+    
+        <tr class ="info">	    	     
+            <th class ="info">
                 Node Name
             </th>
-            <th class = "info">
-                Action
-            </th>
-       <!-- <th> -->
-       <!-- <th> -->                    
+	    <th class = "info">
+                Active
+	    </th>                    
         </tr>
-    </thead>
+   
     {% for node in context.nodes %}
     <tr class = "active">  
-  <td>{{node}}</td>
-  <td>
-    <form action="/projects/details/freenodes/{{context.project.name}}" method="POST">
-      {% csrf_token %}
-       <input type="hidden" name="node_name" id="" value="{{node}}"/>
-      <input type="submit" value="Allocate" class="btn btn-primary"/>
-    </form>
-    <!--a href="../{{context.project.name}}" class="btn btn-primary">Allocate</a-->
-  </td>
+	<td>{{node}}</td>
+	<td>
+		<form action="/projects/details/freenodes/{{context.project.name}}" method="POST">
+			{% csrf_token %}
+			 <input type="hidden" name="node_name" id="" value="{{node}}"/>
+			<input type="submit" value="Allocate" class="btn btn-primary"/>
+		</form>
+		
+	</td>
     </tr>
     {% endfor%}
 </table> 
-<!--  {% block node%}
-           {% include "allNodes.html" %}
-      {% endblock %} -->
  <a href="../{{context.project.name}}" class="btn btn-default">Cancel</a>
-<!--<script language="JavaScript">
-function toggle(source) {
-  checkboxes = document.getElementsByName('nodeCheck');
-  for(var i=0, n=checkboxes.length;i<n;i++) {
-    checkboxes[i].checked = source.checked;
-  }
-}
-</script>-->
 
 
 {% endblock %}
-

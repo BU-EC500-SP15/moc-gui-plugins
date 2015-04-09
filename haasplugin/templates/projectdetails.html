@@ -11,7 +11,7 @@
         <table class="table table-bordered table-condensed table-hover">
             <thead>
                 <tr class ="info">
-                    <th class = "info">
+                    <th class ="info">
                         Node name
                     </th>
                     <th>
@@ -27,18 +27,18 @@
 			<form action="/projects/{{project.name}}/detach_node" method="POST">
 				{%csrf_token%}
 				<input type="hidden" name="node_name" value="{{node}}"/>
-			        <input type="submit" value="Detach" class="btn btn-danger btn-sm"/>
-			</form>
-			{% block node%}
-			   {% include "node.html" %}
-			{% endblock %}
+				{% block node%}
+			   		{% include "node.html" %}
+				{% endblock %}
+				<input type="submit" value="Detach" class="btn btn-danger"/>
+                       </form>
  		</td>
             </tr>
             {% endfor%}
             
         </table>
 	<div>
-           <a href="../details/freenodes/{{project.name}}" class="btn btn-primary">Attach New</a> <input type="submit" value="Detach Selected" class="btn btn-default" />
+           <a href="../details/freenodes/{{project.name}}" class="btn btn-primary">Attach New</a> <!--<input type="submit" value="Detach Selected" class="btn btn-default" /> -->
 	</div>    
 </div>
 
@@ -51,7 +51,7 @@
                     <th class = "info">
                         Headnode Name
                     </th>
-                    {% if project.headnodes %}
+			  {% if project.headnodes %}
                         {% for headnode in project.headnodes %}
                             <p>Assigned headnode is {{headnode}}</p>
                         {% endfor %}
@@ -64,7 +64,7 @@
                     </th>
                 </tr>
             </thead>
-            <tr>  <!-- tag not closed! -->
+            <tr class = "active">
             {% for headnode in project.headnodes%}
             <tr class = "active">
                 <td>{{headnode}}</td>
@@ -99,9 +99,8 @@
    <div class="col-md-12">
 <hr />
  	<a href="/projects" class="btn btn-primary">
-        <span class = "glyphicon glyphicon-arrow-left" aria-hidden = "true"> </span>
-
-        Back to list</a>
+	<span class = "glyphicon glyphicon-arrow-left" aria-hidden = "true"> </span>
+	Back to list</a>
     	<!--<a href="/project/delete/{{project.name}}" class="btn btn-danger">Delete</a>-->
 	{% block delete%}
         	{% include "deleteProject.html" %}

@@ -2,16 +2,19 @@
 <table class="table table-bordered table-condensed table-hover">
    <thead>
      <tr class = "info">
-       <th>Network name</th>
-       <th>More info</th>
+       <th>Network name</th><th>Project</th><th>Allocated</th>
      </tr>
    </thead>
    {% for network in project.networks %}
    <tr class = "active">
-      <td>{{network}}</td>
-      <td> "null" </td>
-      <!--<td>{{network.accesslevel}}</td> -->
+      <td>{{network.label}}</td><td>{{network.access}}</td><td>{{network.allocated}}</td>
+     <!-- <td>
+      {% for nics in network.nics %}
+	{{nics}}
+      {% endfor %}
+	</td>-->
    </tr>
   {% endfor%}          
 </table>
 </div>
+

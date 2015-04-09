@@ -70,7 +70,36 @@ def project_delete(request):
    
     return render(request, 'error.html', {'status': ''})
 
+def headnode(request):
+    """
+    Show the headnode of a project
+    """
+    headnode = [{'name':'headNode1'}]
+    return render(request, headnode)
 
+
+def headnode_create(request):
+    """
+    Create the headnode of a project
+    """
+    name = ""
+    base_img = ""
+    project = ""
+    if request.method == "POST":
+        form = HeadnodeForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            base_img = form.cleaned_data['base_img']
+            project = form.cleaned_data['project']
+            context = {'project':project, 'base_img':base_img}
+            r = requests.put(settings.HAAS_URL + '/headnode/' + name, data = json.dumps(context))
+            if(r.status_code == 200):
+                return redirect('haasplugin.views.project_details', project)
+            else:
+                return render(request, 'error.html', {'status': r})
+    headnode = HeadnodeForm()
+    given = {'form':headnode, 'project':project}
+    return render(request, 'createHeadnode.html', {'headnode':headnode})
 
 
 def allocate_node(request, name):
@@ -115,24 +144,17 @@ def detach_node(request, name):
                 return render(request, 'error.html', {'status': r.status_code})
         else:
             return render(request, 'error.html', {'status': 'form is not valid' })
-
     return redirect('haasplugin.views.project_details', name)
 
+
 def node_details(request, name):
-
     """
-
     Show node details: Name, Availabiltiy, Associated NICs
-
     """
-
     node = requests.get(settings.HAAS_URL + '/node/' + name)
-
     node = node.json()
-
-    
-
     return render(request, 'nodeDetails.html', {'node': node})
+
 
 def nodes(request):
     """
@@ -153,34 +175,4 @@ def networks(request):
     project = {'networks':networks}
     return render(request, 'viewAllNetworks.html', {'project': project})
 
-def headnode(request):
-    """
-    Show the headnode of a project
-    """
-    headnode = [{'name':'headNode1'}]
-    return render(request, headnode)
-
-
-def headnode_create(request):
-    """
-    Create the headnode of a project
-    """
-    name = ""
-    base_img = ""
-    project = ""
-    if request.method == "POST":
-        form = HeadnodeForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            base_img = form.cleaned_data['base_img']
-            project = form.cleaned_data['project']
-            context = {'project':project, 'base_img':base_img}
-            r = requests.put(settings.HAAS_URL + '/headnode/' + name, data = json.dumps(context))
-            if(r.status_code == 200):
-                return redirect('haasplugin.views.project_details', project)
-            else:
-                return render(request, 'error.html', {'status': r})
-    headnode = HeadnodeForm()
-    given = {'form':headnode, 'project':project}
-    return render(request, 'createHeadnode.html', {'headnode':headnode})
 

@@ -24,7 +24,6 @@ class DetachNodeForm(forms.Form):
     node_name = forms.CharField(widget=forms.HiddenInput())
     submit = "Detach"
 
-
 class HeadnodeForm(forms.Form):
     name = forms.CharField(label='Headnode Name')
     base_img = forms.CharField(label='Base Image')
@@ -33,3 +32,5 @@ class HeadnodeForm(forms.Form):
     back_link = '/projects/details/'
     back_text = 'Cancel'
     submit = 'Create'
+
+

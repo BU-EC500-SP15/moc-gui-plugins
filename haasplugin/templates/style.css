@@ -1,19 +1,21 @@
 /* html div over-rides */
 body {
-
+/* background options */
+/* background-image: url("images/light_blue_clouds.jpg"); */
 background-image: url("images/test2.jpg"); 
-background-color: grey;
 background-width:100%;
-
+/*background-color: #99CCFF;*/
 background-size: 100% auto;
-
+/*background-size: contain contain;*/
 background-repeat: no-repeat;
 background-position: center center; /* optionally, center the image */
 background-attachment: fixed;
-
+/* text defaults */
+/* color: #428BCA; /* light blue */
+/* color: #444; /* gray */
 text-align: middle;
 vertical-align: center;
-
+/* margins for elements */
 margin: 50px;
 }
 
@@ -49,8 +51,6 @@ margin: 50px;
 
 }
 */
-
-
 
 table {
 border-collapse: collapse;
