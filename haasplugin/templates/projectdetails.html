@@ -12,27 +12,27 @@
             <thead>
                 <tr>
                     <th>
-                    	<input type="checkbox" onClick="toggle(this)" />
-                    </th>
-                    <th>
                         Node name
                     </th>
                     <th>
-                        More info
+                        Actions
                     </th>
                 </tr>
             </thead>
             {% for node in project.nodes %}
             <tr>
-                <td>
-                    <input type="checkbox" name="nodeCheck" />
-                </td>
                 <td>{{node}}</td>
-                <td><!--<a href="/node/{{ node.name }}" class="btn btn-success" >Details</a>-->
- 			{% block node%}
-        		   {% include "node.html" %}
-    			{% endblock %}
-		</td>
+                
+<td>
+			<form action="/projects/{{project.name}}/detach_node" method="POST">
+				{%csrf_token%}
+				<input type="hidden" name="node_name" value="{{node}}"/>
+			        <input type="submit" value="Detach" class="btn btn-danger btn-sm"/>
+			</form>
+			{% block node%}
+			   {% include "node.html" %}
+			{% endblock %}
+ 		</td>
             </tr>
             {% endfor%}
             
@@ -43,7 +43,7 @@
 </div>
 
     <div class="col-md-5">
-        <h3>Headnode</h3>
+        <h3>Headnodes</h3>
         <hr />
         <table class="table table-striped">
             <thead>
@@ -65,9 +65,12 @@
                 </tr>
             </thead>
             <tr>
-                <td>Headnode name 1</td>
+            {% for headnode in project.headnodes%}
+            <tr>
+                <td>{{headnode}}</td>
                 <td><a href="" class="btn btn-success">Assign</a></td>
             </tr>
+            {%endfor%}
         </table>
     </div>
 </div>

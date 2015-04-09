@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+<div class="modal-body">
+<table class="table table-striped">
+   <thead>
+	<tr>	     
+	  <th>
+		Name
+	  </th>   
+	  <th>
+		Available
+	  </th>  
+	  <th>
+		NICs
+	  </th>                
+	</tr>
+   </thead>
+
+   <tr>     
+	<td>{{node.name}}</td>
+	<td>{{node.free}}</td>
+
+	{% for nic in node.nics %}
+    		<td>{{nic.label}}</td>
+		<td>{{nic.macaddr}}</td>
+	{% endfor %}	
+	
+</tr>
+</table> 
+</div>
+</div>

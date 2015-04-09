@@ -1,4 +1,3 @@
-
 <a href="#" class="btn btn-success"
    data-toggle="modal"
    data-target="#basicModal">Details</a>
@@ -11,28 +10,8 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
             <h4 class="modal-title" id="myModalLabel">Node Details</h4>
             </div>
-            <div class="modal-body">
-                <table class="table table-striped">
-    		   <thead>
-        		<tr>	     
-            		  <th>
-                		Node Name
-            		  </th>   
-	    		  <th>
-				Status
-	    		  </th>                 
-        		</tr>
-    		   </thead>
-   
-    		   <tr>     
-			<td>{{node.name}}</td>
-			<td><div class="btn-group btn-toggle"> 
-				<button class="btn btn-default">ON</button>
-                                <button class="btn btn-primary active">OFF</button>
-  			   </div>
-			<!--<input id="switch-state" type="checkbox" >{{node.status}}</td>-->
-    		   </tr>
-		</table>
+            <div class="modal-body" align="middle">
+		<iframe src="/node/{{node}}" width="550px" frameBorder="0" scrolling="no"></iframe>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                

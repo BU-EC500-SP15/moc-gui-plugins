@@ -18,8 +18,7 @@ def projects(request):
 
 def project_details(request, name):
     """
-    List keystone projects available to the user;
-    attempt to login with credentials
+    Get Project details
     """
     nodes = requests.get(settings.HAAS_URL + '/project/' + name + '/nodes')
     nodes = nodes.json()
@@ -27,6 +26,7 @@ def project_details(request, name):
     networks = networks.json()
     headnodes = requests.get(settings.HAAS_URL + '/project/' + name + '/headnodes')
     headnodes = headnodes.json()
+
     project = {'name':name, 'nodes':nodes, 'networks':networks, 'headnodes':headnodes}
     
     deleteForm = DeleteProjectForm()
@@ -97,12 +97,50 @@ def allocate_node(request, name):
     context = {'project' : project, 'nodes':nodes}
     return render(request, 'allocateNode.html', {'context': context, 'nnode': node_name})
 
+def detach_node(request, name):
+    """
+    Detaches the node from the specified project
+
+    """
+    if request.method == 'POST':
+        form = DetachNodeForm(request.POST)
+        if form.is_valid():
+            node_name = form.cleaned_data['node_name']
+            #return render(request, 'error.html', {'status': node_name })
+            payload = {'node':node_name}
+            r = requests.post(settings.HAAS_URL + '/project/' + name + '/detach_node', data = json.dumps(payload))
+            if r.status_code == 200:
+                return redirect('haasplugin.views.project_details', name)
+            else:
+                return render(request, 'error.html', {'status': r.status_code})
+        else:
+            return render(request, 'error.html', {'status': 'form is not valid' })
+
+    return redirect('haasplugin.views.project_details', name)
+
+def node_details(request, name):
+
+    """
+
+    Show node details: Name, Availabiltiy, Associated NICs
+
+    """
+
+    node = requests.get(settings.HAAS_URL + '/node/' + name)
+
+    node = node.json()
+
+    
+
+    return render(request, 'nodeDetails.html', {'node': node})
 
 def nodes(request):
     """
     List all nodes available to the user;
     """
-    nodes = [{'name':'Node1'}, {'name':'Node2'}, {'name':'Node4'}, {'name':'Node6'}, {'name':'Node15'}, {'name':'Node17'}]
+
+    r = requests.get(settings.HAAS_URL + '/nodes')
+    nodes = r.json()
     context = {'nodes':nodes}
     return render(request, 'viewAllNodes.html', {'context': context})
 
@@ -110,7 +148,8 @@ def networks(request):
     """
     List all networks;
     """
-    networks = [{'name':'Network1','accesslevel':'Shared'},{'name':'Network2','accesslevel':'Private'}, {'name':'Network5','accesslevel':'Shared'}, {'name':'Network12','accesslevel':'Public'}]
+    r = requests.get(settings.HAAS_URL + '/networks')
+    networks = r.json()
     project = {'networks':networks}
     return render(request, 'viewAllNetworks.html', {'project': project})
 
@@ -145,26 +184,3 @@ def headnode_create(request):
     given = {'form':headnode, 'project':project}
     return render(request, 'createHeadnode.html', {'headnode':headnode})
 
-# def allocate_node(request, name):
-#     """
-#     List keystone projects available to the user;
-#     attempt to login with credentials
-
-#     """
-#     node_name = ""
-#     if request.method == 'POST':
-#         form = AllocateNodeForm(request.POST)
-#         if form.is_valid():
-#             node_name = form.cleaned_data['node_name']
-#             payload = {'node':node_name}
-#             r = requests.post(settings.HAAS_URL + '/project/' + name + '/connect_node', data = json.dumps(payload))
-#             if r.status_code == 200:
-#                 return redirect('haasplugin.views.project_details', name)
-#         else:
-#            return render(request, 'error.html', {'status': 'form is not valid' })
-
-#     project = {'name':name}
-#     nodes = requests.get(settings.HAAS_URL + '/free_nodes')
-#     nodes = nodes.json()
-#     context = {'project' : project, 'nodes':nodes}
-#     return render(request, 'allocateNode.html', {'context': context, 'nnode': node_name})

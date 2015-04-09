@@ -228,6 +228,19 @@ def project_remove_user(project, user):
                             #############
 
 
+@rest_call('GET', '/nodes')
+def list_nodes():
+    """List all nodes.
+
+    Returns a JSON array of strings representing a list of projects.
+    Example:  '["node1", "node2", "node3"]'
+
+    """
+    db = model.Session()
+    nodes = db.query(model.Node).all()
+    nodes = [n.label for n in nodes]
+    return json.dumps(nodes)
+
 @rest_call('PUT', '/node/<node>')
 def node_register(node, ipmi_host, ipmi_user, ipmi_pass):
     """Create node.
@@ -514,6 +527,18 @@ def headnode_detach_network(headnode, hnic):
                             # Network Code #
                             ################
 
+@rest_call('GET', '/networks')
+def list_networks():
+    """List all networks.
+
+    Returns a JSON array of strings representing a list of projects.
+    Example:  '["network1", "network2", "network3"]'
+    """
+    db = model.Session()
+    networks = db.query(model.Network).all()
+    networks = [n.label for n in networks]
+    return json.dumps(networks)
+
 
 @rest_call('PUT', '/network/<network>')
 def network_create(network, creator, access, net_id):
@@ -716,7 +741,7 @@ def list_project_networks(project):
     return json.dumps(networks)
 
 @rest_call('GET', '/project/<project>/headnodes')
-def show_project_headnodes(project):
+def list_project_headnodes(project):
     """Show the headnode belonging the given project.
 
     Returns a JSON representation of headnode.

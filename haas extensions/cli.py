@@ -131,6 +131,12 @@ def user_create(username, password):
     do_put(url, data={'password': password})
 
 @cmd
+def list_networks():
+    """List all networks"""
+    url = object_url('networks')
+    do_get(url)
+
+@cmd
 def network_create(network, creator, access, net_id):
     """Create a link-layer <network>.  See docs/networks.md for details"""
     url = object_url('network', network)
@@ -200,6 +206,12 @@ def headnode_delete(headnode):
     """Delete <headnode>"""
     url = object_url('headnode', headnode)
     do_delete(url)
+
+@cmd
+def list_nodes():
+    """List all nodes"""
+    url = object_url('nodes')
+    do_get(url)
 
 @cmd
 def project_connect_node(project, node):
@@ -348,7 +360,7 @@ def show_headnode(headnode):
     do_get(url)
 
 @cmd
-def show_project_headnodes(project):
+def list_project_headnodes(project):
     """Display information about a headnode of the <project>"""
     url = object_url('project', project, 'headnodes')
     do_get(url)
