@@ -21,3 +21,11 @@ class AllocateNodeForm(forms.Form):
     action = "/projects/details/connect_node"
 
 
+class HeadnodeForm(forms.Form):
+    name = forms.CharField(label='Headnode Name')
+    base_img = forms.CharField(label='Base Image')
+    project = forms.CharField(label='Project')
+    action = '/headnode/create/'
+    back_link = '/projects/details/'
+    back_text = 'Cancel'
+    submit = 'Create'

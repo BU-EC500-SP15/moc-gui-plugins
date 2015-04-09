@@ -51,6 +51,14 @@
                     <th>
                         Headnode Name
                     </th>
+                    {% if project.headnodes %}
+                        {% for headnode in project.headnodes %}
+                            <p>Assigned headnode is {{headnode}}</p>
+                        {% endfor %}
+                    {% else %}
+                        <p>No headnodes are assigned to this project.</p>
+                        <a href="/headnode/create" class="btn btn-primary">Create New Headnode</a>
+                    {% endif %}
                     <th>
                         
                     </th>

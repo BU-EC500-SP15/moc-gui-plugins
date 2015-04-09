@@ -352,7 +352,7 @@ def show_project_headnodes(project):
     """Display information about a headnode of the <project>"""
     url = object_url('project', project, 'headnodes')
     do_get(url)
-	
+    
 @cmd
 def list_headnode_images():
     """Display registered headnode images"""

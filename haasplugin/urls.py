@@ -27,6 +27,8 @@ urlpatterns = patterns('',
     url(r'^projects/', projects),
     url(r'^nodes/', nodes),
     url(r'^networks/', networks),
+    #url(r'^headnode/', headnode),
+    url(r'^headnode/create', headnode_create),
     url(r'^$', projects),
   
 )
