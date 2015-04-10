@@ -45,33 +45,35 @@
     <div class="col-md-5">
         <h3>Headnodes</h3>
         <hr />
-        <table class="table table-bordered table-condensed table-hover">
-            <thead>
-                <tr class = "info">
-                    <th class = "info">
-                        Headnode Name
-                    </th>
+       
 			  {% if project.headnodes %}
-                        {% for headnode in project.headnodes %}
-                            <p>Assigned headnode is {{headnode}}</p>
-                        {% endfor %}
+			   <table class="table table-bordered table-condensed table-hover">
+            			<thead>
+                		  <tr class = "info">
+                    		  <th class = "info">
+                        		Headnode Name
+                    		  </th>
+                        	{% for headnode in project.headnodes %}
+                            		<p>Assigned headnode is {{headnode}}</p>
+                        	{% endfor %}
+ 		    		<th>
+                        
+                    		</th>
+                		</tr>
+            			</thead>
+            			<tr class = "active">
+            			  {% for headnode in project.headnodes%}
+            			<tr class = "active">
+                		   <td>{{headnode}}</td>
+                		   <td><a href="" class="btn btn-success">Assign</a></td>
+            			</tr>
+              			  {%endfor%}
+        		    </table>
                     {% else %}
                         <p>No headnodes are assigned to this project.</p>
                         <a href="/headnode/create" class="btn btn-primary">Create New Headnode</a>
                     {% endif %}
-                    <th>
-                        
-                    </th>
-                </tr>
-            </thead>
-            <tr class = "active">
-            {% for headnode in project.headnodes%}
-            <tr class = "active">
-                <td>{{headnode}}</td>
-                <td><a href="" class="btn btn-success">Assign</a></td>
-            </tr>
-            {%endfor%}
-        </table>
+                   
     </div>
 </div>
     <div class="col-md-5">
