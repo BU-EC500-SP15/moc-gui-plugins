@@ -13,7 +13,12 @@ def projects(request):
     """
     r = requests.get(settings.HAAS_URL + '/projects')
     projects = r.json()
-    return render(request, 'projects.html', {'projects': projects})
+    createProject = CreateProjectForm()
+    createProject.submit = "Create"
+    createProject.action = "/projects/create"
+    createProject.back_text = "Cancel"
+    createProject.back_link = "/projects"
+    return render(request, 'projects.html', {'projects': projects, 'createProject':createProject})
 
 
 def project_details(request, name):
@@ -39,7 +44,7 @@ def project_create(request):
     attempt to login with credentials
     """
     if request.method == "POST":
-        form = ProjectForm(request.POST)
+        form = CreateProjectForm(request.POST)
         if form.is_valid():
                 name = form.cleaned_data["name"]
                 r = requests.put(settings.HAAS_URL + '/project/' + name)
@@ -47,7 +52,11 @@ def project_create(request):
                     return redirect('haasplugin.views.projects')
                 else:
                     return render(request, 'error.html', {'status': r})
-    project = ProjectForm()
+    project = CreateProjectForm()
+    project.submit = "Create"
+    project.action = "/projects/create"
+    project.back_text = "Cancel"
+    project.back_link = "/projects"
     
     return render(request, 'createProject.html', {'project': project})
 
@@ -164,7 +173,7 @@ def nodes(request):
     r = requests.get(settings.HAAS_URL + '/nodes')
     nodes = r.json()
     context = {'nodes':nodes}
-    return render(request, 'viewAllNodes.html', {'context': context})
+    return render(request, 'nodes.html', {'context': context})
 
 def networks(request):
     """
