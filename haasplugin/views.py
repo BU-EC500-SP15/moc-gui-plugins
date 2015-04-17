@@ -14,9 +14,9 @@ def projects(request):
     r = requests.get(settings.HAAS_URL + '/projects')
     projects = r.json()
     createProject = CreateProjectForm()
-    createProject.submit = "Create"
+    #createProject.submit = "Create"
     createProject.action = "/projects/create"
-    createProject.back_text = "Cancel"
+    #createProject.back_text = "Cancel"
     createProject.back_link = "/projects"
     return render(request, 'projects.html', {'projects': projects, 'createProject':createProject})
 

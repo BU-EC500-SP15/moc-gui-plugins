@@ -11,9 +11,13 @@
         </div>
     {% endfor  %}
 
-    <button type="submit" class="btn btn-primary" >{{ form.submit }}</button>
-
-    <a href="{{form.back_link}}" class="btn btn-default">{{form.back_text}}</a>
+    {% if form.submit != ''%}
+    	<button type="submit" class="btn btn-primary" >{{ form.submit }}</button>
+    {% endif %}
+    
+    {% if form.back_text != '' %}
+    	<a href="{{form.back_link}}" class="btn btn-default">{{form.back_text}}</a>
+    {% endif%}
 </form>
 
 <script language="JavaScript">
