@@ -1,12 +1,13 @@
 from django import forms
 
-class ProjectForm(forms.Form):
+class CreateProjectForm(forms.Form):
     """description of class"""
     name = forms.CharField(label='Project name')
-    action = '/projects/create'
-    back_link = '/projects'
-    back_text = 'Cancel'
-    submit = 'Create'
+    action = ''
+    back_link = ''
+    back_text = ''
+    submit = ''
+    
 
 
 class DeleteProjectForm(forms.Form):
@@ -18,7 +19,9 @@ class DeleteProjectForm(forms.Form):
 
 class AllocateNodeForm(forms.Form):
     node_name = forms.CharField(widget=forms.HiddenInput())
-    action = "/projects/details/connect_node"
+    action = ''
+    submit = ''
+    back_text = ''
 
 class DetachNodeForm(forms.Form):
     node_name = forms.CharField(widget=forms.HiddenInput())

@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
 <div class="col-md-5">
 <table class="table table-bordered table-condensed table-hover">
     <thead>
@@ -14,3 +16,13 @@
     {% endfor%}
 </table>
 </div>
+
+<script type="text/javascript">
+window.onload=function () {
+    $('#node').addClass('active');
+};
+</script>
+
+{% endblock %}
+
+
