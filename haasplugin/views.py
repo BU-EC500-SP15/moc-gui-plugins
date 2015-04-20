@@ -15,9 +15,8 @@ def projects(request):
     projects = r.json()
     createProject = CreateProjectForm()
     #createProject.submit = "Create"
-    createProject.action = "/projects/create"
+    createProject.action = "/project_create"
     #createProject.back_text = "Cancel"
-    createProject.back_link = "/projects"
     return render(request, 'projects.html', {'projects': projects, 'createProject':createProject})
 
 
@@ -35,6 +34,7 @@ def project_details(request, name):
     project = {'name':name, 'nodes':nodes, 'networks':networks, 'headnodes':headnodes}
     
     deleteForm = DeleteProjectForm()
+    deleteForm.action = '/project_delete'
     return render(request, 'projectDetails.html', {'project': project, 'deleteForm': deleteForm})
 
 
@@ -172,8 +172,37 @@ def nodes(request):
 
     r = requests.get(settings.HAAS_URL + '/nodes')
     nodes = r.json()
-    context = {'nodes':nodes}
+
+    createNode = CreateNodeForm()
+    createNode.action = '/node_create'
+
+    context = {'nodes':nodes, 'createNode':createNode}
+
     return render(request, 'nodes.html', {'context': context})
+
+def node_create(request):
+    """
+    List keystone projects available to the user;
+    attempt to login with credentials
+    """
+    if request.method == "POST":
+        form = CreateNodeForm(request.POST)
+        if form.is_valid():
+                name = form.cleaned_data["name"]
+                ipmi_host = form.cleaned_data["ipmi_host"]
+                ipmi_user = form.cleaned_data["ipmi_user"]
+                ipmi_pass = form.cleaned_data["ipmi_pass"]
+                payload = {'ipmi_host' : ipmi_host, 'ipmi_user' : ipmi_user, 'ipmi_pass' : ipmi_pass}
+                r = requests.put(settings.HAAS_URL + '/node/' + name, data = json.dumps(payload))
+                if(r.status_code == 200):
+                    return redirect('haasplugin.views.nodes')
+                else:
+                    return render(request, 'error.html', {'status': "node_create"})
+
+    createNode = CreateNodeForm()
+    createNode.action = "/node_create"
+    return render(request, 'createNode.html', {'createNode': createNode})
+
 
 def networks(request):
     """

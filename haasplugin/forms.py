@@ -17,6 +17,17 @@ class DeleteProjectForm(forms.Form):
     back_text = 'Cancel'
     submit = 'Delete'
 
+class CreateNodeForm(forms.Form):
+    """description of class"""
+    name = forms.CharField(label='Node name')
+    ipmi_host = forms.CharField(label='IPMI host')
+    ipmi_user = forms.CharField(label='IPMI user')
+    ipmi_pass = forms.CharField(label='IPMI pass')
+    action = ''
+    back_link = ''
+    back_text = ''
+    submit = ''
+
 class AllocateNodeForm(forms.Form):
     node_name = forms.CharField(widget=forms.HiddenInput())
     action = ''
