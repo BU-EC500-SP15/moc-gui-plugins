@@ -32,6 +32,7 @@ urlpatterns = patterns('',
     #url(r'^network_delete', network_delete), #change project_delete to network_delete here and create it in views.py
     url(r'^projects/(?P<name>.+)', project_details),
     url(r'^nodes/(?P<name>.+)/node_register_nic', node_register_nic),
+    url(r'^nodes/(?P<name>.+)/node_delete_nic/(?P<nic>.+)', node_delete_nic),
     url(r'^nodes/(?P<name>.+)/power_cycle', node_powercycle),
     url(r'^nodes/(?P<name>.+)', node_details), 
     #url(r'^networks/(?P<name>.+)', network_details), #change project_details to network_details here and create it in views.py

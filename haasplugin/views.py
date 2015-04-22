@@ -206,6 +206,18 @@ def node_register_nic(request, name):
         else:
            return render(request, 'error.html', {'status': 'form is not valid' })
 
+def node_delete_nic(request, name, nic):
+    """
+    List keystone projects available to the user;
+    attempt to login with credentials
+
+    """
+    r = requests.delete(settings.HAAS_URL + '/node/' + name + '/nic/' + nic)
+    if r.status_code == 200:
+        return redirect('haasplugin.views.node_details', name)
+    else:
+        return render(request, 'error.html', {'status': r.status_code })
+
 def nodes(request):
     """
     List all nodes available to the user;
