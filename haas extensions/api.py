@@ -552,21 +552,70 @@ def list_networks():
                 "creator": null, 
                 "nics": [{"label": "nic1", "macaddr": "01:23:45:67:89"},
                          {"label": "nic2", "macaddr": "12:34:56:78:90"}],
-                "hnics": [{"label": "hnic1", "macaddr": "01:23:45:67:89"},
-                         {"label": "hnic2", "macaddr": "12:34:56:78:90"}],
+                "hnics": [{"label": "hnic1"},
+                         {"label": "hnic2"}],
                 "allocated": true,
                }'
     """
     db = model.Session()
     networks = db.query(model.Network).all()
-    networks =  [{'label': n.label,
+    networks2=[]
+    for n in networks:
+       if n.access_id is None:
+          networks2.append({'label': n.label,
+                  'access': 'None',
+                  'creator': n.creator,
+                  'nics': n.nics,
+                  'hnics': n.hnics,
+                  'allocated': n.allocated,
+                 } )
+       else:
+         networks2.append({'label': n.label,
                   'access': n.access.label,
                   'creator': n.creator,
                   'nics': n.nics,
                   'hnics': n.hnics,
                   'allocated': n.allocated,
-                 } for n in networks]
-    return json.dumps(networks)
+                 } )    
+    return json.dumps(networks2)
+
+
+@rest_call('GET', '/network/<networkname>')
+def show_network(networkname):
+    """Show Network Details.
+        Returns a JSON object of a specific network.
+    The object will have at least the following fields:
+        * "label", the name/label of the network (string).
+        * "access", the name of the project associated with the network (string). 
+        * "creator", the name of the network creator (string).
+        * "nics", a list of nics, each represted by a JSON object having
+            at least the following fields:
+                - "label", the nic's label.
+                - "macaddr", the nic's mac address.
+        * "hnics", a list of headnode nics, each represted by a JSON object having
+            at least the following fields:
+                - "label", the nic's label.
+                - "macaddr", the nic's mac address.
+        * "allocated:, a boolean value representing whether the network is free or allocated (true for allocated)
+    Example:  '{"label": "network1",
+                "access": "proj1",
+                "creator": null, 
+                "nics": [{"label": "nic1", "macaddr": "01:23:45:67:89"},
+                         {"label": "nic2", "macaddr": "12:34:56:78:90"}],
+                "hnics": [{"label": "hnic1"},
+                         {"label": "hnic2"}],
+                "allocated": true,
+               }'
+    """
+    db = model.Session()
+    network = _must_find(db, model.Network, networkname)
+    return json.dumps({'label': network.label,
+                  'access': network.access.label,
+                  'creator': network.creator,
+                  'nics': network.nics,
+                  'hnics': network.hnics,
+                  'allocated': network.allocated,
+                 })
 
 
 @rest_call('PUT', '/network/<network>')

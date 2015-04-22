@@ -136,6 +136,11 @@ def list_networks():
     url = object_url('networks')
     do_get(url)
 
+@cmd
+def show_network(networkname):
+    """List network details"""
+    url = object_url('network',networkname)
+    do_get(url)
 
 @cmd
 def network_create(network, creator, access, net_id):
