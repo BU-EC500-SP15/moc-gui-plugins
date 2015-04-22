@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^projects/(?P<name>.+)/attach_node', allocate_node), #change allocate_node to attach_node and modify it in views.py  
     url(r'^projects/(?P<name>.+)/assign_headnode', allocate_node),  #change allocate_node to attach_headnode and modify it in views.py  
     url(r'^projects/(?P<name>.+)/detach_node', detach_node),
+    url(r'^projects/(?P<name>.+)/hnic_add', hnic_add), # add hnic to headnode
     url(r'^projects/(?P<name>.+)/detach_headnode', detach_node),  #change detach_node to detach_headnode and create it in views.py
     url(r'^project_create', project_create),
     url(r'^project_delete', project_delete),

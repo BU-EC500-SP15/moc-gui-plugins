@@ -20,29 +20,41 @@ def projects(request):
     return render(request, 'projects.html', {'projects': projects, 'createProject':createProject})
 
 
-def project_details(request, name):
-    """
-    Get Project details
-    """
-    project_nodes = requests.get(settings.HAAS_URL + '/project/' + name + '/nodes')
-    project_nodes = project_nodes.json()
-    nodes = []
-    for proj_node in project_nodes:
-       node = requests.get(settings.HAAS_URL + '/node/' +proj_node)
-       node = node.json()
-       nodes.append(node)
+def project_details(request, name):
+    """
+    Get Project details
+    """
+    project_nodes = requests.get(settings.HAAS_URL + '/project/' + name + '/nodes')
+    project_nodes = project_nodes.json()
+    nodes = []
+    for proj_node in project_nodes:
+       node = requests.get(settings.HAAS_URL + '/node/' +proj_node)
+       node = node.json()
+       nodes.append(node)
+
+    networks = requests.get(settings.HAAS_URL + '/project/' + name + '/networks')
+    networks = networks.json()
+    project_headnodes = requests.get(settings.HAAS_URL + '/project/' + name + '/headnodes')
+    project_headnodes = project_headnodes.json()
 
-    networks = requests.get(settings.HAAS_URL + '/project/' + name + '/networks')
-    networks = networks.json()
-    headnodes = requests.get(settings.HAAS_URL + '/project/' + name + '/headnodes')
-    headnodes = headnodes.json()
+    headnodes = []
+    for proj_hnode in project_headnodes:
+       hnode_details = requests.get(settings.HAAS_URL + '/headnode/' + proj_hnode)
+       hnode_details = hnode_details.json()
+       headnodes.append(hnode_details)
 
-    project = {'name':name, 'project_nodes':project_nodes, 'networks':networks, 'headnodes':headnodes}
+    #hnode = json.dumps(headnodes)
+    #hnode_details = requests.get(settings.HAAS_URL + '/headnode/' + hnode)
+    #hnode_details = hnode_details.json()
+    project = {'name':name, 'project_nodes':project_nodes, 'networks':networks, 'headnodes':project_headnodes}
     
-    deleteForm = DeleteProjectForm()
+    addHNICForm = AddHNICForm()
+    addHNICForm.action = '/projects/'+name+'/hnic_add'
+    deleteForm = DeleteProjectForm()
     deleteForm.action = '/project_delete'
-    return render(request, 'projectDetails.html', {'project': project, 'nodes': nodes, 'deleteForm': deleteForm})
-
+
+    return render(request, 'projectDetails.html', {'project': project, 'nodes': nodes, 'hnodes': headnodes, 'deleteForm': deleteForm, 'addHNICForm': addHNICForm})
+
 
 def project_create(request):
     """
@@ -284,5 +296,31 @@ def networks(request):
     networks = r.json()
     project = {'networks':networks}
     return render(request, 'networks.html', {'project': project})
+
+
+def hnic_add(request, name):
+    """
+    adds a haednic to a headnode
+    """
+    if request.method == "POST":
+        form = AddHNICForm(request.POST)
+        if form.is_valid():
+                hnode = form.cleaned_data["hnode"]
+                hnic = form.cleaned_data["hnic"]
+                r = requests.put(settings.HAAS_URL + '/headnode/'+ hnode +'/hnic/' + hnic)
+                if(r.status_code == 200):
+                    #return
+                    return redirect('haasplugin.views.project_details', name)
+                else:
+                    return render(request, 'error.html', {'status': r})
+
+
+    #hnic = AddHNICForm()
+    #hnic.submit = "Create"
+    #hnic.action = "/projects"
+    #hnic.back_text = "Cancel"
+    #hnic.back_link = "/projects"
+    
+    return render(request, 'error.html', {'status': "page not found. Should not reach here"})
 
 
