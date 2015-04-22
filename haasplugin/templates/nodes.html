@@ -12,10 +12,19 @@
             </th>                    
         </tr>
     </thead>
-    {% for node in context.nodes %}
+    {% for node in context.all_nodes %}
     <tr class = "active">      
-	<td>{{node}}</td>
-        <td> </td>
+	<td>{% block node%}
+              {% for element in context.nodes %}
+     		{% if element.name == node %}
+		   {% include "node.html" %}
+		{% endif %}
+	      {% endfor%}
+	    {% endblock %}
+        </td>
+        <td> <a href="/nodes/{{node}}" class="btn btn-success">
+	<span class = "glyphicon glyphicon-cog" aria-hidden = "true"> </span>	
+	Manage</a></td>
     </tr>
     {% endfor%}
 </table>

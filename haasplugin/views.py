@@ -177,12 +177,16 @@ def nodes(request):
     """
 
     r = requests.get(settings.HAAS_URL + '/nodes')
-    nodes = r.json()
-
+    all_nodes = r.json()
+    nodes = []
+    for proj_node in all_nodes:
+       node = requests.get(settings.HAAS_URL + '/node/' +proj_node)
+       node = node.json()
+       nodes.append(node)
     createNode = CreateNodeForm()
     createNode.action = '/node_create'
 
-    context = {'nodes':nodes, 'createNode':createNode}
+    context = {'all_nodes':all_nodes,'nodes':nodes, 'createNode':createNode}
 
     return render(request, 'nodes.html', {'context': context})
 

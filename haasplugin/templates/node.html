@@ -1,17 +1,45 @@
-<a href="#" class="btn btn-success"
+<a href="#" 
    data-toggle="modal"
-   data-target="#basicModal">Details</a>
+   data-target="#basicModal{{node}}" title="Details">{{node}}</a>
 
 
-<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<div class="modal fade" id="basicModal{{node}}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
             <h4 class="modal-title" id="myModalLabel">Node Details</h4>
             </div>
+
             <div class="modal-body" align="middle">
-		<iframe src="/node/{{node}}" width="550px" frameBorder="0" scrolling="no"></iframe>
+		<table class="table table-bordered table-condense table-hover">
+   <thead>
+	<tr class = "info">	     
+	  <th>
+		Name
+	  </th>   
+	  <th>
+		Available
+	  </th>  
+	  <th colspan=2>
+		NICs
+	  </th>                
+	</tr>
+   </thead>
+	
+   	  
+   <tr  class = "active"> 
+	<td>{{element.name}}</td>    
+	<td>{{element.free}}</td>
+
+		{% for nic in element.nics %}
+    			<td>{{nic.label}}</td>
+			<td>{{nic.macaddr}}</td>
+		{% endfor %}	
+	
+</tr>
+
+</table> 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                
