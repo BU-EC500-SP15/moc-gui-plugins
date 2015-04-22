@@ -34,14 +34,23 @@ def project_details(request, name):
 
     networks = requests.get(settings.HAAS_URL + '/project/' + name + '/networks')
     networks = networks.json()
-    headnodes = requests.get(settings.HAAS_URL + '/project/' + name + '/headnodes')
-    headnodes = headnodes.json()
+    project_headnodes = requests.get(settings.HAAS_URL + '/project/' + name + '/headnodes')
+    project_headnodes = project_headnodes.json()
 
-    project = {'name':name, 'project_nodes':project_nodes, 'networks':networks, 'headnodes':headnodes}
+    headnodes = []
+    for proj_hnode in project_headnodes:
+       hnode_details = requests.get(settings.HAAS_URL + '/headnode/' + proj_hnode)
+       hnode_details = hnode_details.json()
+       headnodes.append(hnode_details)
+
+    #hnode = json.dumps(headnodes)
+    #hnode_details = requests.get(settings.HAAS_URL + '/headnode/' + hnode)
+    #hnode_details = hnode_details.json()
+    project = {'name':name, 'project_nodes':project_nodes, 'networks':networks, 'headnodes':project_headnodes}
     
     deleteForm = DeleteProjectForm()
     deleteForm.action = '/project_delete'
-    return render(request, 'projectDetails.html', {'project': project, 'nodes': nodes, 'deleteForm': deleteForm})
+    return render(request, 'projectDetails.html', {'project': project, 'nodes': nodes, 'hnodes': headnodes, 'deleteForm': deleteForm})
 
 
 def project_create(request):
