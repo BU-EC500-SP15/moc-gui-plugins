@@ -26,13 +26,65 @@
 		</td>
 		<td>{{nic.macaddr}}
 		</td>
-		<td></td>
+		<td>
+		</td>
 	    </tr>
 
 	    {% endfor %}
 	</table>
       </div>
       <div class="col-md-5">
-	
+	<h3>Network</h3>
+        <hr />
+        {% if node.network  %}
+	  <table class="table table-bordered table-condensed table-hover">
+            <thead>
+                <tr class ="info">
+                    <th class ="info">
+                        Network name
+                    </th>
+                    
+                </tr>
+            </thead>
+            {% for n in node.network%}
+	    <tr class="active">
+                <td>{{n.network}}
+		</td>
+		
+	    </tr>
+
+	    {% endfor %}
+	</table>
+        {% else %}
+           This node is not connected to a network
+           
+       {% endif %}
       </div>
+    </div>
+    <div class="col-md-5">
+	<h3>Project</h3>
+        <hr />
+        {% if node.project != "None"  %}
+	  <table class="table table-bordered table-condensed table-hover">
+            <thead>
+                <tr class ="info">
+                    <th class ="info">
+                        Project name
+                    </th>
+                    
+                </tr>
+            </thead>
+            <tr class="active">
+                <td>{{node.project}}
+		</td>		
+	    </tr>
+
+	   
+	</table>
+        {% else %}
+           This node is a free node
+           
+       {% endif %}
+      </div>
+
 {% endblock %}
