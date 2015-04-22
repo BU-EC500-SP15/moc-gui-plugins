@@ -1,0 +1,86 @@
+<a href="#"
+   data-toggle="modal"
+   data-target="#basicModal{{headnode}}" title="Details">{{headnode}}</a>
+
+
+
+<div class="modal fade" id="basicModal{{headnode}}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title" id="myModalLabel">Headnode Details</h4>
+            </div>
+
+            <div class="modal-body" align="middle">
+		<table class="table table-bordered table-condense table-hover">
+   <thead>
+	<tr class = "info">	     
+	  <th>
+		Headnode Name
+	  </th>   
+	  <th >
+		HNICS
+	  </th>              
+	</tr>
+   </thead>
+	
+   	  
+   <tr  class = "active"> 
+	<td>{{headnode}}</td> 
+	{% for element in hnodes %}   
+	   {% if element.hnics %}
+              <td>
+		  {% for hnic in element.hnics %}
+    			{{hnic}}
+		   {% endfor %}
+              </td>	
+	   {% else %}
+              <td> This Headnode has no HNICs</a> </td>
+	   {%endif%}
+      {% endfor %}
+	
+</tr>
+
+</table> 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                
+        </div>
+    </div>
+  </div>
+</div>
+
+
+﻿    
+<a href="#" class="btn btn-success"
+   data-toggle="modal"
+   data-target="#addHnic" title="Add HNIC">Add HNIC</a>
+
+<div class="modal fade" id="addHnic" tabindex="-1" role="dialog" aria-labelledby="createProjectModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addHNICModalLabel">Add New HNIC</h4>
+      </div>
+      <div class="modal-body" id="addHnicForm">
+         {% include "form.html" with form=addHNICForm %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="addHNIC()">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function addHNIC(){
+  $('#addHnicForm > form').submit();
+}
+  
+</script>
+
+
+
