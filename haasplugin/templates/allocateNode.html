@@ -20,7 +20,7 @@
 		<form action="/projects/{{context.project.name}}/attach_node" method="POST">
 			{% csrf_token %}
 			 <input type="hidden" name="node_name" id="" value="{{node}}"/>
-			<input type="submit" value="Allocate" class="btn btn-primary"/>
+			<button type="submit" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Attach</button>
 		</form>
 		
 	</td>
