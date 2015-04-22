@@ -19,16 +19,20 @@
                     </th>
                 </tr>
             </thead>
-            {% for node in project.nodes %}
+            {% for node in project.project_nodes %}
             <tr class = "active">
                 <td>{{node}}</td>
                 
-<td>
-			<form action="/projects/{{project.name}}/detach_node" method="POST">
+		<td>
+		   <form action="/projects/{{project.name}}/detach_node" method="POST">
 				{%csrf_token%}
 				<input type="hidden" name="node_name" value="{{node}}"/>
 				{% block node%}
-			   		{% include "node.html" %}
+                                      {% for element in nodes %}
+     					{% if element.name == node %}
+			   		   {% include "node.html" %}
+					{% endif %}
+				      {% endfor%}
 				{% endblock %}
 				<input type="submit" value="Detach" class="btn btn-danger"/>
                        </form>

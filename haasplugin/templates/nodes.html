@@ -6,12 +6,16 @@
         <tr class = "info">	       
             <th>
                 Node Name
+            </th>
+            <th>
+               Actions
             </th>                    
         </tr>
     </thead>
     {% for node in context.nodes %}
     <tr class = "active">      
 	<td>{{node}}</td>
+        <td> </td>
     </tr>
     {% endfor%}
 </table>
