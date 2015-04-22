@@ -5,7 +5,7 @@
 <table class="table table-bordered table-condensed table-hover">
    <thead>
      <tr class = "info">
-       <th>Network name</th><th>Project</th><th>Allocated</th>
+       <th>Network name</th><th>Project</th>
      </tr>
    </thead>
    {% for network in project.networks %}
@@ -19,7 +19,7 @@
       </td>
 
 
-	<td>{{network.access}}</td><td>{{network.allocated}}</td>
+	<td>{{network.access}}</td>
      <!-- <td>
       {% for nics in network.nics %}
 	{{nics}}
@@ -29,9 +29,9 @@
   {% endfor%} 
 </table>
 </div>
-
-
-
+<div class="col-md-10">
+{% include "createNetwork.html" %}
+</div>
 <script type="text/javascript">
 window.onload=function () {
     $('#network').addClass('active');
