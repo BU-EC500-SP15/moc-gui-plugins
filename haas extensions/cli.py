@@ -136,6 +136,7 @@ def list_networks():
     url = object_url('networks')
     do_get(url)
 
+
 @cmd
 def network_create(network, creator, access, net_id):
     """Create a link-layer <network>.  See docs/networks.md for details"""
@@ -351,6 +352,12 @@ def list_project_networks(project):
 def show_node(node):
     """Display information about a <node>"""
     url = object_url('node', node)
+    do_get(url)
+
+@cmd
+def show_node_detailed(node):
+    """Display detailed information about a <node>"""
+    url = object_url('node_detailed', node)
     do_get(url)
 
 @cmd

@@ -241,6 +241,8 @@ def list_nodes():
     nodes = [n.label for n in nodes]
     return json.dumps(nodes)
 
+
+
 @rest_call('PUT', '/node/<node>')
 def node_register(node, ipmi_host, ipmi_user, ipmi_pass):
     """Create node.
@@ -811,6 +813,51 @@ def show_node(nodename):
                   } for n in node.nics],
     })
 
+
+@rest_call('GET', '/node_detailed/<nodename>')
+def show_node_detailed(nodename):
+    """Show details of a node.
+
+    Returns a JSON object representing a node.
+    The object will have at least the following fields:
+        * "name", the name/label of the node (string).
+        * "project", if project is assigned.
+        * "nics", a list of nics, each represted by a JSON object having
+            at least the following fields:
+
+                - "label", the nic's label.
+                - "macaddr", the nic's mac address.
+	* "network", network the node is assigned to
+    Example:  '{"name": "node1",
+                "project": "proj",
+                "nics": [{"label": "nic1", "macaddr": "01:23:45:67:89"},
+                         {"label": "nic2", "macaddr": "12:34:56:78:90"}],
+		"network": ["network":"network1"],
+               }'
+    """
+    db = model.Session()
+    node = _must_find(db, model.Node, nodename)
+    if node.project_id is not None:
+      project = _must_find(db, model.Project, node.project.label)
+      network_node = db.query(model.Network.label).filter_by(access=project)
+      network = [{'network': nwk.label} for nwk in network_node]
+      return json.dumps({
+        'name': node.label,
+        'project': node.project.label,
+        'nics': [{'label': n.label,
+                  'macaddr': n.mac_addr,
+                  } for n in node.nics],
+	'network': network,
+      })
+    else:
+      return json.dumps({
+        'name': node.label,
+        'project': 'None',
+        'nics': [{'label': n.label,
+                  'macaddr': n.mac_addr,
+                  } for n in node.nics],
+	'network': [],
+      })
 
 @rest_call('GET', '/headnode/<nodename>')
 def show_headnode(nodename):
