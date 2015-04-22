@@ -1,0 +1,31 @@
+﻿    
+
+<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#registerNicModal">
+<i class="glyphicon glyphicon-plus"></i>
+  Register NIC
+</button>
+
+<div class="modal fade" id="registerNicModal" tabindex="-1" role="dialog" aria-labelledby="registerNicModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="registerNicModalLabel">Register New NIC</h4>
+      </div>
+      <div class="modal-body" id="registerNic">
+      {% include "form.html" with form=registerNic %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="registerNic()">Register</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function registerNic(){
+  $('#registerNic > form').submit();
+}
+  
+</script>

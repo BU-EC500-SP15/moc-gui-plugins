@@ -34,23 +34,14 @@ def project_details(request, name):
 
     networks = requests.get(settings.HAAS_URL + '/project/' + name + '/networks')
     networks = networks.json()
-    project_headnodes = requests.get(settings.HAAS_URL + '/project/' + name + '/headnodes')
-    project_headnodes = project_headnodes.json()
+    headnodes = requests.get(settings.HAAS_URL + '/project/' + name + '/headnodes')
+    headnodes = headnodes.json()
 
-    headnodes = []
-    for proj_hnode in project_headnodes:
-       hnode_details = requests.get(settings.HAAS_URL + '/headnode/' + proj_hnode)
-       hnode_details = hnode_details.json()
-       headnodes.append(hnode_details)
-
-    #hnode = json.dumps(headnodes)
-    #hnode_details = requests.get(settings.HAAS_URL + '/headnode/' + hnode)
-    #hnode_details = hnode_details.json()
-    project = {'name':name, 'project_nodes':project_nodes, 'networks':networks, 'headnodes':project_headnodes}
+    project = {'name':name, 'project_nodes':project_nodes, 'networks':networks, 'headnodes':headnodes}
     
     deleteForm = DeleteProjectForm()
     deleteForm.action = '/project_delete'
-    return render(request, 'projectDetails.html', {'project': project, 'nodes': nodes, 'hnodes': headnodes, 'deleteForm': deleteForm})
+    return render(request, 'projectDetails.html', {'project': project, 'nodes': nodes, 'deleteForm': deleteForm})
 
 
 def project_create(request):
@@ -179,8 +170,9 @@ def node_details(request, name):
     node = node.json()
     deleteNode = DeleteNodeForm()
     deleteNode.action = '/node_delete'
-
-    return render(request, 'nodeDetails.html', {'node': node, 'deleteNode':deleteNode})
+    registerNic = RegisterNodeNicForm()
+    registerNic.action = '/nodes/' +name+ '/node_register_nic'
+    return render(request, 'nodeDetails.html', {'node': node, 'deleteNode':deleteNode, 'registerNic':registerNic})
 
 def node_powercycle(request, name):
     """
@@ -193,6 +185,26 @@ def node_powercycle(request, name):
     payload = {'node':name}
     r = requests.post(settings.HAAS_URL + '/node/' + name + '/power_cycle')
     return redirect('haasplugin.views.node_details', name)
+
+def node_register_nic(request, name):
+    """
+    List keystone projects available to the user;
+    attempt to login with credentials
+
+    """
+    if request.method == 'POST':
+        form = RegisterNodeNicForm(request.POST)
+        if form.is_valid():
+            nic = form.cleaned_data['nic']
+            macaddr = form.cleaned_data['macaddr']
+            payload = {'macaddr':macaddr}
+            r = requests.put(settings.HAAS_URL + '/node/' + name + '/nic/' + nic, data = json.dumps(payload))
+            if r.status_code == 200:
+                return redirect('haasplugin.views.node_details', name)
+            else:
+                return render(request, 'error.html', {'status': r.status_code })
+        else:
+           return render(request, 'error.html', {'status': 'form is not valid' })
 
 def nodes(request):
     """

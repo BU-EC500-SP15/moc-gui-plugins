@@ -35,6 +35,15 @@ class DeleteNodeForm(forms.Form):
     back_text = ''
     submit = ''
 
+class RegisterNodeNicForm(forms.Form):
+    """description of class"""
+    nic = forms.CharField(label='NIC name')
+    macaddr = forms.CharField(label='Mac Address')
+    action = ''
+    back_link = ''
+    back_text = ''
+    submit = ''
+
 class AllocateNodeForm(forms.Form):
     node_name = forms.CharField(widget=forms.HiddenInput())
     action = ''
