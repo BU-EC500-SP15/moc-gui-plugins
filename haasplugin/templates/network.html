@@ -1,20 +1,45 @@
-<div class="col-md-5">
-<table class="table table-bordered table-condensed table-hover">
-   <thead>
-     <tr class = "info">
-       <th>Network name</th><th>Project</th><th>Allocated</th>
-     </tr>
-   </thead>
-   {% for network in project.networks %}
-   <tr class = "active">
-      <td>{{network.label}}</td><td>{{network.access}}</td><td>{{network.allocated}}</td>
-     <!-- <td>
-      {% for nics in network.nics %}
-	{{nics}}
-      {% endfor %}
-	</td>-->
-   </tr>
-  {% endfor%}          
-</table>
+<a href="#" 
+   data-toggle="modal"
+   data-target="#basicModal{{network.label}}" title="Details">{{network.label}}</a>
+
+
+<div class="modal fade" id="basicModal{{network.label}}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            <h4 class="modal-title" id="myModalLabel">Network Details</h4>
+            </div>
+
+            <div class="modal-body" align="middle">
+		<table class="table table-bordered table-condensed table-hover">
+   		   <thead>
+     			<tr class = "info">
+       			   <th>Network name</th><th>Project</th><th>NICS</th><th>HNICS</th><th>Creator</th>
+     			</tr>
+   	   	   </thead>
+      		   <tr class = "active">
+      			<td>{{network.label}}</td>
+      			<td>{{network.access}}</td>
+     			<td>
+      			{% for nics in network.nics %}
+				{{nics}}
+      			{% endfor %}
+			</td>
+ 			<td>
+      			{% for hnics in network.hnics %}
+				{{hnics}}
+      			{% endfor %}
+			</td>
+			<td>{{network.creator}}</td>
+   		   </tr>        
+		</table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                
+        </div>
+    </div>
+  </div>
 </div>
+
 

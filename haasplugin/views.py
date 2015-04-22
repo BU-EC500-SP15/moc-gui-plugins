@@ -166,7 +166,7 @@ def node_details(request, name):
     """
     Show node details: Name, Availabiltiy, Associated NICs
     """
-    node = requests.get(settings.HAAS_URL + '/node/' + name)
+    node = requests.get(settings.HAAS_URL + '/node_detailed/' + name)
     node = node.json()
     return render(request, 'nodeDetails.html', {'node': node})
 
@@ -221,6 +221,6 @@ def networks(request):
     r = requests.get(settings.HAAS_URL + '/networks')
     networks = r.json()
     project = {'networks':networks}
-    return render(request, 'viewAllNetworks.html', {'project': project})
+    return render(request, 'networks.html', {'project': project})
 
 
