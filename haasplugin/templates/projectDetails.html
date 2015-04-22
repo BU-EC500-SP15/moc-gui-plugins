@@ -21,7 +21,6 @@
             </thead>
             {% for node in project.project_nodes %}
             <tr class = "active">
-                <td>{{node}}</td>
                 
 		<td>
 		   <form action="/projects/{{project.name}}/detach_node" method="POST">
@@ -34,8 +33,8 @@
 					{% endif %}
 				      {% endfor%}
 				{% endblock %}
-				<input type="submit" value="Detach" class="btn btn-danger"/>
-                       </form>
+				<td><input type="submit" value="Detach" class="btn btn-danger"/></td>
+                     </form>
  		</td>
             </tr>
             {% endfor%}
@@ -57,19 +56,21 @@
                     		  <th class = "info">
                         		Headnode Name
                     		  </th>
-                        	{% for headnode in project.headnodes %}
-                            		<p>Assigned headnode is {{headnode}}</p>
-                        	{% endfor %}
- 		    		<th>
-                        
-                    		</th>
+			  	  <th> 
+					Actions
+				  </th>
                 		</tr>
             			</thead>
             			<tr class = "active">
             			  {% for headnode in project.headnodes%}
             			<tr class = "active">
-                		   <td>{{headnode}}</td>
-                		   <td><a href="" class="btn btn-success">Assign</a></td>
+                		  <!-- <td>{{headnode}}</td>-->
+				   <td>
+				   {%block headnode%}
+			   		   {% include "headnode.html" %}
+				   {% endblock %}
+			           </td>
+                		   <!--<td><a href="" class="btn btn-success">Assign</a></td>-->
             			</tr>
               			  {%endfor%}
         		    </table>
