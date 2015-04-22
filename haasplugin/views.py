@@ -175,10 +175,24 @@ def node_details(request, name):
     """
     Show node details: Name, Availabiltiy, Associated NICs
     """
-    node = requests.get(settings.HAAS_URL + '/node_detailed/' + name)
+    node = requests.get(settings.HAAS_URL + '/node/' + name)
     node = node.json()
-    return render(request, 'nodeDetails.html', {'node': node})
+    deleteNode = DeleteNodeForm()
+    deleteNode.action = '/node_delete'
 
+    return render(request, 'nodeDetails.html', {'node': node, 'deleteNode':deleteNode})
+
+def node_powercycle(request, name):
+    """
+    Power cycles the node
+    """
+    if request.method == 'POST':
+        requests.post(settings.HAAS_URL + '/node/' + name + '/power_cycle')
+        return redirect('haasplugin.views.node_details', name)
+
+    payload = {'node':name}
+    r = requests.post(settings.HAAS_URL + '/node/' + name + '/power_cycle')
+    return redirect('haasplugin.views.node_details', name)
 
 def nodes(request):
     """
@@ -221,7 +235,22 @@ def node_create(request):
     createNode = CreateNodeForm()
     createNode.action = "/node_create"
     return render(request, 'createNode.html', {'createNode': createNode})
-
+    
+def node_delete(request):
+    """
+    List keystone projects available to the user;
+    attempt to login with credentials
+    """
+    if request.method == "POST":
+        form = DeleteNodeForm(request.POST)
+        if form.is_valid():
+                name = form.cleaned_data["name"]
+                
+                r = requests.delete(settings.HAAS_URL + '/node/' + name)
+                if(r.status_code == 200):
+                    return redirect('haasplugin.views.nodes')
+                else:
+                    return render(request, 'error.html', {'status': r.status_code })
 
 def networks(request):
     """

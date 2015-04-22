@@ -30,6 +30,8 @@
 </table>
 </div>
 
+{% include 'createNode.html' with createNode=context.createNode %}
+
 <script type="text/javascript">
 window.onload=function () {
     $('#node').addClass('active');

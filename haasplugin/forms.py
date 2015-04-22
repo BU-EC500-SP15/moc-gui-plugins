@@ -28,6 +28,13 @@ class CreateNodeForm(forms.Form):
     back_text = ''
     submit = ''
 
+class DeleteNodeForm(forms.Form):
+    """description of class"""
+    name = forms.CharField(label='Delete Node')
+    action = ''
+    back_text = ''
+    submit = ''
+
 class AllocateNodeForm(forms.Form):
     node_name = forms.CharField(widget=forms.HiddenInput())
     action = ''
