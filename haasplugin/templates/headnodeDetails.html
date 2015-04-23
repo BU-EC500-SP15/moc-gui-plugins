@@ -1,0 +1,40 @@
+﻿{% extends "base.html" %}
+{% block content %}
+
+<h2>{{headnode.name}}<small>
+<!--<a href="/nodes/{{node.name}}/power_cycle" class="btn btn-primary btn-sm">Power cycle</a>-->
+</small></h2>
+<div class="row">
+    <div class="col-md-6">
+       <h3>HNICS</h3>
+        <hr />       
+        <table class="table table-bordered table-condensed table-hover">
+            <thead>
+                <tr class ="info">
+                    <th class ="info">
+                        HNIC name
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            {% for hnic in headnode.hnics%}
+	    <tr class="active">
+                <td>{{hnic}}</td>
+		<td>
+                   <a href="{{headnode.name}}/headnode_delete_hnic/{{hnic}}" class="btn btn-danger">Delete</a>
+		</td>
+	    </tr>
+
+	    {% endfor %}
+	</table>
+        {% include 'addHeadnodeHnic.html'%}
+      </div>
+      
+</div>
+
+
+
+
+{% endblock %}

@@ -27,6 +27,9 @@ urlpatterns = patterns('',
     url(r'^projects/(?P<name>.+)/hnic_add', hnic_add), # add hnic to headnode
     url(r'^project_create', project_create),
     url(r'^project_delete', project_delete),
+    url(r'^headnodes/(?P<name>.+)/headnode_delete_hnic/(?P<hnic>.+)', headnode_delete_hnic),
+    url(r'^headnodes/(?P<name>.+)/hnic_add', hnic_add), 
+    url(r'^headnodes/(?P<name>.+)', headnode_details), 
     url(r'^node_create', node_create), #change project_create to node_create here and create it in views.py
     #url(r'^node_delete', node_delete), #change project_delete to node_delete here and create it in views.py
     url(r'^network_create', network_create), 

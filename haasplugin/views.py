@@ -127,6 +127,30 @@ def headnode_create(request):
     given = {'form':headnode, 'project':project}
     return render(request, 'createHeadnode.html', {'headnode':headnode})
 
+def headnode_details(request, name):
+    """
+    Show node details: Name, Availabiltiy, Associated NICs
+    """
+    headnode = requests.get(settings.HAAS_URL + '/headnode/' + name)
+    headnode = headnode.json()
+
+    addHNICForm = AddHNICForm()
+    addHNICForm.action = '/headnodes/'+name+'/hnic_add'
+    return render(request, 'headnodeDetails.html', {'headnode': headnode, 'addHNICForm': addHNICForm})
+
+
+def headnode_delete_hnic(request, name, hnic):
+    """
+    List keystone projects available to the user;
+    attempt to login with credentials
+
+    """
+    r = requests.delete(settings.HAAS_URL + '/headnode/'+name+'/hnic/'+hnic)
+    if r.status_code == 200:
+        return redirect('haasplugin.views.headnode_details', name)
+    else:
+        return render(request, 'error.html', {'status': r.status_code })
+
 
 def allocate_node(request, name):
     """
