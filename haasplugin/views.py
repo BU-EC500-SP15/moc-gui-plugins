@@ -332,28 +332,22 @@ def networks(request):
     
     return render(request, 'networks.html', {'project': project})
 
-def hnic_add(request, name):
-    """
-    adds a haednic to a headnode
-    """
-    if request.method == "POST":
-        form = AddHNICForm(request.POST)
-        if form.is_valid():
-                hnode = form.cleaned_data["hnode"]
-                hnic = form.cleaned_data["hnic"]
-                r = requests.put(settings.HAAS_URL + '/headnode/'+ hnode +'/hnic/' + hnic)
-                if(r.status_code == 200):
-                    #return
-                    return redirect('haasplugin.views.project_details', name)
-                else:
-                    return render(request, 'error.html', {'status': r})
-
-    #hnic = AddHNICForm()
-    #hnic.submit = "Create"
-    #hnic.action = "/projects"
-    #hnic.back_text = "Cancel"
-    #hnic.back_link = "/projects"    
-
+def hnic_add(request, name):
+
+    """
+    adds a haednic to a headnode
+    """
+
+    if request.method == "POST":
+        form = AddHNICForm(request.POST)
+        if form.is_valid():
+                hnic = form.cleaned_data["hnic"]
+                r = requests.put(settings.HAAS_URL + '/headnode/'+ name +'/hnic/' + hnic)
+                if(r.status_code == 200):
+                    return redirect('haasplugin.views.headnode_details', name)
+                else:
+                    return render(request, 'error.html', {'status': r})
+
     return render(request, 'error.html', {'status': "page not found. Should not reach here"})
 
 
