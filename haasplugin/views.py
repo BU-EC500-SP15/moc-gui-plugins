@@ -127,28 +127,46 @@ def headnode_create(request):
     given = {'form':headnode, 'project':project}
     return render(request, 'createHeadnode.html', {'headnode':headnode})
 
-def headnode_details(request, name):
-    """
-    Show node details: Name, Availabiltiy, Associated NICs
-    """
-    headnode = requests.get(settings.HAAS_URL + '/headnode/' + name)
+def headnode_details(request, name):
+
+    """
+
+    Show node details: Name, Availabiltiy, Associated NICs
+
+    """
+
+    headnode = requests.get(settings.HAAS_URL + '/headnode/' + name)
+
     headnode = headnode.json()
 
-    addHNICForm = AddHNICForm()
-    addHNICForm.action = '/headnodes/'+name+'/hnic_add'
+    addHNICForm = AddHNICForm()
+
+    addHNICForm.action = '/headnodes/'+name+'/hnic_add'
+
     return render(request, 'headnodeDetails.html', {'headnode': headnode, 'addHNICForm': addHNICForm})
 
-
-def headnode_delete_hnic(request, name, hnic):
-    """
-    List keystone projects available to the user;
-    attempt to login with credentials
-
-    """
-    r = requests.delete(settings.HAAS_URL + '/headnode/'+name+'/hnic/'+hnic)
-    if r.status_code == 200:
-        return redirect('haasplugin.views.headnode_details', name)
-    else:
+
+
+def headnode_delete_hnic(request, name, hnic):
+
+    """
+
+    List keystone projects available to the user;
+
+    attempt to login with credentials
+
+
+
+    """
+
+    r = requests.delete(settings.HAAS_URL + '/headnode/'+name+'/hnic/'+hnic)
+
+    if r.status_code == 200:
+
+        return redirect('haasplugin.views.headnode_details', name)
+
+    else:
+
         return render(request, 'error.html', {'status': r.status_code })
 
 
@@ -332,24 +350,44 @@ def networks(request):
     
     return render(request, 'networks.html', {'project': project})
 
-def hnic_add(request, name):
-
-    """
-    adds a haednic to a headnode
-    """
-
-    if request.method == "POST":
-        form = AddHNICForm(request.POST)
-        if form.is_valid():
-                hnic = form.cleaned_data["hnic"]
-                r = requests.put(settings.HAAS_URL + '/headnode/'+ name +'/hnic/' + hnic)
-                if(r.status_code == 200):
-                    return redirect('haasplugin.views.headnode_details', name)
-                else:
-                    return render(request, 'error.html', {'status': r})
-
+def hnic_add(request, name):
+
+
+
+    """
+
+    adds a haednic to a headnode
+
+    """
+
+
+
+    if request.method == "POST":
+
+        form = AddHNICForm(request.POST)
+
+        if form.is_valid():
+
+                hnic = form.cleaned_data["hnic"]
+
+                r = requests.put(settings.HAAS_URL + '/headnode/'+ name +'/hnic/' + hnic)
+
+                if(r.status_code == 200):
+
+                    return redirect('haasplugin.views.headnode_details', name)
+
+                else:
+
+                    return render(request, 'error.html', {'status': r})
+
+
+
     return render(request, 'error.html', {'status': "page not found. Should not reach here"})
 
-
-
-
+def headnode_delete(request, project, name):
+    r = requests.delete(settings.HAAS_URL + '/headnode/' + name)
+    if(r.status_code == 200):
+        return redirect('/../../../projects/' + project)
+    else:
+        return render(request, 'error.html', {'status': r.status_code })
+    return render(request, 'error.html', {'status': ''})

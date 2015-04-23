@@ -63,12 +63,18 @@ class HeadnodeForm(forms.Form):
     back_text = 'Cancel'
     submit = 'Create'
 
-class AddHNICForm(forms.Form):
-    """description of class"""
-    hnic = forms.CharField(label='HNIC Name')
-    action = ''
-    back_link = ''
-    back_text = ''
+class AddHNICForm(forms.Form):
+
+    """description of class"""
+
+    hnic = forms.CharField(label='HNIC Name')
+
+    action = ''
+
+    back_link = ''
+
+    back_text = ''
+
     submit = ''
 
 class CreateNetworkForm(forms.Form):
@@ -77,4 +83,15 @@ class CreateNetworkForm(forms.Form):
     action = ''
     back_link = ''
     back_text = ''
+    submit = ''
+
+class DeleteHeadnodeForm(forms.Form):
+    headnode = forms.CharField(label='Headnode')
+    project = forms.CharField(label='Project')
+    action = ''
+
+    back_link = ''
+
+    back_text = ''
+
     submit = ''
