@@ -1,0 +1,28 @@
+{% block addhnic %}
+<a href="#" class="btn btn-success" data-toggle="modal" data-target="#addHnic" title="Add HNIC">Add HNIC</a> </td>
+
+<div class="modal fade" id="addHnic" tabindex="-1" role="dialog" aria-labelledby="createProjectModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addHNICModalLabel">Add New HNIC</h4>
+      </div>
+      <div class="modal-body" id="addHnicForm">
+         {% include "form.html" with form=addHNICForm %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="addHNIC()">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function addHNIC(){
+  $('#addHnicForm > form').submit();
+}
+</script>
+
+{% endblock %}
