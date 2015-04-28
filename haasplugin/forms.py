@@ -60,8 +60,8 @@ class HeadnodeForm(forms.Form):
     project = forms.CharField(label='Project')
     action = '/headnode/create/'
     back_link = '/projects/details/'
-    back_text = 'Cancel'
-    submit = 'Create'
+    back_text = ''
+    submit = ''
 
 class AddHNICForm(forms.Form):
 
@@ -83,15 +83,4 @@ class CreateNetworkForm(forms.Form):
     action = ''
     back_link = ''
     back_text = ''
-    submit = ''
-
-class DeleteHeadnodeForm(forms.Form):
-    headnode = forms.CharField(label='Headnode')
-    project = forms.CharField(label='Project')
-    action = ''
-
-    back_link = ''
-
-    back_text = ''
-
     submit = ''

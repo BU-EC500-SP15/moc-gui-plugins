@@ -8,7 +8,7 @@
        <th>Network name</th><th>Project</th>
      </tr>
    </thead>
-   {% for network in project.networks %}
+   {% for network in context.networks %}
    <tr class = "active">
       <td>
 	   {% block network%}
@@ -30,7 +30,7 @@
 </table>
 </div>
 <div class="col-md-10">
-{% include "createNetwork.html" %}
+{% include 'createModal.html' with createModal=context.createModal %}
 </div>
 <script type="text/javascript">
 window.onload=function () {

@@ -77,7 +77,7 @@
                     {% else %}
                         <p>No headnodes are assigned to this project.</p>
                     {% endif %}
-                    <a href="/headnode/create" class="btn btn-primary">Create New Headnode</a>
+{% include 'createModal.html' with createModal=createHeadnodeModal %}
                    
     </div>
 </div>

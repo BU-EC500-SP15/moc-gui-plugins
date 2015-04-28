@@ -14,7 +14,7 @@
         </tr>
     </thead>
 <tbody>
-    {% for project in projects %}
+    {% for project in context.projects %}
     <tr class = "active">
         <td>{{project}}</td>
         <td><a href="/projects/{{project}}" class="btn btn-success">
@@ -24,7 +24,8 @@
     {% endfor%}
 </tbody>
 </table>
-{% include 'createProject.html' with createProject=createProject%}
+
+{% include 'createModal.html' with createModal=context.createModal %}
 
 <script type="text/javascript">
 window.onload=function () {

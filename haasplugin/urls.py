@@ -27,15 +27,17 @@ urlpatterns = patterns('',
     url(r'^projects/(?P<name>.+)/hnic_add', hnic_add), # add hnic to headnode
     url(r'^project_create', project_create),
     url(r'^project_delete', project_delete),
-    url(r'^projects/(?P<project>.+)/headnodes/(?P<name>.+)/headnode_delete', headnode_delete),
     url(r'^headnodes/(?P<name>.+)/headnode_delete_hnic/(?P<hnic>.+)', headnode_delete_hnic),
     url(r'^headnodes/(?P<name>.+)/hnic_add', hnic_add), 
     url(r'^headnodes/(?P<name>.+)', headnode_details), 
     url(r'^node_create', node_create), #change project_create to node_create here and create it in views.py
-    #url(r'^node_delete', node_delete), #change project_delete to node_delete here and create it in views.py
+    url(r'^node_delete', node_delete), #change project_delete to node_delete here and create it in views.py
     url(r'^network_create', network_create), 
     #url(r'^network_delete', network_delete), #change project_delete to network_delete here and create it in views.py
     url(r'^projects/(?P<name>.+)', project_details),
+    url(r'^nodes/(?P<name>.+)/node_register_nic', node_register_nic),
+    url(r'^nodes/(?P<name>.+)/node_delete_nic/(?P<nic>.+)', node_delete_nic),
+    url(r'^nodes/(?P<name>.+)/power_cycle', node_powercycle),
     url(r'^nodes/(?P<name>.+)', node_details), 
     #url(r'^networks/(?P<name>.+)', network_details), #change project_details to network_details here and create it in views.py
     url(r'^projects/', projects),

@@ -6,6 +6,9 @@ from django.conf import settings
 import requests
 import json
 
+
+# projects related functions
+
 def projects(request):
     """
     List keystone projects available to the user;
@@ -13,11 +16,11 @@ def projects(request):
     """
     r = requests.get(settings.HAAS_URL + '/projects')
     projects = r.json()
-    createProject = CreateProjectForm()
-    #createProject.submit = "Create"
-    createProject.action = "/project_create"
-    #createProject.back_text = "Cancel"
-    return render(request, 'projects.html', {'projects': projects, 'createProject':createProject})
+    createProjectForm = CreateProjectForm()
+    createProjectForm.action = "/project_create"
+    createModal = {'header':'Create New Node', 'form':createProjectForm}
+    context = {'projects': projects, 'createModal':createModal}
+    return render(request, 'projects.html', {'context': context})
 
 
 def project_details(request, name):
@@ -41,18 +44,16 @@ def project_details(request, name):
        hnode_details = requests.get(settings.HAAS_URL + '/headnode/' + proj_hnode)
        hnode_details = hnode_details.json()
        headnodes.append(hnode_details)
-    #hnode = json.dumps(headnodes)
-    #hnode_details = requests.get(settings.HAAS_URL + '/headnode/' + hnode)
-    #hnode_details = hnode_details.json()
+
     project = {'name':name, 'project_nodes':project_nodes, 'networks':networks, 'headnodes':project_headnodes}
     
-    addHNICForm = AddHNICForm()
-    addHNICForm.action = '/projects/'+name+'/hnic_add'
+    headnodeForm = HeadnodeForm()
+    createModal = {'header':'Create New Headnode', 'form':headnodeForm}
 
     deleteForm = DeleteProjectForm()
     deleteForm.action = '/project_delete'
-    return render(request, 'projectDetails.html', {'project': project, 'nodes': nodes, 'hnodes': headnodes, 'deleteForm': deleteForm, 'addHNICForm': addHNICForm})
 
+    return render(request, 'projectDetails.html', {'project': project, 'nodes': nodes, 'hnodes': headnodes, 'deleteForm': deleteForm, 'createHeadnodeModal':createModal})
 
 
 def project_create(request):
@@ -95,6 +96,8 @@ def project_delete(request):
 
    
     return render(request, 'error.html', {'status': ''})
+
+# headnode related functions
 
 def headnode(request):
     """
@@ -142,8 +145,8 @@ def headnode_details(request, name):
     addHNICForm = AddHNICForm()
 
     addHNICForm.action = '/headnodes/'+name+'/hnic_add'
-
-    return render(request, 'headnodeDetails.html', {'headnode': headnode, 'addHNICForm': addHNICForm})
+    createModal = {'header': 'Add New HNIC', 'form': addHNICForm}
+    return render(request, 'headnodeDetails.html', {'headnode': headnode, 'createModal': createModal})
 
 
 
@@ -169,6 +172,42 @@ def headnode_delete_hnic(request, name, hnic):
 
         return render(request, 'error.html', {'status': r.status_code })
 
+def hnic_add(request, name):
+
+
+    """
+
+
+    adds a haednic to a headnode
+
+
+    """
+
+
+
+    if request.method == "POST":
+
+        form = AddHNICForm(request.POST)
+
+        if form.is_valid():
+
+                hnic = form.cleaned_data["hnic"]
+
+                r = requests.put(settings.HAAS_URL + '/headnode/'+ name +'/hnic/' + hnic)
+
+                if(r.status_code == 200):
+
+                    return redirect('haasplugin.views.headnode_details', name)
+
+                else:
+
+                    return render(request, 'error.html', {'status': r})
+
+
+
+    return render(request, 'error.html', {'status': "page not found. Should not reach here"})
+
+# node related functions
 
 def allocate_node(request, name):
     """
@@ -219,10 +258,13 @@ def node_details(request, name):
     """
     Show node details: Name, Availabiltiy, Associated NICs
     """
-    node = requests.get(settings.HAAS_URL + '/node_detailed/' + name)
+    node = requests.get(settings.HAAS_URL + '/node/' + name)
     node = node.json()
-    return render(request, 'nodeDetails.html', {'node': node})
-
+    deleteNode = DeleteNodeForm()
+    deleteNode.action = '/node_delete'
+    registerNic = RegisterNodeNicForm()
+    registerNic.action = '/nodes/' +name+ '/node_register_nic'
+    return render(request, 'nodeDetails.html', {'node': node, 'deleteNode':deleteNode, 'registerNic':registerNic})
 
 def node_powercycle(request, name):
     """
@@ -280,10 +322,10 @@ def nodes(request):
        node = requests.get(settings.HAAS_URL + '/node/' +proj_node)
        node = node.json()
        nodes.append(node)
-    createNode = CreateNodeForm()
-    createNode.action = '/node_create'
-
-    context = {'all_nodes':all_nodes,'nodes':nodes, 'createNode':createNode}
+    createNodeForm = CreateNodeForm()
+    createNodeForm.action = '/node_create'
+    createModal = {'header':'Create New Node', 'form':createNodeForm}
+    context = {'all_nodes':all_nodes,'nodes':nodes, 'createModal':createModal}
 
     return render(request, 'nodes.html', {'context': context})
 
@@ -309,7 +351,24 @@ def node_create(request):
     createNode = CreateNodeForm()
     createNode.action = "/node_create"
     return render(request, 'createNode.html', {'createNode': createNode})
+    
+def node_delete(request):
+    """
+    List keystone projects available to the user;
+    attempt to login with credentials
+    """
+    if request.method == "POST":
+        form = DeleteNodeForm(request.POST)
+        if form.is_valid():
+                name = form.cleaned_data["name"]
+                
+                r = requests.delete(settings.HAAS_URL + '/node/' + name)
+                if(r.status_code == 200):
+                    return redirect('haasplugin.views.nodes')
+                else:
+                    return render(request, 'error.html', {'status': r.status_code })
 
+# networks related functions
 
 def network_create(request):
     """
@@ -324,8 +383,8 @@ def network_create(request):
         if form.is_valid():
                 network = form.cleaned_data["network"]
                 creator = "admin"
-                access = "proj"
-                net_id = "123"
+                access = ""
+                net_id = ""
                 payload = {'creator' : creator, 'access' : access, 'net_id' : net_id}
                 r = requests.put(settings.HAAS_URL + '/network/' + network, data = json.dumps(payload))
                 if(r.status_code == 200):
@@ -333,8 +392,6 @@ def network_create(request):
                 else:
                     return render(request, 'error.html', {'status': r.status_code})
 
-    #createNetwork = CreateNetworkForm()
-    #createNetwork.action = "/network_create"
     return render(request, 'createNetwork.html')
 
 def networks(request):
@@ -346,48 +403,13 @@ def networks(request):
     
     createNetwork = CreateNetworkForm()
     createNetwork.action = "/network_create"
-    project = {'networks':networks, 'createNetwork': createNetwork }
+    createModal = {'header':'Create New Network', 'form':createNetwork}
+    context = {'networks':networks, 'createModal': createModal }
     
-    return render(request, 'networks.html', {'project': project})
-
-def hnic_add(request, name):
+    return render(request, 'networks.html', {'context': context})
 
 
 
-    """
-
-    adds a haednic to a headnode
-
-    """
 
 
 
-    if request.method == "POST":
-
-        form = AddHNICForm(request.POST)
-
-        if form.is_valid():
-
-                hnic = form.cleaned_data["hnic"]
-
-                r = requests.put(settings.HAAS_URL + '/headnode/'+ name +'/hnic/' + hnic)
-
-                if(r.status_code == 200):
-
-                    return redirect('haasplugin.views.headnode_details', name)
-
-                else:
-
-                    return render(request, 'error.html', {'status': r})
-
-
-
-    return render(request, 'error.html', {'status': "page not found. Should not reach here"})
-
-def headnode_delete(request, project, name):
-    r = requests.delete(settings.HAAS_URL + '/headnode/' + name)
-    if(r.status_code == 200):
-        return redirect('/../../../projects/' + project)
-    else:
-        return render(request, 'error.html', {'status': r.status_code })
-    return render(request, 'error.html', {'status': ''})
