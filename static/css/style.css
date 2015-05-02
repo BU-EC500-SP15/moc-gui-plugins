@@ -1,8 +1,10 @@
 /* html div over-rides */
 body {
 /* background options */
-background-image: url("images/light_blue_clouds.jpg");
+/* background-image: url("images/light_blue_clouds.jpg"); */
 background-width:100%;
+/*background-image: url("images/test2.jpg"); */
+background-color: grey;
 /*background-color: #99CCFF;*/
 background-size: 100% auto;
 /*background-size: contain contain;*/
@@ -15,7 +17,7 @@ color: #444; /* gray */
 text-align: middle;
 vertical-align: center;
 /* margins for elements */
-margin: 10px;
+margin: 50px;
 }
 
 table {
