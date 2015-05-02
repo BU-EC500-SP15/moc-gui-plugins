@@ -18,7 +18,7 @@ def projects(request):
     projects = r.json()
     createProjectForm = CreateProjectForm()
     createProjectForm.action = "/project_create"
-    createModal = {'header':'Create New Node', 'form':createProjectForm}
+    createModal = {'header':'Create New Project', 'form':createProjectForm}
     context = {'projects': projects, 'createModal':createModal}
     return render(request, 'projects.html', {'context': context})
 
@@ -407,6 +407,14 @@ def networks(request):
     context = {'networks':networks, 'createModal': createModal }
     
     return render(request, 'networks.html', {'context': context})
+
+def headnode_delete(request, project, name):
+    r = requests.delete(settings.HAAS_URL + '/headnode/' + name)
+    if(r.status_code == 200):
+        return redirect('haasplugin.views.project_details', project)
+    else:
+        return render(request, 'error.html', {'status': r.status_code })
+    return render(request, 'error.html', {'status': ''})
 
 
 

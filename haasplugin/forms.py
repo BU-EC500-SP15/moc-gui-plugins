@@ -84,3 +84,11 @@ class CreateNetworkForm(forms.Form):
     back_link = ''
     back_text = ''
     submit = ''
+
+class DeleteHeadnodeForm(forms.Form):
+    headnode = forms.CharField(label='Headnode')
+    project = forms.CharField(label='Project')
+    action = ''
+    back_link = ''
+    back_text = ''
+    submit = ''
