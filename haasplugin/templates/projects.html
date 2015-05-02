@@ -1,32 +1,29 @@
 ﻿{% extends "base.html" %}
-
 {% block content %}
-
+<div class="col-md-8">
 <table class="table table-bordered table-condensed table-hover">
     <thead>
         <tr class = "info">
-            <th>
-                Project Name
-            </th>
-            <th>
-                More info
-            </th>
+            <th>Project Name</th>
+            <th>More info</th>
         </tr>
     </thead>
 <tbody>
     {% for project in context.projects %}
     <tr class = "active">
         <td>{{project}}</td>
-        <td><a href="/projects/{{project}}" class="btn btn-success">
+        <td><a href="/projects/{{project}}" class="btn btn-success btn-sm">
 	<span class = "glyphicon glyphicon-cog" aria-hidden = "true"> </span>	
 	Manage</a></td>
     </tr>
     {% endfor%}
 </tbody>
 </table>
-
+</div>
+<div class="col-md-10">
 {% include 'createModal.html' with createModal=context.createModal %}
 
+</div>
 <script type="text/javascript">
 window.onload=function () {
     $('#project').addClass('active');

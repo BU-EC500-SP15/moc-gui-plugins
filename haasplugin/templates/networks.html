@@ -1,13 +1,14 @@
-
 {% extends "base.html" %}
 {% block content %}
-<div class="col-md-5">
+<div class="col-md-8">
 <table class="table table-bordered table-condensed table-hover">
    <thead>
      <tr class = "info">
-       <th>Network name</th><th>Project</th>
+       <th>Network Name</th>
+       <th>Project</th>       
      </tr>
    </thead>
+   <tbody>
    {% for network in context.networks %}
    <tr class = "active">
       <td>
@@ -17,21 +18,16 @@
 		
 	    {% endblock %}
       </td>
-
-
-	<td>{{network.access}}</td>
-     <!-- <td>
-      {% for nics in network.nics %}
-	{{nics}}
-      {% endfor %}
-	</td>-->
+      <td>{{network.access}}</td>     
    </tr>
-  {% endfor%} 
+  {% endfor%}
+</tbody> 
 </table>
 </div>
 <div class="col-md-10">
 {% include 'createModal.html' with createModal=context.createModal %}
 </div>
+
 <script type="text/javascript">
 window.onload=function () {
     $('#network').addClass('active');

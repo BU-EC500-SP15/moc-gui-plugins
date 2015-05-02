@@ -8,11 +8,11 @@
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-            <h4 class="modal-title" id="myModalLabel">Node Details</h4>
+            <h3 class="modal-title" id="myModalLabel">{{element.name}}</h3>
             </div>
 
-            <div class="modal-body" align="middle">
-		<table class="table table-bordered table-condense table-hover">
+            <div class="modal-body">
+<!--		<table class="table table-bordered table-condense table-hover">
    <thead>
 	<tr class = "info">	     
 	  <th>
@@ -31,15 +31,37 @@
    <tr  class = "active"> 
 	<td>{{element.name}}</td>    
 	<td>{{element.free}}</td>
-
+ 	<td>
+  		<table>
 		{% for nic in element.nics %}
+			<tr class = "active">
     			<td>{{nic.label}}</td>
 			<td>{{nic.macaddr}}</td>
-		{% endfor %}	
-	
+                        </tr>
+		{% endfor %}
+		</table>	
+	</td>
 </tr>
 
-</table> 
+</table> -->	
+        	<h4><strong>Available: </strong>
+		{% if element.free %} <span class="label label-success">{{element.free}}</span>
+		{% else %}
+		<span class="label label-warning">{{element.free}}</span>
+		{% endif %}
+		</h4>
+		<h4><strong>NICs:</strong></h4>
+		<table class="table table-bordered table-condense table-hover">
+		<thead>
+		<tr class = "info">	     
+	  	<th>Name</th><th>MAC Address</th>
+		{% for nic in element.nics %}
+			<tr class = "active">
+    			<td>{{nic.label}}</td>
+			<td>{{nic.macaddr}}</td>
+                        </tr>
+		{% endfor %}
+		</table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                
