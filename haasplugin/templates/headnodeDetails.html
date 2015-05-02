@@ -4,6 +4,11 @@
 <h2>{{headnode.name}}<small>
 <!--<a href="/nodes/{{node.name}}/power_cycle" class="btn btn-primary btn-sm">Power cycle</a>-->
 </small></h2>
+{% if headnode.dirty %}
+    <a href ="/projects/{{headnode.project}}/headnodes/{{headnode.name}}/start" class="btn btn-primary">Start Headnode</a>
+{%else%}
+    <a href ="/projects/{{headnode.project}}/headnodes/{{headnode.name}}/stop" class="btn btn-danger">Stop Headnode</a>
+{% endif %}    
 <div class="row">
     <div class="col-md-6">
        <h3>HNICS</h3>

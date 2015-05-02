@@ -416,7 +416,21 @@ def headnode_delete(request, project, name):
         return render(request, 'error.html', {'status': r.status_code })
     return render(request, 'error.html', {'status': ''})
 
+def headnode_start(request, project, name):
+    r = requests.post(settings.HAAS_URL + '/headnode/' + name + '/start')
+    if(r.status_code == 200):
+        return redirect('haasplugin.views.headnode_details', name)
+    else:
+        return render(request, 'error.html', {'status': r.status_code })
+    return render(request, 'error.html', {'status': ''})
 
+def headnode_stop(request, project, name):
+    r = requests.post(settings.HAAS_URL + '/headnode/' + name + '/stop')
+    if(r.status_code == 200):
+        return redirect('haasplugin.views.headnode_details', name)
+    else:
+        return render(request, 'error.html', {'status': r.status_code })
+    return render(request, 'error.html', {'status': ''})
 
 
 

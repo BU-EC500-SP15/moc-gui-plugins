@@ -921,11 +921,13 @@ def show_headnode(nodename):
         * "vncport", the vnc port that the headnode VM is listening on; this
             value can be None if the VM is powered off or has not been
             created yet.
+        * "dirty", True iff there are unapplied changes to the Headnode
 
     Example:  '{"name": "headnode1",
                 "project": "project1",
                 "hnics": ["hnic1", "hnic2"],
-                "vncport": 5900
+                "vncport": 5900,
+                "dirty": true
                }'
     """
     db = model.Session()
@@ -935,6 +937,7 @@ def show_headnode(nodename):
         'project': headnode.project.label,
         'hnics': [n.label for n in headnode.hnics],
         'vncport': headnode.get_vncport(),
+        'dirty': headnode.dirty
     })
 
 
