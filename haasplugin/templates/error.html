@@ -1,2 +1,12 @@
-﻿
-<h1>ERROR!<small>Status code: {{ status }}</small></h1>
+{% extends "base.html"%}
+
+{% block content%}﻿
+<div class="row">
+<div class="col-md-12 text-center">
+
+<h1>Sorry, something went wrong!</h1>
+<h3>Status code:</h3> <span class="big-font text-primary">{{ status }}</span>
+</div>
+
+</div>
+{% endblock%}
