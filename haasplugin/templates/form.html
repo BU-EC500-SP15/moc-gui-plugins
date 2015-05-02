@@ -1,4 +1,4 @@
-﻿<form method="post" action="{{ form.action }}">
+﻿<form id="plugin-form" method="post" action="{{ form.action }}">
     {% csrf_token %}
 
     {% for field in form %}
@@ -21,6 +21,7 @@
 </form>
 
 <script language="JavaScript">
+$("#plugin-form").validate();
 function checkProj() {
 	var delProj = document.getElementById('deleteModal');
 	if (delProj != null) 
