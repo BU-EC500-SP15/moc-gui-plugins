@@ -2,8 +2,8 @@
 
 {% block content %}
 <h1>{{nname}}</h1>
+<div class="col-md-8">
 <table class="table table-bordered table-condensed table-hover">
-    
         <tr class ="info">	    	     
             <th class ="info">
                 Node Name
@@ -27,7 +27,10 @@
     </tr>
     {% endfor%}
 </table> 
- <a href="../{{context.project.name}}" class="btn btn-default">Cancel</a>
-
+</div>
+<div class="col-md-10">
+ <a href="../{{context.project.name}}" class="btn btn-default btn-sm">
+ Cancel</a>
+</div>
 
 {% endblock %}

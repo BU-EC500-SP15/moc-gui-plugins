@@ -1,18 +1,19 @@
 ﻿{% extends "base.html" %}
 {% block content %}
 
-<h2>{{headnode.name}}<small>
+<h1>{{headnode.name}}<small>
 <!--<a href="/nodes/{{node.name}}/power_cycle" class="btn btn-primary btn-sm">Power cycle</a>-->
-</small></h2>
+</small></h1>
 {% if headnode.dirty %}
     <a href ="/projects/{{headnode.project}}/headnodes/{{headnode.name}}/start" class="btn btn-primary">Start Headnode</a>
 {%else%}
     <a href ="/projects/{{headnode.project}}/headnodes/{{headnode.name}}/stop" class="btn btn-danger">Stop Headnode</a>
-{% endif %}    
+{% endif %}  
 <div class="row">
     <div class="col-md-6">
+       <hr /> 
        <h3>HNICS</h3>
-        <hr />       
+              
         <table class="table table-bordered table-condensed table-hover">
             <thead>
                 <tr class ="info">
@@ -28,19 +29,19 @@
 	    <tr class="active">
                 <td>{{hnic}}</td>
 		<td>
-                   <a href="{{headnode.name}}/headnode_delete_hnic/{{hnic}}" class="btn btn-danger">Delete</a>
+                   <a href="{{headnode.name}}/headnode_delete_hnic/{{hnic}}" class="btn btn-danger btn-sm">Delete</a>
 		</td>
 	    </tr>
 
 	    {% endfor %}
 	</table>
+         <a href="../../projects/{{headnode.project}}" class="btn btn-default btn-sm">
+	    <i class="glyphicon glyphicon-arrow-left"></i> Back</a>
         {% include 'createModal.html' with createModal=createModal%}
-{% include 'deleteHeadnode.html'%}
+       
       </div>
       
 </div>
-
-
 
 
 {% endblock %}

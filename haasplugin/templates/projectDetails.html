@@ -2,12 +2,12 @@
 
 {% block content %}
 
-<h2>{{project.name}}</h2>
+<h1>{{project.name}}</h1>
 
 <div class="row">
-    <div class="col-md-5">
-        <h3>Nodes</h3>
-        <hr />       
+    <div class="col-md-8">
+        <hr />
+	<h3>Nodes</h3>     
         <table class="table table-bordered table-condensed table-hover">
             <thead>
                 <tr class ="info">
@@ -20,8 +20,7 @@
                 </tr>
             </thead>
             {% for node in project.project_nodes %}
-            <tr class = "active">
-                
+            <tr class = "active">                
 		<td>
 		   <form action="/projects/{{project.name}}/detach_node" method="POST">
 				{%csrf_token%}
@@ -33,7 +32,7 @@
 					{% endif %}
 				      {% endfor%}
 				{% endblock %}
-				<td><input type="submit" value="Detach" class="btn btn-danger"/></td>
+				<td><input type="submit" value="Detach" class="btn btn-danger btn-sm"/></td>
                      </form>
  		</td>
             </tr>
@@ -41,13 +40,14 @@
             
         </table>
 	<div>
-           <a href="../projects/{{project.name}}/attach_node" class="btn btn-primary">Attach New</a> <!--<input type="submit" value="Detach Selected" class="btn btn-default" /> -->
+           <a href="../projects/{{project.name}}/attach_node" class="btn btn-primary btn-sm">
+             <i class = "glyphicon glyphicon-plus" aria-hidden = "true"> </i>  Attach</a> 
 	</div>    
 </div>
 
-    <div class="col-md-5">
-        <h3>Headnodes</h3>
+    <div class="col-md-8">
         <hr />
+        <h3>Headnodes</h3>
        
 			  {% if project.headnodes %}
 			   <table class="table table-bordered table-condensed table-hover">
@@ -80,10 +80,10 @@
 {% include 'createModal.html' with createModal=createHeadnodeModal %}
                    
     </div>
-</div>
-    <div class="col-md-5">
-        <h3>Networks</h3>
+
+    <div class="col-md-8">
         <hr />
+        <h3>Networks</h3>
         <table class="table table-bordered table-condensed table-hover">
             <thead>
                 <tr class = "info">
@@ -99,15 +99,16 @@
             {% endfor%}
             
         </table>
+     </div>
     </div>
 </div>
 
 <p>
-   <div class="col-md-12">
+   <div class="col-md-8">
 <hr />
- 	<a href="/projects" class="btn btn-primary">
-	<span class = "glyphicon glyphicon-arrow-left" aria-hidden = "true"> </span>
-	Back to list</a>
+ 	<a href="/projects" class="btn btn-default btn-sm">
+	<i class = "glyphicon glyphicon-arrow-left" aria-hidden = "true"> </i>
+	Back</a>
 	{% block delete %}
         	{% include "deleteProject.html" %}
     	{% endblock %}

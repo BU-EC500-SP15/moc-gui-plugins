@@ -1,17 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="col-md-5">
+<div class="col-md-8">
 <table class="table table-bordered table-condensed table-hover">
     <thead>
         <tr class = "info">	       
-            <th>
-                Node Name
-            </th>
-            <th>
-               Actions
-            </th>                    
+            <th>Node Name</th>
+            <th>Actions</th>                    
         </tr>
     </thead>
+    <tbody>
     {% for node in context.all_nodes %}
     <tr class = "active">      
 	<td>{% block node%}
@@ -22,16 +19,18 @@
 	      {% endfor%}
 	    {% endblock %}
         </td>
-        <td> <a href="/nodes/{{node}}" class="btn btn-success">
+        <td> <a href="/nodes/{{node}}" class="btn btn-success btn-sm">
 	<span class = "glyphicon glyphicon-cog" aria-hidden = "true"> </span>	
 	Manage</a></td>
     </tr>
     {% endfor%}
+    </tbody>
 </table>
 </div>
 
+<div class="col-md-10">
 {% include 'createModal.html' with createModal=context.createModal %}
-
+</div>
 <script type="text/javascript">
 window.onload=function () {
     $('#node').addClass('active');

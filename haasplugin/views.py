@@ -125,10 +125,9 @@ def headnode_create(request):
             if(r.status_code == 200):
                 return redirect('haasplugin.views.project_details', project)
             else:
-                return render(request, 'error.html', {'status': r})
-    headnode = HeadnodeForm()
-    given = {'form':headnode, 'project':project}
-    return render(request, 'createHeadnode.html', {'headnode':headnode})
+                return render(request, 'error.html', {'status': r.status_code})
+    
+    return render(request, 'error.html', {'status': 'Ahh..'})
 
 def headnode_details(request, name):
 
@@ -179,7 +178,7 @@ def hnic_add(request, name):
                 else:
 
                     return render(request, 'error.html', {'status': r})
-    return render(request, 'error.html', {'status': "page not found. Should not reach here"})
+    return render(request, 'error.html', {'status': 'Ahh..'})
 
 # node related functions
 #################################
@@ -223,7 +222,7 @@ def detach_node(request, name):
             else:
                 return render(request, 'error.html', {'status': r.status_code})
         else:
-            return render(request, 'error.html', {'status': 'form is not valid' })
+            return render(request, 'error.html', {'status': "form's not valid" })
     return redirect('haasplugin.views.project_details', name)
 
 
@@ -268,7 +267,7 @@ def node_register_nic(request, name):
             else:
                 return render(request, 'error.html', {'status': r.status_code })
         else:
-           return render(request, 'error.html', {'status': 'form is not valid' })
+           return render(request, 'error.html', {'status': "form's not valid" })
 
 def node_delete_nic(request, name, nic):
     """
@@ -318,9 +317,7 @@ def node_create(request):
                 else:
                     return render(request, 'error.html', {'status': "node_create"})
 
-    createNode = CreateNodeForm()
-    createNode.action = "/node_create"
-    return render(request, 'createNode.html', {'createNode': createNode})
+    return render(request, 'error.html', {'status': 'Ahh..'})
     
 def node_delete(request):
     """
@@ -357,7 +354,7 @@ def network_create(request):
                 else:
                     return render(request, 'error.html', {'status': r.status_code})
 
-    return render(request, 'createNetwork.html')
+    return render(request, 'error.html', {'status': 'Ahh..'})
 
 def networks(request):
     """
@@ -382,7 +379,7 @@ def headnode_delete(request, project, name):
         return redirect('haasplugin.views.project_details', project)
     else:
         return render(request, 'error.html', {'status': r.status_code })
-    return render(request, 'error.html', {'status': ''})
+    return render(request, 'error.html', {'status': 'Ahh..'})
 
 def headnode_start(request, project, name):
     r = requests.post(settings.HAAS_URL + '/headnode/' + name + '/start')
@@ -390,7 +387,7 @@ def headnode_start(request, project, name):
         return redirect('haasplugin.views.headnode_details', name)
     else:
         return render(request, 'error.html', {'status': r.status_code })
-    return render(request, 'error.html', {'status': ''})
+    return render(request, 'error.html', {'status': 'Ahh..'})
 
 def headnode_stop(request, project, name):
     r = requests.post(settings.HAAS_URL + '/headnode/' + name + '/stop')
@@ -398,7 +395,7 @@ def headnode_stop(request, project, name):
         return redirect('haasplugin.views.headnode_details', name)
     else:
         return render(request, 'error.html', {'status': r.status_code })
-    return render(request, 'error.html', {'status': ''})
+    return render(request, 'error.html', {'status': 'Ahh..'})
 
 
 

@@ -565,16 +565,22 @@ def list_networks():
           networks2.append({'label': n.label,
                   'access': 'None',
                   'creator': n.creator,
-                  'nics': n.nics,
-                  'hnics': n.hnics,
+                  'nics': [{'label': nd.label,
+                  'macaddr': nd.mac_addr,
+                  } for nd in n.nics],
+                  'hnics' : [{'label': nd.label,                  
+                  } for nd in n.hnics],
                   'allocated': n.allocated,
                  } )
        else:
          networks2.append({'label': n.label,
                   'access': n.access.label,
                   'creator': n.creator,
-                  'nics': n.nics,
-                  'hnics': n.hnics,
+                  'nics': [{'label': nd.label,
+                  'macaddr': nd.mac_addr,
+                  } for nd in n.nics],
+                  'hnics' : [{'label': nd.label,                  
+                  } for nd in n.hnics],
                   'allocated': n.allocated,
                  } )    
     return json.dumps(networks2)

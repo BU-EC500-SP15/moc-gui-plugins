@@ -5,9 +5,10 @@
 <a href="/nodes/{{node.name}}/power_cycle" class="btn btn-primary btn-sm">Power cycle</a>
 </small></h2>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
+       <hr /> 
        <h3>NICs</h3>
-        <hr />       
+              
         <table class="table table-bordered table-condensed table-hover">
             <thead>
                 <tr class ="info">
@@ -29,15 +30,15 @@
 		<td>{{nic.macaddr}}
 		</td>
 		<td>
-            <a href="{{node.name}}/node_delete_nic/{{nic.label}}" class="btn btn-danger">Delete</a>
+            <a href="{{node.name}}/node_delete_nic/{{nic.label}}" class="btn btn-danger btn-sm">Delete</a>
 		</td>
 	    </tr>
 
 	    {% endfor %}
 	</table>
     {% include 'registerNodeNic.html' with registerNic=registerNic%}
-      </div>
-      
+    {% include 'deleteNode.html' %}
+      </div>      
 </div>
-	{% include 'deleteNode.html' %}
+	
 {% endblock %}
