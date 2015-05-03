@@ -86,8 +86,8 @@ class CreateNetworkForm(forms.Form):
     submit = ''
 
 class DeleteHeadnodeForm(forms.Form):
-    headnode = forms.CharField(label='Headnode', widget=forms.TextInput(attrs={'required':'required'}))
-    project = forms.CharField(label='Project', widget=forms.TextInput(attrs={'required':'required'}))
+    name = forms.CharField(label='Headnode', widget=forms.TextInput(attrs={'required':'required'}))
+    project = forms.CharField(widget=forms.HiddenInput(attrs={'required':'required'}))
     action = ''
     back_link = ''
     back_text = ''
