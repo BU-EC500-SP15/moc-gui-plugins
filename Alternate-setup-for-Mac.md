@@ -118,7 +118,7 @@ These files are not actually updated while the HaaS server is running. Stop them
     
 <b> 3. Run the UI </b>
 
-Note: These steps may not be necessary
+Note: These steps may not be necessary.
 
     a. open browser and point it to localhost:8000
 
