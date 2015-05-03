@@ -58,7 +58,7 @@ class HeadnodeForm(forms.Form):
     name = forms.CharField(label='Headnode Name',  widget=forms.TextInput(attrs={'required':'required'}))
     base_img = forms.CharField(label='Base Image',  widget=forms.TextInput(attrs={'required':'required'}))
     project = forms.CharField(label='Project', widget=forms.TextInput(attrs={'required':'required'}))
-    action = '/headnode/create/'
+    action = '/headnode_create/'
     back_link = '/projects/details/'
     back_text = ''
     submit = ''
@@ -87,7 +87,7 @@ class CreateNetworkForm(forms.Form):
 
 class DeleteHeadnodeForm(forms.Form):
     name = forms.CharField(label='Headnode', widget=forms.TextInput(attrs={'required':'required'}))
-    project = forms.CharField(widget=forms.HiddenInput(attrs={'required':'required'}))
+    project = forms.CharField(label='',widget=forms.HiddenInput(attrs={'required':'required'}))
     action = ''
     back_link = ''
     back_text = ''
