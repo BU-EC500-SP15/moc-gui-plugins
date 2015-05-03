@@ -1,6 +1,8 @@
 # moc-gui-plugins
 Plugin architecture for The Mass Open Cloud GUI
 
+Note: There is an alternate setup in the file "Alternate-setup-for-Mac.md
+". But this generic setup should work for everything.
 
 
 ##Install and Run a HaaS Server
