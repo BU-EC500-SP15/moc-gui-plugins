@@ -30,6 +30,8 @@ urlpatterns = patterns('',
     url(r'^projects/(?P<project>.+)/headnodes/(?P<name>.+)/headnode_delete', headnode_delete),
     url(r'^projects/(?P<project>.+)/headnodes/(?P<name>.+)/start', headnode_start),
     url(r'^projects/(?P<project>.+)/headnodes/(?P<name>.+)/stop', headnode_stop),
+    url(r'^headnode_delete', headnode_delete),
+    url(r'^headnode_create', headnode_create),
     url(r'^headnodes/(?P<name>.+)/headnode_delete_hnic/(?P<hnic>.+)', headnode_delete_hnic),
     url(r'^headnodes/(?P<name>.+)/hnic_add', hnic_add), 
     url(r'^headnodes/(?P<name>.+)', headnode_details), 
@@ -46,7 +48,7 @@ urlpatterns = patterns('',
     url(r'^projects/', projects),
     url(r'^nodes/', nodes),
     url(r'^networks/', networks),
-    url(r'^headnode/create', headnode_create),
+    
     url(r'^$', projects),
   
 )

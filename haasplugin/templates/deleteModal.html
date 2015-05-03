@@ -1,4 +1,4 @@
-<a href="/project/delete/{{project.name}}" data-toggle="modal"
+<a href="#" data-toggle="modal"
    data-target="#deleteModal" class="btn btn-danger btn-sm">Delete</a>
 
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -6,19 +6,15 @@
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-            <h4 class="modal-title" id="myModalLabel">Delete Project {{project.name}}</h4>
+            <h4 class="modal-title" id="myModalLabel">Delete: "{{deleteForm.header}}"</h4>
             </div>
             <div class="modal-body" id="deleteForm">
-              
-		{% block content %}
 
-    			{% include "form.html" with form=deleteForm %}
-
-		{% endblock %}
-
-            </div>
+    			{% include "form.html" with form=deleteModal.form %}
+           </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-sm" onclick="deleteForm()">Delete</button>  
+
+                <button type="button" class="btn btn-danger btn-sm" onclick="submit()">Delete</button>  
                 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>                
         </div>
     </div>
@@ -26,7 +22,19 @@
 </div>
 
 <script>
-function deleteNode(){
+$.validator.addMethod("equals", function(value, element, string) {
+    return value === string;
+}, $.validator.format("Please type valid name: {0}."));
+
+$("#deleteForm > form").validate({
+    rules: {            
+        name: {
+            required: true,
+            equals: "{{deleteForm.header}}"
+        }
+    }
+});
+function submit(){
     $("#deleteForm > form").submit();
 }
 </script>

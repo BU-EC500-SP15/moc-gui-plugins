@@ -113,20 +113,11 @@
 	<i class = "glyphicon glyphicon-arrow-left" aria-hidden = "true"> </i>
 	Back</a>
 	{% block delete %}
-        	{% include "deleteProject.html" %}
+        	{% include "deleteModal.html" with deleteModal=deleteForm %}
     	{% endblock %}
 
    </div>   
 </p>
 
-
-<script language="JavaScript">
-function toggle(source) {
-  checkboxes = document.getElementsByName('nodeCheck');
-  for(var i=0, n=checkboxes.length;i<n;i++) {
-    checkboxes[i].checked = source.checked;
-  }
-}
-</script>
     
 {% endblock %}

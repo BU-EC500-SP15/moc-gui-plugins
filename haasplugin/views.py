@@ -53,8 +53,8 @@ def project_details(request, name):
 
     deleteForm = DeleteProjectForm()
     deleteForm.action = '/project_delete'
-
-    return render(request, 'projectDetails.html', {'project': project, 'nodes': nodes, 'hnodes': headnodes, 'deleteForm': deleteForm, 'createHeadnodeModal':createModal})
+    deleteModal = {'header':name, 'form': deleteForm}
+    return render(request, 'projectDetails.html', {'project': project, 'nodes': nodes, 'hnodes': headnodes, 'deleteForm': deleteModal, 'createHeadnodeModal':createModal})
 
 
 def project_create(request):
@@ -69,14 +69,10 @@ def project_create(request):
                 if(r.status_code == 200):
                     return redirect('haasplugin.views.projects')
                 else:
-                    return render(request, 'error.html', {'status': r})
-    project = CreateProjectForm()
-    project.submit = "Create"
-    project.action = "/projects/create"
-    project.back_text = "Cancel"
-    project.back_link = "/projects"
+                    return render(request, 'error.html', {'status': r.status_code})
     
-    return render(request, 'createProject.html', {'project': project})
+    
+    return render(request, 'error.html', {'status': 'Ahh..'})
 
 def project_delete(request):
     """
@@ -94,7 +90,7 @@ def project_delete(request):
                     return render(request, 'error.html', {'status': r.status_code })
 
    
-    return render(request, 'error.html', {'status': ''})
+    return render(request, 'error.html', {'status': 'Ahh..'})
 
 # headnode related functions
 #############################
@@ -140,7 +136,11 @@ def headnode_details(request, name):
     addHNICForm = AddHNICForm()
     addHNICForm.action = '/headnodes/'+name+'/hnic_add'
     createModal = {'header': 'Add New HNIC', 'form': addHNICForm}
-    return render(request, 'headnodeDetails.html', {'headnode': headnode, 'createModal': createModal})
+    deleteHeadnode = DeleteHeadnodeForm(initial={'project': headnode['project']})
+    deleteHeadnode.action = '/headnode_delete'
+    
+    deleteModal = {'header':name, 'form':deleteHeadnode}
+    return render(request, 'headnodeDetails.html', {'headnode': headnode, 'createModal': createModal, 'deleteForm':deleteModal})
 
 
 
@@ -180,6 +180,39 @@ def hnic_add(request, name):
                     return render(request, 'error.html', {'status': r})
     return render(request, 'error.html', {'status': 'Ahh..'})
 
+def headnode_delete(request):
+    """
+    Deletes the headnode
+    """
+    if request.method == 'POST':
+        form = DeleteHeadnodeForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            project = form.cleaned_data["project"]
+            r = requests.delete(settings.HAAS_URL + '/headnode/' + name)
+            if(r.status_code == 200):
+                return redirect('haasplugin.views.project_details', project)
+            else:
+                return render(request, 'error.html', {'status': r.status_code })
+        return render(request, 'error.html', {'status': 'Invalid form'})
+    return render(request, 'error.html', {'status': 'Ahh..'})
+
+def headnode_start(request, project, name):
+    r = requests.post(settings.HAAS_URL + '/headnode/' + name + '/start')
+    if(r.status_code == 200):
+        return redirect('haasplugin.views.headnode_details', name)
+    else:
+        return render(request, 'error.html', {'status': r.status_code })
+    return render(request, 'error.html', {'status': 'Ahh..'})
+
+def headnode_stop(request, project, name):
+    r = requests.post(settings.HAAS_URL + '/headnode/' + name + '/stop')
+    if(r.status_code == 200):
+        return redirect('haasplugin.views.headnode_details', name)
+    else:
+        return render(request, 'error.html', {'status': r.status_code })
+    return render(request, 'error.html', {'status': 'Ahh..'})
+
 # node related functions
 #################################
 
@@ -214,7 +247,6 @@ def detach_node(request, name):
         form = DetachNodeForm(request.POST)
         if form.is_valid():
             node_name = form.cleaned_data['node_name']
-            #return render(request, 'error.html', {'status': node_name })
             payload = {'node':node_name}
             r = requests.post(settings.HAAS_URL + '/project/' + name + '/detach_node', data = json.dumps(payload))
             if r.status_code == 200:
@@ -234,9 +266,11 @@ def node_details(request, name):
     node = node.json()
     deleteNode = DeleteNodeForm()
     deleteNode.action = '/node_delete'
+    deleteForm = {'header': name, 'form':deleteNode}
     registerNic = RegisterNodeNicForm()
     registerNic.action = '/nodes/' +name+ '/node_register_nic'
-    return render(request, 'nodeDetails.html', {'node': node, 'deleteNode':deleteNode, 'registerNic':registerNic})
+
+    return render(request, 'nodeDetails.html', {'node': node, 'deleteForm':deleteForm, 'registerNic':registerNic})
 
 def node_powercycle(request, name):
     """
@@ -389,37 +423,9 @@ def network_delete(request):
                     return render(request, 'error.html', {'status': r.status_code })
 
    
-    return render(request, 'error.html', {'status': ''})
-
-# headnode related functions
-##############################
-
-def headnode_delete(request, project, name):
-    """
-    Deletes the headnode
-    """
-    r = requests.delete(settings.HAAS_URL + '/headnode/' + name)
-    if(r.status_code == 200):
-        return redirect('haasplugin.views.project_details', project)
-    else:
-        return render(request, 'error.html', {'status': r.status_code })
     return render(request, 'error.html', {'status': 'Ahh..'})
 
-def headnode_start(request, project, name):
-    r = requests.post(settings.HAAS_URL + '/headnode/' + name + '/start')
-    if(r.status_code == 200):
-        return redirect('haasplugin.views.headnode_details', name)
-    else:
-        return render(request, 'error.html', {'status': r.status_code })
-    return render(request, 'error.html', {'status': 'Ahh..'})
 
-def headnode_stop(request, project, name):
-    r = requests.post(settings.HAAS_URL + '/headnode/' + name + '/stop')
-    if(r.status_code == 200):
-        return redirect('haasplugin.views.headnode_details', name)
-    else:
-        return render(request, 'error.html', {'status': r.status_code })
-    return render(request, 'error.html', {'status': 'Ahh..'})
 
 
 
