@@ -2,7 +2,7 @@
 Plugin architecture for The Mass Open Cloud GUI
 
 Note: There is an alternate setup in the file "Alternate-setup-for-Mac.md
-". But this generic setup should work for everything.
+". But this generic setup should work for Linux based systems.
 
 
 ##Install and Run a HaaS Server

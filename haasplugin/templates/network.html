@@ -14,8 +14,11 @@
             <div class="modal-body">
 	       <h4><strong>Project: </strong>{{network.access}}</h4>
 	       <h4><strong>Creator: </strong>{{network.creator}}</h4>
-	       <h4><strong>NICs:</strong></h4>
-                 {% if network.nics %}
+	       <h4><strong>NICs:</strong>
+                 {% if not network.nics %}
+		    None </h4>
+		 {% else %}
+			</h4>
 			<table class="table table-bordered table-condense table-hover">
 				<tr class = "info">	     
 	  			   <th>Name</th><th>MAC Address</th>
@@ -28,8 +31,11 @@
 				     {% endfor %}
 			</table>
                 {% endif %}
-		<h4><strong>HNICs:</strong></h4>
-		{% if network.hnics %}
+		<h4><strong>HNICs:</strong>
+		{% if not network.hnics %}
+			None</h4>
+		{% else %}
+		 </h4>
 		 <table class="table table-bordered table-condense table-hover">
 			<tr class = "info">	     
 	  		  <th>Name</th>
