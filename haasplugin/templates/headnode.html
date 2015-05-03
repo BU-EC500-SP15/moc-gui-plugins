@@ -2,32 +2,27 @@
    data-toggle="modal"
    data-target="#basicModal{{headnode}}" title="Details">{{headnode}}</a>
 
-
-
 <div class="modal fade" id="basicModal{{headnode}}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-            <h4 class="modal-title" id="myModalLabel">Headnode Details</h4>
+            <h4 class="modal-title" id="myModalLabel">{{headnode}}</h4>
             </div>
 
-            <div class="modal-body" align="middle">
-		<table class="table table-bordered table-condense table-hover">
+            <div class="modal-body">
+<h4><strong>HNICS:</strong></h4>
+		<table class="table table-bordered table-condensed table-hover">
    <thead>
-	<tr class = "info">	     
-	  <th>
-		Headnode Name
-	  </th>   
+	<tr class = "info">	       
 	  <th >
-		HNICS
+		Name
 	  </th>              
 	</tr>
    </thead>
 	
    	  
    <tr  class = "active"> 
-	<td>{{headnode}}</td> 
 	{% for element in hnodes %}   
 	   {% if element.hnics %}
               <td>
@@ -52,9 +47,6 @@
 </div>
 
 
-﻿<td>    
-   <a href="/headnodes/{{headnode}}" class="btn btn-success btn-sm"> <span class = "glyphicon glyphicon-cog" aria-hidden = "true"> Manage</a> 
-</td>
 
 
 
