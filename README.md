@@ -32,5 +32,5 @@ Plugin architecture for The Mass Open Cloud GUI
     
     <pre> $haas init_db </pre>
 
-7. Run the HaaS server by following the instructions [here] ("https://github.com/CCI-MOC/haas/blob/master/HACKING.rst")
+7. Run the HaaS server by following the instructions [here]("https://github.com/CCI-MOC/haas/blob/master/HACKING.rst")
 
