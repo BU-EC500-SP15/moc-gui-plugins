@@ -14,7 +14,7 @@ Plugin architecture for The Mass Open Cloud GUI
 
 3. Create a system user called "haas_user":
 
-    </pre> $sudo useradd haas_user -d /var/lib/haas -m -r <pre>
+    </pre> $sudo useradd haas_user -d /var/lib/haas -m -r </pre>
 
 4. Create a HaaS configuration file:
 
@@ -32,5 +32,7 @@ Plugin architecture for The Mass Open Cloud GUI
     
     <pre> $haas init_db </pre>
 
-7. Run the HaaS server by following the instructions [here]("https://github.com/CCI-MOC/haas/blob/master/HACKING.rst")
+7. Run the HaaS server by following the instructions [here]:
+
+    https://github.com/CCI-MOC/haas/blob/master/HACKING.rst
 
