@@ -14,6 +14,8 @@ the Massachusetts Open Cloud.
 
 [NEXT SLIDE]
 
+We were tasked with linking the HaaS interface to the Massachusetts Open Cloud, or MOC, user interface, that largely uses OpenStack services for its
+ functionalities. In comparison, the selling point of the HaaS interface is in its simplicity. 
 We were able to integrate several critical HaaS APIs into the HaaS user interface, but this is still a work in progress, as is HaaS.
 The users of HaaS will be the students and researchers from Boston University, Harvard University, Massachusetts Institute of Technology, 
 Northeastern University, and University of Massachusetts Amherst. Once HaaS is fully functional, we expect HaaS to be able to scale to tens of thousands

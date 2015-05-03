@@ -35,12 +35,13 @@
 
 	    {% endfor %}
 	</table>
+       <div class="btn-group" role="group" aria-label="...">
          <a href="../../projects/{{headnode.project}}" class="btn btn-default btn-sm">
 	    <i class="glyphicon glyphicon-arrow-left"></i> Back</a>
         {% include 'createModal.html' with createModal=createModal%}
         {% if headnode.hnics %}
 	   <a href="#" data-toggle="modal"
-   		data-target="#basicModalWarn{{network.label}}" class="btn btn-danger btn-sm">Delete</a>
+   		data-target="#basicModalWarn{{network.label}}" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i> Delete</a>
 	   <div class="modal fade" id="basicModalWarn{{network.label}}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     	      <div class="modal-dialog">
         	<div class="modal-content">
@@ -59,11 +60,11 @@
 	       </div>
              </div>
            </div>
-         </div>
+         
 	{% else %}
            {% include "deleteModal.html" with deleteModal=deleteForm %}
         {% endif %}
-        
+       </div> 
       </div>
       
 </div>
