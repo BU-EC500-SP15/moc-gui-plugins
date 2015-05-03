@@ -39,7 +39,7 @@ Plugin architecture for The Mass Open Cloud GUI
 
     https://github.com/CCI-MOC/haas/blob/master/HACKING.rst
 
-###Install and Run HaaS UI
+##Install and Run HaaS UI
 
 <b>1. Clone Haas UI into the folder of your choice: </b>
 <pre>
