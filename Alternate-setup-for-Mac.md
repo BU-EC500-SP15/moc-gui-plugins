@@ -21,16 +21,16 @@ Plugin Architecture for the Mass Open Cloud GUI, Alternate Setup
 
     This setup requires having the virtual environment directory inside of the haas directory.
 
+<pre>
     $cd haas
 
-<pre>
     $virtualenv venv
 </pre>
-You may replace 'venv' with a name of your choice for [env-name], but remember to use the same virtual environment for the entire setup.
+    You may replace 'venv' with a name of your choice for [env-name], but remember to use the same virtual environment for the entire setup.
 
 <b>3. Enter this virtual environment using:</b>
 <pre>
-        $source venv/bin/activate
+    $source venv/bin/activate
 </pre>
 The path is different if you named the virtualenv differently.
 
@@ -82,16 +82,17 @@ The HaaS server should be up and running, and ready to interface with REST calls
 
 <b>5. Start the Haas Plugin server locally</b>
 <pre>
-$python manage.py runserver 9000
+    $python manage.py runserver 9000
 </pre>
 We recommend using python version 2.7. Technically, you can run this on any port except 5000, which is reserved for HaaS server, and 8000, which is reserved for the MOC UI Django project by default.
 
 <b>6. Errors </b>
-At this point, if you get errors it might be because there are additional functional HaaS APIs added for the HaaS UI but they're not currently implemented in HaaS. 
 
-To fix this, go to the moc-gui-plugins directory. Go to "for new haas", and copy the two files: api.py, cli.py. Go to the haas directory. Go into the second haas directory. Copy these files in this directory. This operation updates the HaaS API and CLI.
+    At this point, if you get errors it might be because there are additional functional HaaS APIs added for the HaaS UI but they're not currently implemented in HaaS. 
 
-These files are not actually updated while the HaaS server is running. Stop them, then deactivate the virtual environment (with $deactivate). Restart the virtual environment and get the server and server-networks running again.
+    To fix this, go to the moc-gui-plugins directory. Go to "for new haas", and copy the two files: api.py, cli.py. Go to the haas directory. Go into the second haas directory. Copy these files in this directory. This operation updates the HaaS API and CLI.
+
+    These files are not actually updated while the HaaS server is running. Stop them, then deactivate the virtual environment (with $deactivate). Restart the virtual environment and get the server and server-networks running again.
 
 ## Setup and Run the MOC UI
 
