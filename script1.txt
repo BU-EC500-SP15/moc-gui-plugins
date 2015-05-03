@@ -1,0 +1,31 @@
+We will now give a quick overview of our project. 
+ >>
+A HaaS server is being devloped by researchers here at Boston University. 
+>>
+We in turn are developing the plugin for the MOC UI for this HaaS server. We have used or developed API calls to interract with this HaaS server. 
+>>
+These projects are external to the MOC UI,  
+>>
+and will be intergrated into the MOC UI through the us of an iFrame, which we also developed.
+>>
+<NEXT SLIDE>
+Due to its high interconnectivity, we will now take a second to explain the structure of the HaaS itself. Though this is just a simple abstraction, it is useful backround knowledge that influenced our design descisions.
+>>
+There are three main componetents of the HaaS, the projects, the nodes, and the Networks. 
+>>
+These main objects are connected in different ways. Projects can be directly connected to nodes, as can networks. Other, more narrow objects are involved as well.
+>> 
+An obect called a Network Interface Card connects nodes and networks.
+>>
+Headnodes must be connected to a project and a lesser object called a base image. 
+>>
+Similarly to nodes, headnodes are connected to networks by a lesser object called a Headnode Network Interface Card.
+
+<NEXT SLIDE>
+One thing that we considered very important not jsut to the success of the project, but its quality, was the structure of its URLs. 
+>>
+Firstly, the three main objects described I just described are given their own urls. As everything stems from these three objects, they also form the base of our urls.
+>>
+We wanted to keep our urls consistant and intuitive. In order to see the details of one of the main three objects, one just puts it's respective type followed by its name. 
+>>
+Lesser objects like the ones we just described are viewed through the lens of the larger object it is associated with. We believe this is both true to the actual structure of HaaS as well as easy to understand. 
