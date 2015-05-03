@@ -1,8 +1,8 @@
 <a href="#"
    data-toggle="modal"
-   data-target="#basicModal{{headnode}}" title="Details">{{headnode}}</a>
+   data-target="#basicModal{{headnode|slugify}}" title="Details">{{headnode}}</a>
 
-<div class="modal fade" id="basicModal{{headnode}}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<div class="modal fade" id="basicModal{{headnode|slugify}}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
