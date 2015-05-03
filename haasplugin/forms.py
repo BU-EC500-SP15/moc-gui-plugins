@@ -14,8 +14,8 @@ class DeleteProjectForm(forms.Form):
     """description of class"""
     name = forms.CharField(label='Delete Project')
     action = '/projects/delete'
-    back_text = 'Cancel'
-    submit = 'Delete'
+    back_text = ''
+    submit = ''
 
 class CreateNodeForm(forms.Form):
     """description of class"""
@@ -90,5 +90,11 @@ class DeleteHeadnodeForm(forms.Form):
     project = forms.CharField(label='Project', widget=forms.TextInput(attrs={'required':'required'}))
     action = ''
     back_link = ''
+    back_text = ''
+    submit = ''
+
+class DeleteNetworkForm(forms.Form):
+    name = forms.CharField(label='Delete Network')
+    action = '/networks/delete'
     back_text = ''
     submit = ''
