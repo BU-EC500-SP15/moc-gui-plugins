@@ -37,9 +37,8 @@
 	    {% endfor %}
 	</table>
     {% include 'registerNodeNic.html' with registerNic=registerNic%}
-    {% if node.nics.length == 0 %}
-	{% include "deleteModal.html" with deleteModal=deleteForm %}
-    {% else %}
+    {% if node.nics %}
+	
         <a href="#" data-toggle="modal"
    		data-target="#basicModalWarn" class="btn btn-danger btn-sm">Delete</a>
 	<div class="modal fade" id="basicModalWarn" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -61,6 +60,9 @@
         </div>
        </div>
 </div>
+{% else %}
+   {% include "deleteModal.html" with deleteModal=deleteForm %}
+    
     {% endif %}
     
       </div>      
