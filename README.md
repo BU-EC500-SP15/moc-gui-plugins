@@ -1,48 +1,20 @@
 # moc-gui-plugins
-##Plugin architecture for The Mass Open Cloud GUI
+Plugin architecture for The Mass Open Cloud GUI
 
-###Install and Run HaaS UI
+##Install and Run a HaaS Server
+1. Clone the HaaS repo:
 
-1. Clone Haas UI into the folder of your choice: 
-<pre>
-    $git clone https://github.com/BU-EC500-SP15/moc-gui-plugins
-</pre>
-2. Create a new virtual environment using virtualenv
-<pre>
-    $virtualenv venv
-</pre>
-You may replace 'venv' with a name of your choice, but remember to do so for the entire tutorial.
-3. Enter this virtual environment using 
-<pre>
-        $source venv/bin/activate
-</pre>
-The path is different if you named the virtualenv differently
-4. While the venv is active and in the .git directory for moc-gui-plugins, install necessary libraries
-<pre>
-        $pip install -r requirements.txt
-</pre>
-5. Start the Haas Plugin server locally
-<pre>
-$python manage.py runserver
-</pre>
-We recommend using python version 2.7
-
-
-
-#Install and Run a HaaS Server
-1. Clone HaaS:
-
-    git clone https://github.com/CCI-MOC/haas
+    <pre> $git clone https://github.com/CCI-MOC/haas </pre>
 
 2. Install HaaS:
 
-    cd haas
+    <pre> $cd haas </pre>
     
-    sudo python setup.py install
+    <pre> $sudo python setup.py install </pre>
 
 3. Create a system user called "haas_user":
 
-    sudo useradd haas_user -d /var/lib/haas -m -r
+    <pre> $sudo useradd haas_user -d /var/lib/haas -m -r </pre>
 
 4. Create a HaaS configuration file:
 
@@ -54,9 +26,39 @@ We recommend using python version 2.7
 
 5. Create a symlink to the haas cfg in the HaaS user's home directory:
 
-    sudo ln -s /etc/haas.cfg /var/lib/haas/ 
+    <pre>$sudo ln -s /etc/haas.cfg /var/lib/haas/ </pre>
 
 6. Intialize the HaaS Database:
     
-    haas init_db
+    <pre> $haas init_db </pre>
 
+7. Run the HaaS server by following the instructions [here]:
+
+    https://github.com/CCI-MOC/haas/blob/master/HACKING.rst
+
+
+## Setup and Run the MOC UI
+
+<b>1. Clone the MOC UI repo </b>
+    
+    <pre> git clone https://github.com/BU-EC500-SP15/ui.git </pre>
+
+<b>2. Start a Django Project </b>
+
+    a. create python virtual enviornment using "virtualenv [env-name]"
+    
+    b. source environment using "source [env-name]/bin/activate"
+    
+    c.install requirements using "pip install -r requirements.txt"
+    
+    d. create database with "./syncdb.sh"
+
+    e. create folder to hold session ids with "mkdir session"
+
+    f. run server with "./runserver.sh"
+    
+<b> 3. Run the UI </b>
+
+    a. open browser and point it to localhost:8000
+
+    b. Register as a new user
