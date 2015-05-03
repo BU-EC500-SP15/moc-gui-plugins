@@ -42,32 +42,30 @@ Plugin architecture for The Mass Open Cloud GUI
 ##Install and Run HaaS UI
 
 <b>1. Clone Haas UI into the folder of your choice: </b>
-<pre>
+
     $git clone https://github.com/BU-EC500-SP15/moc-gui-plugins
-</pre>
 
 <b>2. Create a new virtual environment using virtualenv</b>
-<pre>
+
     $virtualenv venv
-</pre>
+
 You may replace 'venv' with a name of your choice, but remember to do so for the entire tutorial.
 
 <b>3. Enter this virtual environment using</b>
-<pre>
+
         $source venv/bin/activate
-</pre>
+
 The path is different if you named the virtualenv differently.
 
 <b>4. While the venv is active and in the .git directory for moc-gui-plugins, install necessary libraries</b>
-<pre>
+
         $pip install -r requirements.txt
-</pre>
 
 <b>5. Start the Haas Plugin server locally</b>
-<pre>
-$python manage.py runserver 9000
-</pre>
-We recommend using python version 2.7. You run this on any port except 5000 or 8000. 
+
+    $python manage.py runserver 9000
+    
+We recommend using python version 2.7. You run this on any port except 5000 (HaaS server port) or 8000 (MOC UI port). 
 
 ## Setup and Run the MOC UI
 
