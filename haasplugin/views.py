@@ -328,7 +328,7 @@ def node_delete(request):
         if form.is_valid():
                 name = form.cleaned_data["name"]
                 
-                r = requests.delete(settings.HAAS_URL + '/node/' + name)f
+                r = requests.delete(settings.HAAS_URL + '/node/' + name)
                 if(r.status_code == 200):
                     return redirect('haasplugin.views.nodes')
                 else:
