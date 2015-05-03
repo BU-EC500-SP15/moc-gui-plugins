@@ -21,12 +21,32 @@
       </td>
       <td>{{network.access}}</td>
       <td>
-	{% if network.access == "None" %}
-	  {% if not network.nics %}
-	    {% if not network.hnics %}
+	{% if network.access == "None" and not network.nics and not network.hnics %}	 
 		{% include "deleteNetwork.html" with deleteForm=context.deleteForm %}
-	    {% endif %}
-          {% endif %}
+	{% else %}
+
+		<a href="#" data-toggle="modal"
+   			data-target="#basicModalWarn{{network.label}}" class="btn btn-danger btn-sm">Delete</a>
+		<div class="modal fade" id="basicModalWarn{{network.label}}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+              <h3 class="modal-title" id="myModalLabel">{{network.label}}</h3>
+            </div>
+
+            <div class="modal-body">
+	       	       This network cannot be deleted. Please make sure that this network is not assigned to a project and that no nodes are allocated to it.
+            </div>
+         
+         <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                
+        </div>
+	</div>
+    </div>
+  </div>
+</div>
+
 	{% endif %}    
 	</td>
    </tr>
