@@ -8,13 +8,13 @@ Plugin architecture for The Mass Open Cloud GUI
 
 2. Install HaaS:
 
-    $cd haas
+    <pre> $cd haas </pre>
     
-    $sudo python setup.py install
+    <pre> $sudo python setup.py install </pre>
 
 3. Create a system user called "haas_user":
 
-    $sudo useradd haas_user -d /var/lib/haas -m -r
+    </pre> $sudo useradd haas_user -d /var/lib/haas -m -r <pre>
 
 4. Create a HaaS configuration file:
 
@@ -26,11 +26,11 @@ Plugin architecture for The Mass Open Cloud GUI
 
 5. Create a symlink to the haas cfg in the HaaS user's home directory:
 
-    $sudo ln -s /etc/haas.cfg /var/lib/haas/ 
+    <pre>$sudo ln -s /etc/haas.cfg /var/lib/haas/ </pre>
 
 6. Intialize the HaaS Database:
     
-    $haas init_db
+    <pre> $haas init_db </pre>
 
-7. 
+7. Run the HaaS server by following the instructions [here] ("https://github.com/CCI-MOC/haas/blob/master/HACKING.rst")
 
