@@ -3,7 +3,6 @@ SQLAlchemy==0.9.7
 Werkzeug==0.9.4
 cov-core==1.15.0
 coverage==3.7.1
--e git+https://github.com/CCI-MOC/haas@4decd9f385884bd898c5e240590b8f74761d5620#egg=haas-master
 importlib==1.0.3
 passlib==1.6.2
 pexpect==3.3
