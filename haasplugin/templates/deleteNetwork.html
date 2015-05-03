@@ -1,7 +1,7 @@
 <a href="#" data-toggle="modal"
-   data-target="#deleteModal" class="btn btn-danger btn-sm">Delete</a>
+   data-target="#deleteModal{{network.label|slugify}}" class="btn btn-danger btn-sm">Delete</a>
 
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<div class="modal fade" id="deleteModal{{network.label|slugify}}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
