@@ -328,7 +328,7 @@ def node_delete(request):
         if form.is_valid():
                 name = form.cleaned_data["name"]
                 
-                r = requests.delete(settings.HAAS_URL + '/node/' + name)
+                r = requests.delete(settings.HAAS_URL + '/node/' + name)f
                 if(r.status_code == 200):
                     return redirect('haasplugin.views.nodes')
                 else:
@@ -366,9 +366,33 @@ def networks(request):
     createNetwork = CreateNetworkForm()
     createNetwork.action = "/network_create"
     createModal = {'header':'Create New Network', 'form':createNetwork}
-    context = {'networks':networks, 'createModal': createModal }
+    deleteForm = DeleteNetworkForm()
+    deleteForm.action = '/network_delete'
+    context = {'networks':networks, 'createModal': createModal, 'deleteForm':deleteForm }
     
     return render(request, 'networks.html', {'context': context})
+
+def network_delete(request):
+
+    """
+    Deletes the network with specified name
+    """
+    if request.method == "POST":
+        form = DeleteNetworkForm(request.POST)
+        if form.is_valid():
+                name = form.cleaned_data["name"]
+                
+                r = requests.delete(settings.HAAS_URL + '/network/' + name)
+                if(r.status_code == 200):
+                    return redirect('haasplugin.views.networks')
+                else:
+                    return render(request, 'error.html', {'status': r.status_code })
+
+   
+    return render(request, 'error.html', {'status': ''})
+
+# headnode related functions
+##############################
 
 def headnode_delete(request, project, name):
     """
@@ -396,7 +420,6 @@ def headnode_stop(request, project, name):
     else:
         return render(request, 'error.html', {'status': r.status_code })
     return render(request, 'error.html', {'status': 'Ahh..'})
-
 
 
 

@@ -5,7 +5,8 @@
    <thead>
      <tr class = "info">
        <th>Network Name</th>
-       <th>Project</th>       
+       <th>Project</th> 
+       <th>Action</th>      
      </tr>
    </thead>
    <tbody>
@@ -18,7 +19,16 @@
 		
 	    {% endblock %}
       </td>
-      <td>{{network.access}}</td>     
+      <td>{{network.access}}</td>
+      <td>
+	{% if network.access == "None" %}
+	  {% if not network.nics %}
+	    {% if not network.hnics %}
+		{% include "deleteNetwork.html" with deleteForm=context.deleteForm %}
+	    {% endif %}
+          {% endif %}
+	{% endif %}    
+	</td>
    </tr>
   {% endfor%}
 </tbody> 
