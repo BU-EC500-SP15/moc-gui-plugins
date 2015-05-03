@@ -60,8 +60,8 @@ Firstly, the three main objects described I just described are given their own u
 We wanted to keep our urls consistant and intuitive. In order to see the details of one of the main three objects, one just puts it's respective type followed by its name. 
 >>
 Lesser objects like the ones we just described are viewed through the lens of the larger object it is associated with. We believe this is both true to the actual structure of HaaS as well as easy to understand. 
-
-
+>>
+<DEMO>
 --------------------------------
 <NEXT SLIDE>
 The users of the MOC HaaS will be the students and researchers from the partner universities. Once HaaS is fully functional, we expect HaaS to be able to scale to tens of thousands of users. We have reached a point where we must pass the baton to future developers of the HaaS interface, and HaaS APIs. 
