@@ -63,3 +63,5 @@ Plugin architecture for The Mass Open Cloud GUI
     a. open browser and point it to localhost:8000
 
     b. Register as a new user
+    
+<b> For more details, refer to the MOC UI page: https://github.com/CCI-MOC/ui.git </b>
