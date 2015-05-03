@@ -2,21 +2,21 @@
 Plugin architecture for The Mass Open Cloud GUI
 
 ##Install and Run a HaaS Server
-1. Clone the HaaS repo:
+<b>1. Clone the HaaS repo:</b>
 
-    <pre> $git clone https://github.com/CCI-MOC/haas </pre>
+    $git clone https://github.com/CCI-MOC/haas
 
-2. Install HaaS:
+<b>2. Install HaaS:</b>
 
-    <pre> $cd haas </pre>
+     $cd haas
     
-    <pre> $sudo python setup.py install </pre>
+     $sudo python setup.py install
 
-3. Create a system user called "haas_user":
+<b>3. Create a system user called "haas_user": </b>
 
-    <pre> $sudo useradd haas_user -d /var/lib/haas -m -r </pre>
+    $sudo useradd haas_user -d /var/lib/haas -m -r
 
-4. Create a HaaS configuration file:
+<b>4. Create a HaaS configuration file:</b>
 
     haas.cfgcontains settings for both the CLI client and the server. Copy one of the haas.cfg* files in examples/ into:
     
@@ -24,15 +24,15 @@ Plugin architecture for The Mass Open Cloud GUI
       
       b. /etc
 
-5. Create a symlink to the haas cfg in the HaaS user's home directory:
+<b>5. Create a symlink to the haas cfg in the HaaS user's home directory:</b>
 
-    <pre>$sudo ln -s /etc/haas.cfg /var/lib/haas/ </pre>
+    $sudo ln -s /etc/haas.cfg /var/lib/haas/
 
-6. Intialize the HaaS Database:
+<b>6. Intialize the HaaS Database:</b>
     
-    <pre> $haas init_db </pre>
+    $haas init_db 
 
-7. Run the HaaS server by following the instructions [here]:
+<b>7. Run the HaaS server by following the instructions [here]:</b>
 
     https://github.com/CCI-MOC/haas/blob/master/HACKING.rst
 
@@ -41,7 +41,7 @@ Plugin architecture for The Mass Open Cloud GUI
 
 <b>1. Clone the MOC UI repo </b>
     
-    <pre> git clone https://github.com/BU-EC500-SP15/ui.git </pre>
+    git clone https://github.com/BU-EC500-SP15/ui.git
 
 <b>2. Start a Django Project </b>
 
