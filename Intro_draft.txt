@@ -1,52 +1,34 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf360
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-\margl1440\margr1440\vieww9000\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+Intro:
+Hello everyone. We are the Plugin-Architecture Group for the Massachusetts Open Cloud User Interface.
 
-\f0\b\fs24 \cf0 Intro:\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
 
-\b0 \cf0 Hello everyone. We are the Plugin-Architecture Group for the Massachusetts Open Cloud User Interface.\
-\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+[NEXT SLIDE]
+In the current cloud environment, most providers of cloud services are large entities that don't reveal internal data to researchers. This is a true bottleneck for progress in cloud computing.
 
-\b \cf0 [NEXT SLIDE]
-\b0 \
-\
-\
-The Massachusetts Open Cloud is a multi-university collaboration anchored in the Massachusetts Green High-Performance Computing Center. Incubated at Boston University, the MGHPCC is a nationally unique model of collaboration that brings together industry, state government, and public and private universities around building and operating a research computing data center.\
+In contrast, the Massachusetts Open Cloud offers clear transparency to users of its services.
+ 
+The MOC is a multi-university collaboration anchored in the Massachusetts Green High-Performance Computing Center. Incubated at Boston University, the MGHPCC is a nationally unique model of collaboration that brings together industry, state government, and public and private universities around building and operating a research computing data center.
+[NEXT SLIDE]
 
-\b [NEXT SLIDE]\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
 
-\b0 \cf0 \
-For this Spring 2015 semester, we've been working on a user interface for Hardware-as-a-Service, or HaaS, a new public cloud offering from the Massachusetts Open Cloud. \
-\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+For this Spring 2015 semester, we've been working on a user interface for Hardware-as-a-Service, or HaaS, a new public cloud offering from the Massachusetts Open Cloud. 
 
-\b \cf0 [NEXT SLIDE]\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
 
-\b0 \cf0 \
-A typical cloud stack offering is some combinations of Infrastructure-as-a-Service, Platform-as-a-Service, and Software-as-a-Service. HaaS is different because users can see and manage the actual machines doing the computations in the datacenter. We were able to integrate several critical HaaS APIs into the HaaS user interface, but this is still a work in progress, as is HaaS. \
-\
-The users of HaaS will be the students and researchers from Boston University, Harvard University, Massachusetts Institute of Technology, Northeastern University, and University of Massachusetts Amherst. Once HaaS is fully functional, we expect HaaS to be able to scale to tens of thousands of users. We used agile planning with a Trello board and burndown charts to pace ourselves for three months. We used Python, Django,  HTML, CSS, and JavaScript as our software stack. We have reached a point where we must pass the baton to future developers of the HaaS interface, and HaaS APIs. \
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+[NEXT SLIDE]
 
-\b \cf0 [NEXT SLIDE]
-\b0 \
-\
-\
-\
-\
-(need a slide for this script)\
-\
-We were tasked with linking the HaaS interface to the Massachusetts Open Cloud, or MOC, user interface, that largely uses OpenStack services for its functionalities. In comparison, the selling point of the HaaS interface is in its simplicity. No longer will users be required to use tools from OpenStack that are meant for tech savvy cloud administrators. Users get to play around with a user interface that is intuitive, hides most of the low-level configurations, doesn't require much maintenance, and offers services comparable to the OpenStack Horizon Dashboard.\
+A typical cloud stack offering is some combinations of Infrastructure-as-a-Service, Platform-as-a-Service, and Software-as-a-Service. HaaS is different because users can see and manage the actual machines doing the computations in the datacenter. We were able to integrate several critical HaaS APIs into the HaaS user interface, but this is still a work in progress, as is HaaS. 
 
-\b [NEXT SLIDE]\
-}
+The users of HaaS will be the students and researchers from the partner universities. Once HaaS is fully functional, we expect HaaS to be able to scale to tens of thousands of users. We have reached a point where we must pass the baton to future developers of the HaaS interface, and HaaS APIs. 
+
+[NEXT SLIDE]
+
+
+
+(need a slide for this script)
+
+We were tasked with linking the HaaS interface to the Massachusetts Open Cloud user interface, that largely uses OpenStack services for its functionalities. In comparison, the selling point of the HaaS interface is in its simplicity. No longer will users be required to use tools from OpenStack that are meant for tech savvy cloud administrators. Users get to play around with a user interface that is intuitive, hides most of the low-level configurations, doesn't require much maintenance, and offers services comparable to the OpenStack Horizon Dashboard.
+[NEXT SLIDE]
+
+crap:
+
+We used agile planning with a Trello board and burndown charts to pace ourselves for three months. We used Python, Django,  HTML, CSS, and JavaScript as our software stack. 
