@@ -18,7 +18,8 @@ Plugin architecture for The Mass Open Cloud GUI
 
 <b>4. Create a HaaS configuration file:</b>
 
-    haas.cfgcontains settings for both the CLI client and the server. Copy one of the haas.cfg* files in examples/ into:
+    haas.cfgcontains settings for both the CLI client and the server. 
+    Copy one of the haas.cfg* files in examples/ into:
     
       a. haas main directory
       
