@@ -9,7 +9,7 @@ Plugin Architecture for the Mass Open Cloud GUI, Alternate Setup
 
 <b>2. Create a HaaS configuration file:</b>
 
-haas.cfg contains settings for both the CLI client and the server. Copy haas.cfg.dev-no-hardware  files in examples/ into:
+haas.cfg contains settings for both the CLI client and the server. Copy haas.cfg.dev-no-hardware file in examples/ into:
     
       a. haas main directory (the super directory of /examples/)
 
@@ -90,7 +90,7 @@ We recommend using python version 2.7. Technically, you can run this on any port
 
 At this point, if you get errors it might be because there are additional functional HaaS APIs added for the HaaS UI but they're not currently implemented in HaaS. 
 
-To fix this, go to the moc-gui-plugins directory. Go to "for new haas", and copy the two files: api.py, cli.py. Go to the haas directory. Go into the second haas directory. Copy these files in this directory. This operation updates the HaaS API and CLI.
+To fix this, go to the moc-gui-plugins directory. Go to "for new haas", and copy the two files: api.py, cli.py. Go to the haas directory. Go into the second haas directory. Copy these files into this directory. This operation updates the HaaS API and CLI.
 
 These files are not actually updated while the HaaS server is running. Stop them, then deactivate the virtual environment (with $deactivate). Restart the virtual environment and get the server and server-networks running again.
 
@@ -108,13 +108,13 @@ These files are not actually updated while the HaaS server is running. Stop them
 
     b. go back to the ui/ directory
     
-    b. install requirements using "$pip install -r requirements.txt"
+    c. install requirements using "$pip install -r requirements.txt"
     
-    c. create database with "./syncdb.sh"
+    d. create database with "./syncdb.sh"
 
-    d. create folder to hold session ids with "mkdir session"
+    e. create folder to hold session ids with "mkdir session"
 
-    e. run server with "./runserver.sh"
+    f. run server with "./runserver.sh"
     
 <b> 3. Run the UI </b>
     Note: These steps may not be necessary
