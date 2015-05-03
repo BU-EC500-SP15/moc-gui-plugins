@@ -109,13 +109,14 @@
 <p>
    <div class="col-md-8">
 <hr />
+      <div class="btn-group" role="group" aria-label="...">
  	<a href="/projects" class="btn btn-default btn-sm">
 	<i class = "glyphicon glyphicon-arrow-left" aria-hidden = "true"> </i>
 	Back</a>
 	{% block delete %}
         	{% include "deleteModal.html" with deleteModal=deleteForm %}
     	{% endblock %}
-
+      </div>
    </div>   
 </p>
 
