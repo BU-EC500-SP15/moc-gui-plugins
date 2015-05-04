@@ -50,11 +50,15 @@ def project_details(request, name):
     
     headnodeForm = HeadnodeForm()
     createModal = {'header':'Create New Headnode', 'form':headnodeForm}
+    
+    networkForm = CreateProjectNetworkForm()
+    networkForm.action = '/network_project_create'
+    createNetworkModal = {'header':'Create New Network', 'form':networkForm}
 
     deleteForm = DeleteProjectForm()
     deleteForm.action = '/project_delete'
     deleteModal = {'header':name, 'form': deleteForm}
-    return render(request, 'projectDetails.html', {'project': project, 'nodes': nodes, 'hnodes': headnodes, 'deleteForm': deleteModal, 'createHeadnodeModal':createModal})
+    return render(request, 'projectDetails.html', {'project': project, 'nodes': nodes, 'hnodes': headnodes, 'deleteForm': deleteModal, 'createHeadnodeModal':createModal, 'createNetworkModal':createNetworkModal})
 
 
 def project_create(request):
@@ -385,6 +389,26 @@ def network_create(request):
                 r = requests.put(settings.HAAS_URL + '/network/' + network, data = json.dumps(payload))
                 if(r.status_code == 200):
                     return redirect('haasplugin.views.networks')
+                else:
+                    return render(request, 'error.html', {'status': r.status_code})
+
+    return render(request, 'error.html', {'status': 'Ahh..'})
+
+def network_project_create(request):
+    """
+    Creates a projects private network
+    """
+    if request.method == "POST":
+        form = CreateProjectNetworkForm(request.POST)
+        if form.is_valid():
+                network = form.cleaned_data["network"]
+                creator = "admin"
+                access = form.cleaned_data["access"]
+                net_id = ""
+                payload = {'creator' : creator, 'access' : access, 'net_id' : net_id}
+                r = requests.put(settings.HAAS_URL + '/network/' + network, data = json.dumps(payload))
+                if(r.status_code == 200):
+                    return redirect('haasplugin.views.project_details', access)
                 else:
                     return render(request, 'error.html', {'status': r.status_code})
 

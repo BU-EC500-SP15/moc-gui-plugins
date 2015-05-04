@@ -8,7 +8,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
             <h4 class="modal-title" id="myModalLabel">Delete Network: "{{network.label}}"</h4>
             </div>
-            <div class="modal-body" id="deleteForm">
+            <div class="modal-body" id="deleteForm{{network.label|slugify}}">
     			{% include "form.html" with form=context.deleteForm %}
            </div>
             <div class="modal-footer">
@@ -21,8 +21,21 @@
 </div>
 
 <script>
+$.validator.addMethod("equals", function(value, element, string) {
+    return value === string;
+}, $.validator.format("Please type valid name: {0}."));
+
+$("#deleteForm{{network.label|slugify}} > form").validate({
+    rules: {            
+        name: {
+            required: true,
+            equals: "{{network.label}}"
+        }
+    }
+});
+
 function deleteNetwork(){
-    $("#deleteForm > form").submit();
+    $("#deleteForm{{network.label|slugify}} > form").submit();
 }
 </script>
 

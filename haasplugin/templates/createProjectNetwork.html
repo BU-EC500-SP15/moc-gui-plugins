@@ -1,0 +1,35 @@
+﻿    
+
+<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createNetworkModal">
+<i class="glyphicon glyphicon-plus"></i>
+{% if createModal.btnText %}
+{{createModal.btnText}}
+{% else %}
+  Create
+{% endif %}
+</button>
+
+<div class="modal fade" id="createNetworkModal" tabindex="-1" role="dialog" aria-labelledby="createNetworkModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="createNetworkModalLabel">{{createModal.header}}</h4>
+      </div>
+      <div class="modal-body" id="createNetworkModalForm">
+      {% include "form.html" with form=createModal.form %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="submitNetworkForm()">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function submitNetworkForm(){
+  $('#createNetworkModalForm > form').submit();
+}
+  
+</script>

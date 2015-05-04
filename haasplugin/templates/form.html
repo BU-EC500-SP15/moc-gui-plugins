@@ -6,8 +6,7 @@
         <div class="form-group">
             {{ field.errors }}
             {{ field.label_tag }}
-	    {{ field }}
-            <!--input type="text" name="{{field.name}}" id="{{field.name}}"  class="form-control"/-->
+	    {{ field }}           
         </div>
     {% endfor  %}
 
@@ -22,18 +21,5 @@
 
 <script language="JavaScript">
 $("#plugin-form").validate();
-function checkProj() {
-	var delProj = document.getElementById('deleteModal');
-	if (delProj != null) 
-	{	  
-	  var projName = document.getElementById('name').value;
-	 
-	  if(projName!= "{{project.name}}")
-	  {
-		 alert("Error, the project name is incorrect");
-	  	 return false;
-	  }
-	 
-	}
-   }	
+
 </script>
