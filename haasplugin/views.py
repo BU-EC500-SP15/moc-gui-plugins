@@ -135,7 +135,7 @@ def headnode_details(request, name):
     headnode = headnode.json()
     addHNICForm = AddHNICForm()
     addHNICForm.action = '/headnodes/'+name+'/hnic_add'
-    createModal = {'header': 'Add New HNIC', 'form': addHNICForm}
+    createModal = {'header': 'Add New HNIC', 'form': addHNICForm, 'btnText':'Register HNIC'}
     deleteHeadnode = DeleteHeadnodeForm(initial={'project': headnode['project']})
     deleteHeadnode.action = '/headnode_delete'
     
@@ -349,7 +349,7 @@ def node_create(request):
                 if(r.status_code == 200):
                     return redirect('haasplugin.views.nodes')
                 else:
-                    return render(request, 'error.html', {'status': "node_create"})
+                    return render(request, 'error.html', {'status': r.status_code})
 
     return render(request, 'error.html', {'status': 'Ahh..'})
     

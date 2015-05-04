@@ -22,7 +22,7 @@ class CreateNodeForm(forms.Form):
     name = forms.CharField(label='Node name',  widget=forms.TextInput(attrs={'required':'required'}))
     ipmi_host = forms.CharField(label='IPMI host', widget=forms.TextInput(attrs={'required':'required'}))
     ipmi_user = forms.CharField(label='IPMI user', widget=forms.TextInput(attrs={'required':'required'}))
-    ipmi_pass = forms.CharField(label='IPMI pass', widget=forms.TextInput(attrs={'required':'required'}))
+    ipmi_pass = forms.CharField(label='IPMI pass', widget=forms.PasswordInput(attrs={'required':'required'}))
     action = ''
     back_link = ''
     back_text = ''
