@@ -110,10 +110,19 @@ Here is where you can attach new nodes to the project.
 As you can see, this is the list of all nodes that are available. 
 We can add more nodes to the project. 
 >>click attach
-This time we can also detach a node from a project. So let's do that. How about we detach the first that we added from to the project?
+This time we can also detach a node from a project. So let's do that. How about we detach the first node that we added to the project?
 
 >>click detach on first node added
-OK. So that node is now detached. Now let's create a headnode for the project.
+OK. So that node is now detached. Now let's create a network for this project.
+
+>>Click on create under networks
+You need to add the project name to attach this network to the project
+>> enter a name for the network
+>> enter "coolest project ever" for project name
+
+You can see that the network was created 
+Now let's create a headnode for the project.
+
 
 >>click on create under headnode section
 The fields for creating a headnode are required.
@@ -169,9 +178,13 @@ Now you see the newly registered NIC with the specified MAC address. OK. Now let
 >>Click on networks tab
 This tab shows all the networks (both private and public). Private networks are ones that are created for projects and public 
 networks are not attached to any networks.
+If you remember, we created a network for the project "coolest project ever", you can see the network here 
+>>highlight the network name
 
 >> click on a network name
-Click on a network name to view its details
+If you click on a network name, you'll be able to view its details such as who it's creator is, what project it is allocated to if it's a private network
+whether or not it is connected to nodes and headnodes via the nics and hnics fields respectively
+
 >> Click on delete {{network}}
 You can delete networks that are not connected to projects, networks or nics. If you click on "delete" for a project that is 
 connected to either a project, a node or a headnode, an error message will appear. To delete a network you must confirm by entering it's name
@@ -181,6 +194,7 @@ You can create a public network by just giving it a name
 
 >>click on nodes tab
 this tab shows all nodes, ones that are free and ones that are allocated to projects
+
 >>click on create new -> enter values
 You can create a new node
 Once the node is created you can click on manage to add NICs to it
