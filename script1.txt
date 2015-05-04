@@ -63,5 +63,107 @@ Lesser objects like the ones we just described are viewed through the lens of th
 >>
 <DEMO>
 --------------------------------
+[demonstrate MOC UI]
+>>go to MOC main page without the integration
+>>show the empty page
+First, we want to show you how to integrate our HaaS UI. What you see now is the empty page from the MOC UI. As you can see, there is nothing. But integration is very simple.  All you need to do is add one line of HTML. Here we already commented what you need to add. So just uncomment this to integrate the iFrame. Now let's check if it actually works or not.
+
+>>show the change in the MOC UI
+>>a modal should pop up with our HaaS UI, this should be the projects tab
+Yes! It works. So here are the three main components of the UI. Here we have a tab for each component. They are Projects, Nodes, and Networks. As you can see, there are some projects populated already. 
+
+>>show Nodes tab
+This is what the Nodes tab looks like. There are nodes already created.
+
+>>show Networks tab
+This is Networks. Here are the initialized networks. OK. Now I am going to walk through all the functionalities that we implemented. 
+
+>>go to Projects tab
+You can create new projects. You can view the details of already created projects. 
+
+>>click on project details
+Here you see the Nodes, the Headnodes, and Networks that are in the project selected.
+
+>>click on back
+Now let's create a new project.
+
+>>click on create
+OK.
+
+>>type in "Coolest project ever?
+How about "coolest project ever"? 
+
+>>click on create
+>>should see new project in Projects tab
+As you can see, the project is created and is now listed.
+
+>>click on manage for new project
+Here is where you can attach new nodes to the project.
+>>click on attach
+Here is where you can attach new nodes. As you can see, this is the list of all free nodes that are available. 
+>>click attach
+Let me show it again. We can add more nodes to the project. 
+>>click attach
+This time we can also detach a node from a project. So let's do that. How about we detach the first that we added from to the project?
+
+>>click detach on first node added
+OK. So that node is now detached. Now let's create a headnode for the project.
+
+>>click on create under headnode section
+So here is a pop up box that asks for three parameters. They are Headnode Name, Base Image Name, and Project Name.
+
+>>enter "headnode10" for name
+>>enter "img1" for image name
+>>enter "Coolest project ever" for project name
+Alright. Now let's manage our newly created headnode
+
+>>click on manage for new headnode
+Here you can register new HNICs. These are the Network Interface Cards for headnodes.
+
+>>click on create
+Now you need to specify the HNIC name.
+
+>>enter "hnic1"
+>>click create
+Now I am going to create another one
+
+>>click on create
+>>enter "hnic2"
+>>click create
+OK. So now we have two headnodes. Now let's try to delete one of them. 
+
+>>click delete for hnic2
+hnic2 is now deleted. Now we are going back to project details page by clicking on back
+
+>>click on back
+Now I will show you how to look at the details of headnode. 
+
+>>click on "headnode10"
+Here, you can only see the name of the HNICS. A lot of details are purposely hidden. We implemented this in such a way that you can have a quick view of the informational that is immediately meaningful, but not about everything.
+
+Now, I will show you how to create and manage nodes.
+>>click on Nodes tab
+OK. I will show you how to view the node details.
+
+>>click on "Node1"
+Here is the list of NIC names and corresponding MAC address. You can see here whether or not a node is available.
+
+>>click close
+>>click manage on "Node1"
+Here is where you can register new NICs.
+
+>>click on register nic
+Here you need to specify the NIC name, and its MAC Address
+
+>>enter "NIC3" for NIC name
+>>enter "00:44:55:fe:12:12"
+
+>>click register
+Now you see the newly registered NIC with the specified MAC address. OK. Now let's 
+
+[DANA]
+
+
+--------------------------------
 <NEXT SLIDE>
 The users of the MOC HaaS will be the students and researchers from the partner universities. Once HaaS is fully functional, we expect HaaS to be able to scale to tens of thousands of users. We have reached a point where we must pass the baton to future developers of the HaaS interface, and HaaS APIs. 
