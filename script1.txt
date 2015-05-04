@@ -81,25 +81,19 @@ As you can see, there are some projects populated already.
 
 >>show Nodes tab
 This is what the Nodes tab looks like. There are nodes already created.
-
 >>show Networks tab
 This is Networks. Here are the initialized networks. OK. Now I am going to walk through all the functionalities that we implemented. 
-
 >>go to Projects tab
 You can create new projects. You can view the details of already created projects. 
-
 >>click on project details
 Here you see the Nodes, the Headnodes, and Networks that are in the project selected.
 
 >>click on back
 Now let's create a new project.
-
 >>click on create
 OK.
-
 >>type in "Coolest project ever?
 How about "coolest project ever"? 
-
 >>click on create
 >>should see new project in Projects tab
 As you can see, the project is created and is now listed.
@@ -110,71 +104,61 @@ Here is where you can attach new nodes to the project.
 As you can see, this is the list of all nodes that are available. 
 We can add more nodes to the project. 
 >>click attach
-This time we can also detach a node from a project. So let's do that. How about we detach the first node that we added to the project?
 
+This time we can also detach a node from a project. So let's do that. How about we detach the first node that we added to the project?
 >>click detach on first node added
 OK. So that node is now detached. Now let's create a network for this project.
-
 >>Click on create under networks
 You need to add the project name to attach this network to the project
 >> enter a name for the network
 >> enter "coolest project ever" for project name
-
+>>click create
 You can see that the network was created 
+
+
 Now let's create a headnode for the project.
-
-
 >>click on create under headnode section
 The fields for creating a headnode are required.
-
 >>enter "headnode10" for name
 >>enter "img1" for image name
 >>enter "Coolest project ever" for project name
-Alright. Now let's manage our newly created headnode
 
+Alright. Now let's manage our newly created headnode
 >>click on manage for new headnode
 Here you can register new HNICs. These are the Network Interface Cards for headnodes.
-
 >>click on create
 Now you need to specify the HNIC name.
-
 >>enter "hnic1"
 >>click create
 Now I am going to create another one
-
 >>click on create
 >>enter "hnic2"
 >>click create
-OK. So now we have two headnodes. Now let's try to delete one of them. 
 
+OK. So now we have two hnics. Now let's try to delete one of them. 
 >>click delete for hnic2
 hnic2 is now deleted. Now we are going back to project details page by clicking on back
-
 >>click on "headnode10"
 To view details of ta headnode you can click on it's name
 
 Now, I will show you how to create and manage nodes.
 >>click on Nodes tab
 OK. I will show you how to view the node details.
-
 >>click on "Node1"
 Here is the list of NIC names and corresponding MAC address. You can see here whether or not a node is available.
-
 >>click close
+
 >>click manage on "Node1"
 Here is where you can register new NICs.
-
 >>click on register nic
 Here you need to specify the NIC name, and its MAC Address
-
 >>enter "NIC3" for NIC name
 >>enter "00:44:55:fe:12:12"
-
 >>click register
-Now you see the newly registered NIC with the specified MAC address. OK. Now let's 
+Now you see the newly registered NIC with the specified MAC address. 
 
 [DANA]
-
+OK. Now let's check out the networks tab
 >>Click on networks tab
 This tab shows all the networks (both private and public). Private networks are ones that are created for projects and public 
 networks are not attached to any networks.
