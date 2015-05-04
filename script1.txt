@@ -4,22 +4,22 @@ Hello everyone. We are the Plugin-Architecture Group for the Massachusetts Open 
 
 [NEXT SLIDE]
 >>
-In the current cloud environment, most providers of cloud services are large entities that don't reveal internal data to researchers. This is a true bottleneck for progress in cloud computing.
+In the current cloud environment, most providers of cloud services are large entities that don't reveal internal data to researchers. This is a bottleneck for progress in cloud computing.
 >>
-In contrast, the Massachusetts Open Cloud offers clear transparency to users of its services.
-The MOC is a multi-university collaboration anchored in the Massachusetts Green High-Performance Computing Center. 
+In contrast, the Massachusetts Open Cloud offers transparency to users of its services. The Mass Open Cloud is a multi-university collaboration anchored in the Massachusetts Green High-Performance Computing Center. 
 >>
 
 [NEXT SLIDE]
 >>
-Incubated at Boston University, the MGHPCC is a nationally unique model of collaboration that brings together industry, state government, and public and private universities around building and operating a research computing data center.
+Incubated at Boston University, the MGHPCC is a model of collaboration that brings together industry, government, and public and private universities around building and operating a research computing data center.
 >>
-For this Spring 2015 semester, we've been working on a user interface for Hardware-as-a-Service, or HaaS, a new public cloud offering from the Massachusetts Open Cloud. 
+During this Spring 2015 semester, we have been working on a user interface for Hardware-as-a-Service, or HaaS, which is a new public cloud offering from the Massachusetts Open Cloud.
+ 
 >>
 [NEXT SLIDE]
 Let's take a second to examine the Cloud Stack.
 >>
-A typical cloud stack offering is some combinations of Infrastructure-as-a-Service, Platform-as-a-Service, and Software-as-a-Service.
+A typical cloud stack offering is some combination of Infrastructure-, Platform-, and Software-as-a-Service.
 >>
 HaaS fits into the bottom of this abstraction.  
 >>
@@ -29,23 +29,27 @@ HaaS is different because users can see and manage the actual machines doing the
 [NEXT SLIDE]
 We will now give a quick overview of our project. 
 >>
-A HaaS server is being devloped by researchers here at Boston University. 
+A HaaS server is being developed by researchers here at Boston University. 
 >>
-We in turn are developing the plugin for the MOC UI for this HaaS server. We have used or developed API calls to interract with this HaaS server. 
+We in turn are creating the plugin for the MOC UI. We have used or developed API calls to interact with this HaaS server. 
 >>
-These projects are external to the MOC UI,  
+These projects are external,  
 >>
-and will be intergrated into the MOC UI through the us of an iFrame, which we also developed.
+and will be integrated into the MOC UI through the use of an iFrame we implemented.
 >>
-
+>>
 <NEXT SLIDE>
-Due to its high interconnectivity, we will now take a second to explain the structure of the HaaS itself. Though this is just a simple abstraction, it is useful backround knowledge that influenced our design descisions.
+Due to its high interconnectivity, we will now take a second to explain the structure of the HaaS itself. Though this is just an abstraction, it is useful background knowledge that influenced our design decisions.
 >>
-There are three main componetents of the HaaS, the projects, the nodes, and the Networks. 
+There are three main components of HaaS: the projects
+>>
+the nodes, 
+>>
+and the Networks. 
 >>
 These main objects are connected in different ways. Projects can be directly connected to nodes, as can networks. Other, more narrow objects are involved as well.
 >> 
-An obect called a Network Interface Card connects nodes and networks.
+An object called a Network Interface Card connects nodes and networks.
 >>
 Headnodes must be connected to a project and a lesser object called a base image. 
 >>
@@ -53,13 +57,13 @@ Similarly to nodes, headnodes are connected to networks by a lesser object calle
 >>
 
 <NEXT SLIDE>
-One thing that we considered very important not jsut to the success of the project, but its quality, was the structure of its URLs. 
+One thing that we considered very important not just to the success of the project, but its quality, was the structure of its URLs. 
 >>
-Firstly, the three main objects described I just described are given their own urls. As everything stems from these three objects, they also form the base of our urls.
+Firstly, the three main objects I just described are given their own urls. As everything stems from these three objects, they also form the base of our plugin.
 >>
-We wanted to keep our urls consistant and intuitive. In order to see the details of one of the main three objects, one just puts it's respective type followed by its name. 
+We wanted to keep our addresses consistent and intuitive. In order to see the details of one of the main three objects, one just enters it's type followed by its name. 
 >>
-Lesser objects like the ones we just described are viewed through the lens of the larger object it is associated with. We believe this is both true to the actual structure of HaaS as well as easy to understand. 
+Lesser objects, like the ones we just described, are viewed through the lens of the larger object it is associated with. We believe this is both true to the actual structure of HaaS, as well as easy to understand. 
 >>
 <DEMO>
 --------------------------------
