@@ -55,13 +55,13 @@ You may replace 'venv' with a name of your choice, but remember to do so for the
 
 <b>3. Enter this virtual environment using</b>
 
-        $source venv/bin/activate
+    $source venv/bin/activate
 
 The path is different if you named the virtualenv differently.
 
 <b>4. While the venv is active and in the .git directory for moc-gui-plugins, install necessary libraries</b>
 
-        $pip install -r requirements.txt
+    $pip install -r requirements.txt
 
 <b>5. Start the Haas Plugin server locally</b>
 
@@ -73,21 +73,21 @@ We recommend using python version 2.7. You run this on any port except 5000 (Haa
 
 <b>1. Clone the MOC UI repo </b>
     
-    git clone https://github.com/BU-EC500-SP15/ui.git
+    $git clone https://github.com/BU-EC500-SP15/ui.git
 
 <b>2. Start a Django Project </b>
 
-    a. create python virtual enviornment using "virtualenv [env-name]"
+    a. create python virtual enviornment using "$virtualenv [env-name]"
     
-    b. source environment using "source [env-name]/bin/activate"
+    b. source environment using $"source [env-name]/bin/activate"
     
-    c.install requirements using "pip install -r requirements.txt"
+    c.install requirements using "$pip install -r requirements.txt"
     
-    d. create database with "./syncdb.sh"
+    d. create database with "$./syncdb.sh"
 
-    e. create folder to hold session ids with "mkdir session"
+    e. create folder to hold session ids with "$mkdir session"
 
-    f. run server with "./runserver.sh"
+    f. run server with "$./runserver.sh"
     
 <b> 3. Run the UI </b>
 
